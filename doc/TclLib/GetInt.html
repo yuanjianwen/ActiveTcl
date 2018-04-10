@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>Tcl_GetInt manual page - Library Procedures</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tcl C API, version 8.6.6</a> <small>&gt;</small> GetInt</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<DL>
+<DD><A class="doc" href="GetInt.html#M2" NAME="L372">NAME</A>
+<DL><DD>Tcl_GetInt, Tcl_GetDouble, Tcl_GetBoolean &mdash; convert from string to integer, double, or boolean</DD></DL>
+<DD><A class="doc" href="GetInt.html#M3" NAME="L373">SYNOPSIS</A>
+<DL>
+<DD><B>#include &lt;tcl.h&gt;</B>
+<DD>int
+<DD><B>Tcl_GetInt</B>(<I>interp, src, intPtr</I>)
+<DD>int
+<DD><B>Tcl_GetDouble</B>(<I>interp, src, doublePtr</I>)
+<DD>int
+<DD><B>Tcl_GetBoolean</B>(<I>interp, src, boolPtr</I>)
+</DL>
+<DD><A class="doc" href="GetInt.html#M4" NAME="L374">ARGUMENTS</A>
+<DL class="arguments">
+</DL>
+<DD><A class="doc" href="GetInt.html#M5" NAME="L375">DESCRIPTION</A>
+<DD><A class="doc" href="GetInt.html#M6" NAME="L376">KEYWORDS</A>
+</DL>
+<H3><A NAME="M2">NAME</A></H3>
+Tcl_GetInt, Tcl_GetDouble, Tcl_GetBoolean &mdash; convert from string to integer, double, or boolean
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>#include &lt;tcl.h&gt;</B><BR>
+int<BR>
+<B>Tcl_GetInt</B>(<I>interp, src, intPtr</I>)<BR>
+int<BR>
+<B>Tcl_GetDouble</B>(<I>interp, src, doublePtr</I>)<BR>
+int<BR>
+<B>Tcl_GetBoolean</B>(<I>interp, src, boolPtr</I>)<BR>
+<H3><A NAME="M4">ARGUMENTS</A></H3>
+<DL class="arguments">
+<DT><A class="doc" href="../TclLib/Interp.html">Tcl_Interp</A> <B>*interp</B> (in)<DD>
+Interpreter to use for error reporting.
+<P><DT>const char <B>*src</B> (in)<DD>
+Textual value to be converted.
+<P><DT>int <B>*intPtr</B> (out)<DD>
+Points to place to store integer value converted from <I>src</I>.
+<P><DT>double <B>*doublePtr</B> (out)<DD>
+Points to place to store double-precision floating-point
+value converted from <I>src</I>.
+<P><DT>int <B>*boolPtr</B> (out)<DD>
+Points to place to store boolean value (0 or 1) converted from <I>src</I>.
+<P></DL>
+<H3><A NAME="M5">DESCRIPTION</A></H3>
+These procedures convert from strings to integers or double-precision
+floating-point values or booleans (represented as 0- or 1-valued
+integers).  Each of the procedures takes a <I>src</I> argument,
+converts it to an internal form of a particular type, and stores
+the converted value at the location indicated by the procedure's
+third argument.  If all goes well, each of the procedures returns
+<B><A class="doc" href="../TclCmd/catch.html">TCL_OK</A></B>.  If <I>src</I> does not have the proper syntax for the
+desired type then <B><A class="doc" href="../TclCmd/catch.html">TCL_ERROR</A></B> is returned, an error message is left
+in the interpreter's result, and nothing is stored at *<I>intPtr</I>
+or *<I>doublePtr</I> or *<I>boolPtr</I>.
+<P>
+<B>Tcl_GetInt</B> expects <I>src</I> to consist of a collection
+of integer digits, optionally signed and optionally preceded by
+white space.  If the first two characters of <I>src</I>
+after the optional white space and sign are
+&#8220;0x&#8221;
+then <I>src</I> is expected to be in hexadecimal form;  otherwise,
+if the first such character is
+&#8220;0&#8221;
+then <I>src</I>
+is expected to be in octal form;  otherwise, <I>src</I> is
+expected to be in decimal form.
+<P>
+<B>Tcl_GetDouble</B> expects <I>src</I> to consist of a floating-point
+number, which is:  white space;  a sign; a sequence of digits;  a
+decimal point;  a sequence of digits;  the letter
+&#8220;e&#8221;;
+a signed decimal exponent;  and more white space.
+Any of the fields may be omitted, except that
+the digits either before or after the decimal point must be present
+and if the
+&#8220;e&#8221;
+is present then it must be followed by the exponent number.
+<P>
+<B>Tcl_GetBoolean</B> expects <I>src</I> to specify a boolean
+value.  If <I>src</I> is any of <B>0</B>, <B>false</B>,
+<B>no</B>, or <B>off</B>, then <B>Tcl_GetBoolean</B> stores a zero
+value at <I>*boolPtr</I>.
+If <I>src</I> is any of <B>1</B>, <B>true</B>, <B>yes</B>, or <B>on</B>,
+then 1 is stored at <I>*boolPtr</I>.
+Any of these values may be abbreviated, and upper-case spellings
+are also acceptable.
+
+<H3><A NAME="M6">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/B.html#boolean">boolean</A>, <A class="doc" href="../Keywords/C.html#conversion">conversion</A>, <A class="doc" href="../Keywords/D.html#double">double</A>, <A class="doc" href="../Keywords/F.html#floating-point">floating-point</A>, <A class="doc" href="../Keywords/I.html#integer">integer</A>
+<div class="copy">Copyright &copy; 1989-1993 The Regents of the University of California.
+Copyright &copy; 1994-1996 Sun Microsystems, Inc.
+</div>
+</BODY></HTML>

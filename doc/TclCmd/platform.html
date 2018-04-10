@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>platform manual page - Tcl Bundled Packages</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tcl Commands, version 8.6.6</a> <small>&gt;</small> platform</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<H3><A NAME="M2">NAME</A></H3>
+platform &mdash; System identification support code and utilities
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>package require platform ?1.0.10?</B><BR>
+<B>platform::generic</B><BR>
+<B>platform::identify</B><BR>
+<B>platform::patterns </B><I>identifier</I><BR>
+<H3><A NAME="M4">DESCRIPTION</A></H3>
+The <B>platform</B> package provides several utility commands useful
+for the identification of the architecture of a machine running Tcl.
+<P>
+Whilst Tcl provides the <B><A class="doc" href="../TclCmd/tclvars.html">tcl_platform</A></B> array for identifying the
+current architecture (in particular, the platform and machine
+elements) this is not always sufficient. This is because (on Unix
+machines) <B><A class="doc" href="../TclCmd/tclvars.html">tcl_platform</A></B> reflects the values returned by the
+<B>uname</B> command and these are not standardized across platforms and
+architectures. In addition, on at least one platform (AIX) the
+<B>tcl_platform(machine)</B> contains the CPU serial number.
+<P>
+Consequently, individual applications need to manipulate the values in
+<B><A class="doc" href="../TclCmd/tclvars.html">tcl_platform</A></B> (along with the output of system specific
+utilities) - which is both inconvenient for developers, and introduces
+the potential for inconsistencies in identifying architectures and in
+naming conventions.
+<P>
+The <B>platform</B> package prevents such fragmentation - i.e., it
+establishes a standard naming convention for architectures running Tcl
+and makes it more convenient for developers to identify the current
+architecture a Tcl program is running on.
+<H3><A NAME="M5">COMMANDS</A></H3>
+<DL class="commands">
+<DT><A NAME="M6"><B>platform::identify</B></A><DD>
+This command returns an identifier describing the platform the Tcl
+core is running on. The returned identifier has the general format
+<I>OS</I>-<I>CPU</I>. The <I>OS</I> part of the identifier may contain
+details like kernel version, libc version, etc., and this information
+may contain dashes as well.  The <I>CPU</I> part will not contain
+dashes, making the preceding dash the last dash in the result.
+<P><DT><A NAME="M7"><B>platform::generic</B></A><DD>
+This command returns a simplified identifier describing the platform
+the Tcl core is running on. In contrast to <B>platform::identify</B> it
+leaves out details like kernel version, libc version, etc. The
+returned identifier has the general format <I>OS</I>-<I>CPU</I>.
+<P><DT><A NAME="M8"><B>platform::patterns </B><I>identifier</I></A><DD>
+This command takes an identifier as returned by
+<B>platform::identify</B> and returns a list of identifiers describing
+compatible architectures.
+<P></DL>
+<H3><A NAME="M9">EXAMPLE</A></H3>
+This can be used to allow an application to be shipped with multiple builds of
+a shared library, so that the same package works on many versions of an
+operating system. For example:
+<P>
+<PRE><B>package require platform</B>
+# Assume that app script is .../theapp/bin/theapp.tcl
+set binDir [file dirname [file normalize [info script]]]
+set libDir [file join $binDir .. lib]
+set platLibDir [file join $libDir [<B>platform::identify</B>]]
+load [file join $platLibDir support[info sharedlibextension]]</PRE>
+<H3><A NAME="M10">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/O.html#operating system">operating system</A>, <A class="doc" href="../Keywords/C.html#cpu architecture">cpu architecture</A>, <A class="doc" href="../Keywords/P.html#platform">platform</A>, <A class="doc" href="../Keywords/A.html#architecture">architecture</A>
+<div class="copy">Copyright &copy; 2006 ActiveState Software Inc
+</div>
+</BODY></HTML>

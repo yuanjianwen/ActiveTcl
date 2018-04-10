@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>Tk_Grab manual page - Library Procedures</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tk C API, version 8.6.6</a> <small>&gt;</small> Grab</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<DL>
+<DD><A class="doc" href="Grab.html#M2" NAME="L402">NAME</A>
+<DL><DD>Tk_Grab, Tk_Ungrab &mdash; manipulate grab state in an application</DD></DL>
+<DD><A class="doc" href="Grab.html#M3" NAME="L403">SYNOPSIS</A>
+<DL>
+<DD><B>#include &lt;tk.h&gt;</B>
+<DD>int
+<DD><B>Tk_Grab</B>(<I>interp, tkwin, grabGlobal</I>)
+<DD>void
+<DD><B>Tk_Ungrab</B>(<I>tkwin</I>)
+</DL>
+<DD><A class="doc" href="Grab.html#M4" NAME="L404">ARGUMENTS</A>
+<DL class="arguments">
+</DL>
+<DD><A class="doc" href="Grab.html#M5" NAME="L405">DESCRIPTION</A>
+<DD><A class="doc" href="Grab.html#M6" NAME="L406">KEYWORDS</A>
+</DL>
+<H3><A NAME="M2">NAME</A></H3>
+Tk_Grab, Tk_Ungrab &mdash; manipulate grab state in an application
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>#include &lt;tk.h&gt;</B><BR>
+int<BR>
+<B>Tk_Grab</B>(<I>interp, tkwin, grabGlobal</I>)<BR>
+void<BR>
+<B>Tk_Ungrab</B>(<I>tkwin</I>)<BR>
+<H3><A NAME="M4">ARGUMENTS</A></H3>
+<DL class="arguments">
+<DT><A class="doc" href="../TclLib/Interp.html">Tcl_Interp</A> <B>*interp</B> (in)<DD>
+Interpreter to use for error reporting
+<P><DT><A class="doc" href="../TkLib/WindowId.html">Tk_Window</A> <B>tkwin</B> (in)<DD>
+Window on whose behalf the pointer is to be grabbed or released
+<P><DT>int <B>grabGlobal</B> (in)<DD>
+Boolean indicating whether the grab is global or application local
+<P></DL>
+<H3><A NAME="M5">DESCRIPTION</A></H3>
+These functions are used to set or release a global or
+application local grab.  When a grab is set on a particular window
+in a Tk application, mouse and keyboard events can only be received by
+that window and its descendants.  Mouse and keyboard events for
+windows outside the tree rooted at <I>tkwin</I> will be redirected to
+<I>tkwin</I>.  If the grab is global, then all mouse and keyboard
+events for windows outside the tree rooted at <I>tkwin</I> (even those
+intended for windows in other applications) will be redirected to
+<I>tkwin</I>.  If the grab is application local, only mouse and
+keyboard events intended for a windows within the same application
+(but outside the tree rooted at <I>tkwin</I>) will be redirected.
+<P>
+<B>Tk_Grab</B> sets a grab on a particular window.  <I>Tkwin</I>
+specifies the window on whose behalf the pointer is to be grabbed.
+<I>GrabGlobal</I> indicates whether the grab should be global or
+application local; if it is non-zero, it means the grab should be
+global.  Normally, <B>Tk_Grab</B> returns <B><A class="doc" href="../TclCmd/catch.html">TCL_OK</A></B>; if an error occurs
+and the grab cannot be set, <B><A class="doc" href="../TclCmd/catch.html">TCL_ERROR</A></B> is returned and an error message
+is left if <I>interp</I>'s result.  Once this call completes
+successfully, no window outside the tree rooted at <I>tkwin</I> will
+receive pointer- or keyboard-related events until the next call to
+Tk_Ungrab.  If a previous grab was in effect within the application,
+then it is replaced with a new one.
+<P>
+<B>Tk_Ungrab</B> releases a grab on the mouse pointer and keyboard, if
+there is one set on the window given by <I>tkwin</I>.  Once a grab is
+released, pointer and keyboard events will start being delivered to
+other windows again.
+<H3><A NAME="M6">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/G.html#grab">grab</A>, <A class="doc" href="../Keywords/W.html#window">window</A>
+<div class="copy">Copyright &copy; 1998-2000 by Scriptics Corporation.
+</div>
+</BODY></HTML>

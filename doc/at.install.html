@@ -1,0 +1,400 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta name="generator" content="HTML Tidy, see www.w3.org">
+<title>ActiveTcl User Guide</title>
+<link rel="stylesheet" href="aspn.css" type="text/css">
+</head>
+<body>
+<!--ActiveTcl heading-->
+<div class="banner">
+<table width="100%" border="0" cellspacing="0" cellpadding="3">
+<tr>
+<td align="left"><a target="_blank" href=
+"http://www.activestate.com/activetcl"><img src=
+"images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a>
+</td>
+<td align="center" class="heading">ActiveTcl User Guide</td>
+<td align="right"><a target="_blank" href=
+"http://www.activestate.com"><img src="images/AS_logo.gif" border=
+"0" align="right" alt="ActiveState Software Inc."></a> </td>
+</tr>
+</table>
+</div>
+
+<h1>Installing ActiveTcl</h1>
+
+<p>ActiveTcl binaries for Windows, Mac OS X, Linux (x86, and
+x86_64) are available from the <a class="doc" href=
+"http://www.activestate.com/activetcl-pro-studio">ActiveState</a>
+web site.</p>
+
+<p>Solaris, HP-UX and AIX builds are available in ActiveTcl <a
+href="http://www.activestate.com/business-edition">Business</a>, <a
+href="http://www.activestate.com/enterprise-edition">Enterprise</a>
+and <a href="http://www.activestate.com/oem">OEM</a> editions.</p>
+
+<ul>
+<li><a class="doc" href="#sysreqs">System Requirements for
+ActiveTcl</a></li>
+
+<li><a class="doc" href="#install">Installing ActiveTcl</a></li>
+
+<li><a class="doc" href="#uninstall">Uninstalling
+ActiveTcl</a></li>
+</ul>
+
+<h2><a name="sysreqs">System Requirements for ActiveTcl</a></h2>
+
+<h3>Windows</h3>
+
+<ul>
+<li>35 MB for the final install.</li>
+
+<li>Windows 2003 or later.</li>
+</ul>
+
+<h3>Windows 64bit</h3>
+
+<h3>Mac OS X</h3>
+
+<ul>
+<li>50 MB for the final install.</li>
+
+<li>Mac OS X v10.7 (Lion) or later.</li>
+
+<li>Intel processor or compatible.</li>
+</ul>
+
+<h3>Linux</h3>
+
+<ul>
+<li>2.4 kernel or greater (glibc 2.3).</li>
+
+<li>50 MB for the final install.</li>
+
+<li>web browser for reading documentation.</li>
+</ul>
+
+<h3>Linux x86_64</h3>
+
+<ul>
+<li>2.6 kernel or greater (glibc 2.3).</li>
+
+<li>70 MB for the final install.</li>
+
+<li>web browser for reading documentation.</li>
+</ul>
+
+<h3>Linux IA64</h3>
+
+<h3>Solaris</h3>
+
+<ul>
+<li>Solaris 9 or greater on sparc.</li>
+
+<li>Solaris 10 kernel or greater on x86.</li>
+
+<li>55 MB for the final install.</li>
+
+<li>web browser for reading documentation.</li>
+</ul>
+
+<p>Note that Tar on Solaris 2.6 has a bug that prevents proper
+extraction of files in packages with long path names. GNU tar may
+therefore be required to extract the package into the filesystem
+correctly. A precompiled version of GNU tar for the sparc platform
+is available from: http://www.sunfreeware.com/.</p>
+
+<h3>AIX</h3>
+
+<ul>
+<li>AIX 6 or greater.</li>
+
+<li>55 MB for the final install.</li>
+
+<li>web browser for reading documentation.</li>
+</ul>
+
+<h3>HP-UX PARISC</h3>
+
+<ul>
+<li>HP-UX 11i or greater.</li>
+
+<li>50 MB for the final install.</li>
+
+<li>web browser for reading documentation.</li>
+
+<li>GNU tar (available from <a class="doc" target="_blank" href=
+"http://hpux.connect.org.uk/hppd/hpux/Gnu/tar-1.22/">http://hpux.connect.org.uk/hppd/hpux/Gnu/tar-1.22/</a>)</li>
+</ul>
+
+<h3>HP-UX IA64</h3>
+
+<h2><a name="install">Installing ActiveTcl</a></h2>
+
+<h3>Windows</h3>
+
+<p>ActiveTcl is distributed on Windows as an executable installer
+(<code>.exe</code> file).</p>
+
+<ul>
+<li><a href="http://www.activestate.com/activetcl">Download</a> the
+ActiveTcl AS Package for Windows
+(<code>ActiveTcl-<em>&lt;version&gt;-&lt;platform&gt;</em>.exe</code>).</li>
+
+<li>Double-click the installer file to extract the contents and run
+the installation.</li>
+
+<li>Note that since Windows Vista it is strongly recommended to
+start the installer via a <strong>right</strong>-click and "run as
+Administrator" from the context menu this pops up.</li>
+
+<li>Note further that it is necessary to save the installer to the
+local disk before running it, contrary to any objections made by
+recent versions of Internet Explorer. The installer cannot be run
+from IE.</li>
+</ul>
+
+<h3>Mac OS X</h3>
+
+<p>ActiveTcl is distributed on Mac OS X as a disk image
+(<code>.dmg</code> file). The disk image contains an installer
+package (<code>.pkg</code> bundle) that installs ActiveTcl.</p>
+
+<ul>
+<li><a href="http://www.activestate.com/activetcl">Download</a> the
+ActiveTcl disk image
+(<code>ActiveTcl-<em>&lt;version&gt;-&lt;platform&gt;</em>.dmg</code>).</li>
+
+<li>If the browser does not automatically mount the disk image and
+open the mounted folder in Finder, double-click
+<code>ActiveTcl-<em>&lt;version&gt;-&lt;platform&gt;</em>.dmg</code>
+to do so.</li>
+
+<li>Double-click the ActiveTcl installer package
+(<code>ActiveTcl-<em>&lt;version&gt;</em>.pkg</code>) to start the
+installation.</li>
+
+<li>Follow the Installer prompts. The installer will ask for
+administrative authentication if the current user does not have
+administrative priviledges.</li>
+
+<li>After installation is complete, you may eject the ActiveTcl
+disk image and move
+<code>ActiveTcl-<em>&lt;version&gt;-&lt;platform&gt;</em>.dmg</code>
+to the Trash.</li>
+</ul>
+
+<p>OS X includes a non-interactive command line interface to
+Apple's Installer. To install the ActiveTcl Apple installer from
+the command line:</p>
+
+<pre>
+    $ sudo installer -pkg /Volumes/ActiveTcl-&lt;version&gt;/ActiveTcl-&lt;version&gt;.pkg -target /
+</pre>
+
+<p>More information on the command line interface to Installer can
+be found in its <code>man</code> page.</p>
+
+<p>ActiveTcl executables (<code>wish</code>, <code>tclsh</code> and
+<code>tkcon</code>) are installed in <code>/usr/local/bin</code>.
+If this directory is not in the user's PATH environment variable,
+it can be added manually to the <code>.profile</code> or
+<code>.bash_ profile</code> file in the user's home directory. For
+example:</p>
+
+<pre>
+    PATH=/usr/local/bin:$PATH
+    export PATH
+</pre>
+
+<h3>Linux / Linux x86_64</h3>
+
+<p>The download is a tar-gzipped archive. To extract, enter the
+following command at the shell prompt:</p>
+
+<code>gtar zxf /path/to/ActiveTcl-download.tar.gz</code> 
+
+<p>In the directory where you extracted the archive, run the
+<code>install.sh</code> installer script, which will automatically
+select between the GUI or text-based installer depending on your
+system configuration. After installation, make sure that the
+directory containing the installed executables
+(<code>ActiveTcl/bin</code>) is included in your PATH variable.</p>
+
+<h3>Solaris</h3>
+
+<p>The download is a compressed tar archive. To extract, enter the
+following command at the shell prompt:</p>
+
+<code>compress -cd /path/to/ActiveTcl-download.tar.Z | tar xf
+-</code> 
+
+<p>In the directory where you extracted the archive, run the
+<code>install.sh</code> installer script, which will automatically
+select between the GUI or text-based installer depending on your
+system configuration. After installation, make sure that the
+directory containing the installed executables is included in your
+PATH variable.</p>
+
+<p>Note that GNU tar may be required to extract the package into
+the filesystem correctly, due to the long path names used in our
+archives. A precompiled version of GNU tar for the sparc platform
+is available from <a class="doc" href=
+"http://www.sunfreeware.com">http://www.sunfreeware.com</a>.</p>
+
+<h3>AIX</h3>
+
+<p>The download is a tar-gzipped archive. To extract, enter the
+following command at the shell prompt:</p>
+
+<code>gtar zxf /path/to/ActiveTcl-download.tar.gz</code> 
+
+<p>Or:</p>
+
+<code>gunzip &lt; /path/to/ActiveTcl-download.tar.gz | tar xf
+-</code> 
+
+<p>In the directory where you extracted the archive, run the
+<code>install.sh</code> installer script, which will automatically
+select between the GUI or text-based installer depending on your
+system configuration. After installation, make sure that the
+directory containing the installed executables
+(<code>ActiveTcl/bin</code>) is included in your PATH variable.</p>
+
+<h3>HP-UX</h3>
+
+<p>The download is a tar-gzipped archive. To extract, enter the
+following command at the shell prompt:</p>
+
+<code>gtar zxf /path/to/ActiveTcl-download.tar.gz</code> 
+
+<p>Or:</p>
+
+<code>gunzip &lt; /path/to/ActiveTcl-download.tar.gz | tar xf
+-</code> 
+
+<p>In the directory where you extracted the archive, run the
+<code>install.sh</code> installer script, which will automatically
+select between the GUI or text-based installer depending on your
+system configuration. After installation, make sure that the
+directory containing the installed executables
+(<code>ActiveTcl/bin</code>) is included in your PATH variable.</p>
+
+<h2><a name="uninstall">Uninstalling ActiveTcl</a></h2>
+
+<h3>Windows</h3>
+
+<p>To uninstall ActiveTcl, from the <strong>Start</strong> menu,
+select <strong>Programs|ActiveState ActiveTcl|Uninstall
+ActiveTcl</strong>.</p>
+
+<h3>Mac OS X</h3>
+
+<p>Run the <code>uninstall</code> script provided by ActiveTcl and
+installed under
+<code>/Library/Receipts/ActiveTcl-<em>&lt;version&gt;</em>/Contents/Resources/uninstall</code>.
+This will remove all files, symbolic links and directories created
+during installation, after the user has confirmed his intentions.
+For example:</p>
+
+<pre>
+    $ cd /Library/Receipts/ActiveTcl-&lt;version&gt;/Contents/Resources
+    $ sudo ./uninstall
+    ... List of files, links, etc. which are removed ...
+   
+</pre>
+
+<p><em>Note:</em> On Snow Leopard and higher the
+<code>uninstall</code> script is installed under
+<code>/Library/Frameworks/Tcl.framework/Versions/<em>&lt;version&gt;</em>/Resources/Scripts/uninstall</code>
+instead. Apple reorganized the directories for receipt storage and
+eliminated any space for 3rd-party files from it.</p>
+
+<h3>Linux</h3>
+
+<p>To uninstall ActiveTcl, run the "uninstall.tcl" script that is
+located in the directory where you extracted the ActiveTcl archive.
+Note that you must use the "wish" in the distribution you wish to
+uninstall. For example:</p>
+
+<code>% /<em>path</em>/Tcl/bin/wish
+/<em>path</em>/Tcl/lib/ppm/log/ActiveTcl/uninstall_ActiveTcl.tcl</code>
+
+
+<p>stored, by default, in the directory
+<code>/lib/ppm/log/ActiveTcl</code>. You must use the wish
+interpreter from the distribution you wish to uninstall. Ensure
+that you do not run the uninstall script from a directory that will
+be removed during the uninstallation.</p>
+
+<p>For example:</p>
+
+<code>% /<em>path</em>/Tcl/bin/wish
+/<em>path</em>/Tcl/lib/ppm/log/ActiveTcl/uninstall_ActiveTcl.tcl</code>
+
+
+<p><strong>Note:</strong> if you are uninstalling both ActiveTcl
+and Tcl Dev Kit, uninstall Tcl Dev Kit before uninstalling
+ActiveTcl.</p>
+
+<h3>Solaris</h3>
+
+<p>To uninstall ActiveTcl, run the "uninstall_ActiveTcl.tcl" script
+that is stored, by default, in the directory
+<code>/lib/ppm/log/ActiveTcl</code>. You must use the wish
+interpreter from the distribution you wish to uninstall. Ensure
+that you do not run the uninstall script from a directory that will
+be removed during the uninstallation.</p>
+
+<p>For example:</p>
+
+<code>% /<em>path</em>/Tcl/bin/wish
+/<em>path</em>/Tcl/lib/ppm/log/ActiveTcl/uninstall_ActiveTcl.tcl</code>
+
+
+<p><strong>Note:</strong> if you are uninstalling both ActiveTcl
+and Tcl Dev Kit, uninstall Tcl Dev Kit before uninstalling
+ActiveTcl.</p>
+
+<h3>AIX</h3>
+
+<p>To uninstall ActiveTcl, run the "uninstall_ActiveTcl.tcl" script
+that is stored, by default, in the directory
+<code>/lib/ppm/log/ActiveTcl</code>. You must use the wish
+interpreter from the distribution you wish to uninstall. Ensure
+that you do not run the uninstall script from a directory that will
+be removed during the uninstallation.</p>
+
+<p>For example:</p>
+
+<code>% /<em>path</em>/Tcl/bin/wish
+/<em>path</em>/Tcl/lib/ppm/log/ActiveTcl/uninstall_ActiveTcl.tcl</code>
+
+
+<p><strong>Note:</strong> if you are uninstalling both ActiveTcl
+and Tcl Dev Kit, uninstall Tcl Dev Kit before uninstalling
+ActiveTcl.</p>
+
+<h3>HP-UX</h3>
+
+<p>To uninstall ActiveTcl, run the "uninstall_ActiveTcl.tcl" script
+that is stored, by default, in the directory
+<code>/lib/ppm/log/ActiveTcl</code>. You must use the wish
+interpreter from the distribution you wish to uninstall. Ensure
+that you do not run the uninstall script from a directory that will
+be removed during the uninstallation.</p>
+
+<p>For example:</p>
+
+<code>% /<em>path</em>/Tcl/bin/wish
+/<em>path</em>/Tcl/lib/ppm/log/ActiveTcl/uninstall_ActiveTcl.tcl</code>
+
+
+<p><strong>Note:</strong> if you are uninstalling both ActiveTcl
+and Tcl Dev Kit, uninstall Tcl Dev Kit before uninstalling
+ActiveTcl.</p>
+</body>
+</html>
+

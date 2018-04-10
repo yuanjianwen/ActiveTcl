@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>Tcl_RecordAndEval manual page - Tcl Library Procedures</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tcl C API, version 8.6.6</a> <small>&gt;</small> RecordEval</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<H3><A NAME="M2">NAME</A></H3>
+Tcl_RecordAndEval &mdash; save command on history list before evaluating
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>#include &lt;tcl.h&gt;</B><BR>
+int<BR>
+<B>Tcl_RecordAndEval</B>(<I>interp, cmd, flags</I>)<BR>
+<H3><A NAME="M4">ARGUMENTS</A></H3>
+<DL class="arguments">
+<DT><A class="doc" href="../TclLib/Interp.html">Tcl_Interp</A> <B>*interp</B> (in)<DD>
+Tcl interpreter in which to evaluate command.
+<P><DT>const char <B>*cmd</B> (in)<DD>
+Command (or sequence of commands) to execute.
+<P><DT>int <B>flags</B> (in)<DD>
+An OR'ed combination of flag bits.  <B>TCL_NO_EVAL</B> means record the
+command but do not evaluate it.  <B>TCL_EVAL_GLOBAL</B> means evaluate
+the command at global level instead of the current stack level.
+<P></DL>
+<H3><A NAME="M5">DESCRIPTION</A></H3>
+<B>Tcl_RecordAndEval</B> is invoked to record a command as an event
+on the history list and then execute it using <B><A class="doc" href="../TclLib/Eval.html">Tcl_Eval</A></B>
+(or <B><A class="doc" href="../TclLib/Eval.html">Tcl_GlobalEval</A></B> if the <B>TCL_EVAL_GLOBAL</B> bit is set in <I>flags</I>).
+It returns a completion code such as <B><A class="doc" href="../TclCmd/catch.html">TCL_OK</A></B> just like <B><A class="doc" href="../TclLib/Eval.html">Tcl_Eval</A></B>
+and it leaves information in the interpreter's result.
+If you do not want the command recorded on the history list then
+you should invoke <B><A class="doc" href="../TclLib/Eval.html">Tcl_Eval</A></B> instead of <B>Tcl_RecordAndEval</B>.
+Normally <B>Tcl_RecordAndEval</B> is only called with top-level
+commands typed by the user, since the purpose of history is to
+allow the user to re-issue recently-invoked commands.
+If the <I>flags</I> argument contains the <B>TCL_NO_EVAL</B> bit then
+the command is recorded without being evaluated.
+<P>
+Note that <B>Tcl_RecordAndEval</B> has been largely replaced by the
+value-based procedure <B><A class="doc" href="../TclLib/RecEvalObj.html">Tcl_RecordAndEvalObj</A></B>.
+That value-based procedure records and optionally executes
+a command held in a Tcl value instead of a string.
+
+<H3><A NAME="M6">SEE ALSO</A></H3>
+<B><A class="doc" href="../TclLib/RecEvalObj.html">Tcl_RecordAndEvalObj</A></B>
+<H3><A NAME="M7">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/C.html#command">command</A>, <A class="doc" href="../Keywords/E.html#event">event</A>, <A class="doc" href="../Keywords/E.html#execute">execute</A>, <A class="doc" href="../Keywords/H.html#history">history</A>, <A class="doc" href="../Keywords/I.html#interpreter">interpreter</A>, <A class="doc" href="../Keywords/R.html#record">record</A>
+<div class="copy">Copyright &copy; 1989-1993 The Regents of the University of California.
+Copyright &copy; 1994-1997 Sun Microsystems, Inc.
+</div>
+</BODY></HTML>

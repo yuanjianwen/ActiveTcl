@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>raise manual page - Tk Built-In Commands</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tk Commands, version 8.6.6</a> <small>&gt;</small> raise</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<H3><A NAME="M2">NAME</A></H3>
+raise &mdash; Change a window's position in the stacking order
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>raise </B><I>window </I>?<I>aboveThis</I>?<BR>
+<H3><A NAME="M4">DESCRIPTION</A></H3>
+If the <I>aboveThis</I> argument is omitted then the command raises
+<I>window</I> so that it is above all of its siblings in the stacking
+order (it will not be obscured by any siblings and will obscure
+any siblings that overlap it).
+If <I>aboveThis</I> is specified then it must be the path name of
+a window that is either a sibling of <I>window</I> or the descendant
+of a sibling of <I>window</I>.
+In this case the <B>raise</B> command will insert
+<I>window</I> into the stacking order just above <I>aboveThis</I>
+(or the ancestor of <I>aboveThis</I> that is a sibling of <I>window</I>);
+this could end up either raising or lowering <I>window</I>.
+<P>
+All <B><A class="doc" href="../TkCmd/toplevel.html">toplevel</A></B> windows may be restacked with respect to each
+other, whatever their relative path names, but the window manager is
+not obligated to strictly honor requests to restack.
+<H3><A NAME="M5">EXAMPLE</A></H3>
+Make a button appear to be in a sibling frame that was created after
+it. This is is often necessary when building GUIs in the style where
+you create your activity widgets first before laying them out on the
+display:
+<PRE>button .b -text &quot;Hi there!&quot;
+pack [frame .f -background blue]
+pack [label .f.l1 -text &quot;This is above&quot;]
+pack .b -in .f
+pack [label .f.l2 -text &quot;This is below&quot;]
+<B>raise</B> .b</PRE>
+<H3><A NAME="M6">SEE ALSO</A></H3>
+<B><A class="doc" href="../TkCmd/lower.html">lower</A></B>
+<H3><A NAME="M7">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/O.html#obscure">obscure</A>, <A class="doc" href="../Keywords/R.html#raise">raise</A>, <A class="doc" href="../Keywords/S.html#stacking order">stacking order</A>
+<div class="copy">Copyright &copy; 1990 The Regents of the University of California.
+Copyright &copy; 1994-1996 Sun Microsystems, Inc.
+</div>
+</BODY></HTML>

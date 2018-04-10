@@ -1,0 +1,158 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>Tcl_Interp manual page - Tcl Library Procedures</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tcl C API, version 8.6.6</a> <small>&gt;</small> Interp</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<DL>
+<DD><A class="doc" href="Interp.html#M2" NAME="L426">NAME</A>
+<DL><DD>Tcl_Interp &mdash; client-visible fields of interpreter structures</DD></DL>
+<DD><A class="doc" href="Interp.html#M3" NAME="L427">SYNOPSIS</A>
+<DL>
+<DD><B>#include &lt;tcl.h&gt;</B>
+<DD>typedef struct {
+<DD>char *<I>result</I>;
+<DD>Tcl_FreeProc *<I>freeProc</I>;
+<DD>int <I>errorLine</I>;
+<DD>} <B>Tcl_Interp</B>;
+<DD>
+<DD>typedef void <B>Tcl_FreeProc</B>(
+<DD>char *<I>blockPtr</I>);
+</DL>
+<DD><A class="doc" href="Interp.html#M4" NAME="L428">DESCRIPTION</A>
+<DD><A class="doc" href="Interp.html#M5" NAME="L429">KEYWORDS</A>
+</DL>
+<H3><A NAME="M2">NAME</A></H3>
+Tcl_Interp &mdash; client-visible fields of interpreter structures
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>#include &lt;tcl.h&gt;</B><BR>
+typedef struct {<BR>
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;</TT>char *<I>result</I>;<BR>
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;</TT>Tcl_FreeProc *<I>freeProc</I>;<BR>
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;</TT>int <I>errorLine</I>;<BR>
+} <B>Tcl_Interp</B>;<BR>
+<BR>
+typedef void <B>Tcl_FreeProc</B>(<BR>
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>char *<I>blockPtr</I>);<BR>
+<H3><A NAME="M4">DESCRIPTION</A></H3>
+The <B><A class="doc" href="../TclLib/CrtInterp.html">Tcl_CreateInterp</A></B> procedure returns a pointer to a Tcl_Interp
+structure.  Callers of <B><A class="doc" href="../TclLib/CrtInterp.html">Tcl_CreateInterp</A></B> should use this pointer
+as an opaque token, suitable for nothing other than passing back to
+other routines in the Tcl interface.  Accessing fields directly through
+the pointer as described below is no longer supported.  The supported
+public routines <B><A class="doc" href="../TclLib/SetResult.html">Tcl_SetResult</A></B>, <B>Tcl_GetResult</B>,
+<B><A class="doc" href="../TclLib/AddErrInfo.html">Tcl_SetErrorLine</A></B>, <B><A class="doc" href="../TclLib/AddErrInfo.html">Tcl_GetErrorLine</A></B> must be used instead.
+<P>
+For legacy programs and extensions no longer being maintained, compiles
+against the Tcl 8.6 header files are only possible with the compiler
+directives
+<PRE>#define USE_INTERP_RESULT</PRE>
+and/or
+<PRE>#define USE_INTERP_ERRORLINE</PRE>
+depending on which fields of the <B>Tcl_Interp</B> struct are accessed.
+These directives may be embedded in code or supplied via compiler options.
+<P>
+The <I>result</I> and <I>freeProc</I> fields are used to return
+results or error messages from commands.
+This information is returned by command procedures back to <B><A class="doc" href="../TclLib/Eval.html">Tcl_Eval</A></B>,
+and by <B><A class="doc" href="../TclLib/Eval.html">Tcl_Eval</A></B> back to its callers.
+The <I>result</I> field points to the string that represents the
+result or error message, and the <I>freeProc</I> field tells how
+to dispose of the storage for the string when it is not needed anymore.
+The easiest way for command procedures to manipulate these
+fields is to call procedures like <B><A class="doc" href="../TclLib/SetResult.html">Tcl_SetResult</A></B>
+or <B><A class="doc" href="../TclLib/SetResult.html">Tcl_AppendResult</A></B>;  they
+will hide all the details of managing the fields.
+The description below is for those procedures that manipulate the
+fields directly.
+<P>
+Whenever a command procedure returns, it must ensure
+that the <I>result</I> field of its interpreter points to the string
+being returned by the command.
+The <I>result</I> field must always point to a valid string.
+If a command wishes to return no result then <I>interp-&gt;result</I>
+should point to an empty string.
+Normally, results are assumed to be statically allocated,
+which means that the contents will not change before the next time
+<B><A class="doc" href="../TclLib/Eval.html">Tcl_Eval</A></B> is called or some other command procedure is invoked.
+In this case, the <I>freeProc</I> field must be zero.
+Alternatively, a command procedure may dynamically
+allocate its return value (e.g. using <B><A class="doc" href="../TclLib/Alloc.html">Tcl_Alloc</A></B>)
+and store a pointer to it in <I>interp-&gt;result</I>.
+In this case, the command procedure must also set <I>interp-&gt;freeProc</I>
+to the address of a procedure that can free the value, or <B>TCL_DYNAMIC</B>
+if the storage was allocated directly by Tcl or by a call to
+<B><A class="doc" href="../TclLib/Alloc.html">Tcl_Alloc</A></B>.
+If <I>interp-&gt;freeProc</I> is non-zero, then Tcl will call <I>freeProc</I>
+to free the space pointed to by <I>interp-&gt;result</I> before it
+invokes the next command.
+If a client procedure overwrites <I>interp-&gt;result</I> when
+<I>interp-&gt;freeProc</I> is non-zero, then it is responsible for calling
+<I>freeProc</I> to free the old <I>interp-&gt;result</I> (the <B><A class="doc" href="../TclLib/SetResult.html">Tcl_FreeResult</A></B>
+macro should be used for this purpose).
+<P>
+<I>FreeProc</I> should have arguments and result that match the
+<B>Tcl_FreeProc</B> declaration above:  it receives a single
+argument which is a pointer to the result value to free.
+In most applications <B>TCL_DYNAMIC</B> is the only non-zero value ever
+used for <I>freeProc</I>.
+However, an application may store a different procedure address
+in <I>freeProc</I> in order to use an alternate memory allocator
+or in order to do other cleanup when the result memory is freed.
+<P>
+As part of processing each command, <B><A class="doc" href="../TclLib/Eval.html">Tcl_Eval</A></B> initializes
+<I>interp-&gt;result</I>
+and <I>interp-&gt;freeProc</I> just before calling the command procedure for
+the command.  The <I>freeProc</I> field will be initialized to zero,
+and <I>interp-&gt;result</I> will point to an empty string.  Commands that
+do not return any value can simply leave the fields alone.
+Furthermore, the empty string pointed to by <I>result</I> is actually
+part of an array of <B>TCL_RESULT_SIZE</B> characters (approximately 200).
+If a command wishes to return a short string, it can simply copy
+it to the area pointed to by <I>interp-&gt;result</I>.  Or, it can use
+the sprintf procedure to generate a short result string at the location
+pointed to by <I>interp-&gt;result</I>.
+<P>
+It is a general convention in Tcl-based applications that the result
+of an interpreter is normally in the initialized state described
+in the previous paragraph.
+Procedures that manipulate an interpreter's result (e.g. by
+returning an error) will generally assume that the result
+has been initialized when the procedure is called.
+If such a procedure is to be called after the result has been
+changed, then <B><A class="doc" href="../TclLib/SetResult.html">Tcl_ResetResult</A></B> should be called first to
+reset the result to its initialized state.  The direct use of
+<I>interp-&gt;result</I> is strongly deprecated (see <B><A class="doc" href="../TclLib/SetResult.html">Tcl_SetResult</A></B>).
+<P>
+The <I>errorLine</I>
+field is valid only after <B><A class="doc" href="../TclLib/Eval.html">Tcl_Eval</A></B> returns
+a <B><A class="doc" href="../TclCmd/catch.html">TCL_ERROR</A></B> return code.  In this situation the <I>errorLine</I>
+field identifies the line number of the command being executed when
+the error occurred.  The line numbers are relative to the command
+being executed:  1 means the first line of the command passed to
+<B><A class="doc" href="../TclLib/Eval.html">Tcl_Eval</A></B>, 2 means the second line, and so on.
+The <I>errorLine</I> field is typically used in conjunction with
+<B><A class="doc" href="../TclLib/AddErrInfo.html">Tcl_AddErrorInfo</A></B> to report information about where an error
+occurred.
+<I>ErrorLine</I> should not normally be modified except by <B><A class="doc" href="../TclLib/Eval.html">Tcl_Eval</A></B>.
+
+<H3><A NAME="M5">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/F.html#free">free</A>, <A class="doc" href="../Keywords/I.html#initialized">initialized</A>, <A class="doc" href="../Keywords/I.html#interpreter">interpreter</A>, <A class="doc" href="../Keywords/M.html#malloc">malloc</A>, <A class="doc" href="../Keywords/R.html#result">result</A>
+<div class="copy">Copyright &copy; 1989-1993 The Regents of the University of California.
+Copyright &copy; 1994-1996 Sun Microsystems, Inc.
+</div>
+</BODY></HTML>

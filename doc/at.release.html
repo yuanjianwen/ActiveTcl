@@ -1,0 +1,2556 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta name="generator" content="HTML Tidy, see www.w3.org">
+<title>ActiveTcl User Guide</title>
+<link rel="stylesheet" href="aspn.css" type="text/css">
+</head>
+<body>
+<!--ActiveTcl heading-->
+<div class="banner">
+<table width="100%" border="0" cellspacing="0" cellpadding="3">
+<tr>
+<td align="left"><a target="_blank" href=
+"http://www.activestate.com/activetcl"><img src=
+"images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a>
+</td>
+<td align="center" class="heading">ActiveTcl User Guide</td>
+<td align="right"><a target="_blank" href=
+"http://www.activestate.com"><img src="images/AS_logo.gif" border=
+"0" align="right" alt="ActiveState Software Inc."></a> </td>
+</tr>
+</table>
+</div>
+
+<h1>ActiveTcl Release Notes</h1>
+
+<ul>
+<li><a class="doc" href="#new">New in This Release</a></li>
+
+<li><a class="doc" href="#rel_history">Release History</a></li>
+</ul>
+
+<h2><a name="new">New in This Release</a></h2>
+
+<p><strong>ActiveTcl 8.6.6.8606</strong> Dec, 2016</p>
+
+<p>This ActiveTcl release is based on the 8.6.6 Tcl core.</p>
+
+<p>This release includes:</p>
+
+<h3>Summary of Changes since Tcl/Tk 8.6.5</h3>
+<p>
+This is a patch release, so it primarily includes bug fixes and corrections
+to erratic behavior.  Highlighted changes are noted below.  The changes file
+at the root of the source tree contains a more complete list.  The Timelines
+of all changes are online.
+</p>
+<ul>
+   <li> [TIP 443] More configuration options for text tags.
+
+   <li> [TIP 446] [$text edit (canundo|canredo)].
+
+   <li> Update to Unicode 9.0.
+        <strong> POTENTIAL INCOMPATIBILITY </strong>
+
+   <li> Final newline in [text] handling restored compat with 8.6.4 and before.
+        <strong> POTENTIAL INCOMPATIBILITY </strong>
+
+   <li> [file] support for more Windows filesystem conventions. [5d7ca0,ae61a6]
+        <strong> POTENTIAL INCOMPATIBILITY </strong>
+
+   <li> [namespace upvar $ns] now ignores custom resolvers in $ns.
+        <strong> POTENTIAL INCOMPATIBILITY </strong>
+
+   <li> Tcl_WrongNumArgs() now uses proper list formatting in error message.
+     Matters when parameter names contain spaces, etc.
+        <strong> POTENTIAL INCOMPATIBILITY </strong>
+
+   <li> Fixed crashes or hangs in...
+      - [apply {{} {foreach x y {if 1 break else}}}]
+      - compiled [string replace]
+      - notifier finalization
+      - server socket creation on Win
+      - [glob -path a]
+      - Tcl_DString appends to self
+      - mouse pointer warping
+      - Aqua geometry calculations on new toplevel
+      - zlib-8.17, zlib-8.18
+      - apply {{} {lassign {} item; dict update item item item two two {}}}
+      - [vwait] after namespace delete destroys variable waited on.
+
+   <li> Fix: Safe handling of widget destruction during callbacks.
+
+   <li> Fix: compiled [lreplace $list end ...].
+        <strong> POTENTIAL INCOMPATIBILITY </strong>
+
+   <li> Fix: circumstances of command callbacks from [scale].
+
+   <li> Fix: Stop &lt;Map&gt; event firing from hidden panes of panedwindow.
+
+   <li> Fix: &lt;&lt;Modifie&gt;&gt; delivery to text peers.
+
+   <li> Win: Mouse events in exposed window after double click in file dialog.
+
+   <li> Improve support for text bindings customization.
+
+   <li> Improved performance scaling of [namespace delete].
+
+   <li> Xft color font speed.
+
+   <li> Restored support for TclBlend.
+
+   <li> tcltest -relateddir processing in sorted order
+
+   <li> Aqua appearance fixes.
+
+   <li> Updated bundled packages
+   <ul>
+      <li> tcltest 2.4.0: (TIP 447) execution time verbosity option
+      <li> registry 1.3.2:
+      <li> Itcl 4.0.5
+      <li> Thread 2.8.0
+      <li> sqlite 3.13.0
+    </ul>
+</ul>
+
+<h2><a name="rel_history">Release History</a></h2>
+
+<p><strong>ActiveTcl 8.6.4.1</strong> June, 2015</p>
+
+<p>This ActiveTcl release is based on the 8.6.4 Tcl core.</p>
+
+<p>This release includes:</p>
+
+<ul>
+<li>Bugfixes in the Tcl/Tk core.</li>
+
+<li>
+<dl>
+<dt>Updated (Seed repository):</dt>
+
+<dd>
+<ul>
+<li>Thread 2.7.2 / Basekit interaction</li>
+
+<li>http 2.8.9</li>
+
+<li>sqlite 3.8.10.2</li>
+
+<li>tls 1.6.5</li>
+
+<li>logger 0.9.4</li>
+
+<li>struct:pool 1.2.3</li>
+</ul>
+</dd>
+
+<dt>New:</dt>
+
+<dd>None</dd>
+
+<dt>Removed:</dt>
+</dl>
+</li>
+</ul>
+
+<p><strong>ActiveTcl 8.6.4.0</strong> April, 2015</p>
+
+<p>This ActiveTcl release is based on the 8.6.4 Tcl core.</p>
+
+<p>This release includes:</p>
+
+<ul>
+<li>Bugfixes in the Tcl/Tk core.</li>
+
+<li>
+<dl>
+<dt>Updated (Seed repository):</dt>
+
+<dd>
+<ul>
+<li>Thread 2.7.2</li>
+
+<li>Img 1.4.3</li>
+
+<li>sqlite 3.8.8.3</li>
+
+<li>tls 1.6.4</li>
+
+<li>Itcl 4.0.3</li>
+
+<li>tablelist 5.13</li>
+
+<li>tablelist::tile 5.13</li>
+</ul>
+</dd>
+
+<dt>New:</dt>
+
+<dd>None</dd>
+
+<dt>Removed:</dt>
+
+<dd>
+<ul>
+<li>Itcl 3.4</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+
+<p><strong>ActiveTcl 8.5.18</strong> April, 2015</p>
+
+<p>This ActiveTcl release is based on the 8.5.18 Tcl core.</p>
+
+<p>This release includes:</p>
+
+<ul>
+<li>Bugfixes in the Tcl/Tk core.</li>
+
+<li>
+<dl>
+<dt>Updated (Seed repository):</dt>
+
+<dd>
+<ul>
+<li>Thread 2.7.2</li>
+
+<li>Img 1.4.3</li>
+
+<li>sqlite 3.8.8.3</li>
+
+<li>tls 1.6.4</li>
+
+<li>tablelist 5.13</li>
+
+<li>tablelist::tile 5.13</li>
+
+<li>cmdline 1.5</li>
+
+<li>fileutil 1.14.10</li>
+
+<li>struct::pool 1.2.2</li>
+
+<li>textutil::adjust 0.7.3</li>
+</ul>
+</dd>
+
+<dt>New:</dt>
+
+<dd>None</dd>
+
+<dt>Removed:</dt>
+
+<dd>None</dd>
+</dl>
+</li>
+</ul>
+
+<p><strong>ActiveTcl 8.6.3.0</strong> November, 2014</p>
+
+<p>This ActiveTcl release is based on the 8.6.3 Tcl core.</p>
+
+<p>This release includes:</p>
+
+<ul>
+<li>Bugfixes in the Tcl/Tk core.</li>
+
+<li>
+<dl>
+<dt>Updated (Seed repository):</dt>
+
+<dd>
+<ul>
+<li>BWidget 1.9.8</li>
+
+<li>Itcl 4.0.2</li>
+
+<li>Thread 2.7.1</li>
+
+<li>sqlite 3.8.7.1</li>
+
+<li>tls 1.6.3.2</li>
+
+<li>tablelist 5.12.1</li>
+
+<li>tablelist::tile 5.12.1</li>
+</ul>
+</dd>
+
+<dt>New:</dt>
+
+<dd>None</dd>
+
+<dt>Removed:</dt>
+
+<dd>
+<ul>
+<li>Itcl 3.4</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+
+<p><strong>ActiveTcl 8.5.17</strong> November, 2014</p>
+
+<p>This ActiveTcl release is based on the 8.5.17 Tcl core.</p>
+
+<p>This release includes:</p>
+
+<ul>
+<li>Bugfixes in the Tcl/Tk core.</li>
+
+<li>
+<dl>
+<dt>Updated (Seed repository):</dt>
+
+<dd>
+<ul>
+<li>Thread 2.7.1</li>
+
+<li>sqlite 3.8.7</li>
+
+<li>tls 1.6.3.2</li>
+
+<li>tablelist 5.12.1</li>
+
+<li>tablelist::tile 5.12.1</li>
+</ul>
+</dd>
+
+<dt>New:</dt>
+
+<dd>None</dd>
+
+<dt>Removed:</dt>
+
+<dd>None</dd>
+</dl>
+</li>
+</ul>
+
+<p><strong>ActiveTcl 8.6.2.0</strong> September, 2014</p>
+
+<p>This ActiveTcl release is based on the 8.6.2 Tcl core.</p>
+
+<p>This release includes:</p>
+
+<ul>
+<li>Bugfixes in the Tcl/Tk core.</li>
+
+<li>
+<dl>
+<dt>Updated (Seed repository):</dt>
+
+<dd>
+<ul>
+<li>comm 4.6.3.1</li>
+
+<li>fileutil 1.14.8</li>
+
+<li>ftp 2.4.13</li>
+
+<li>http 2.8.8</li>
+
+<li>Img 1.4.2</li>
+
+<li>Itcl 4.0.1</li>
+
+<li>jpegtcl 8.4</li>
+
+<li>platform 1.0.13</li>
+
+<li>report 0.3.2</li>
+
+<li>sqlite 3.8.6</li>
+
+<li>struct::list 1.8.3</li>
+
+<li>struct::matrix 2.0.3</li>
+
+<li>tablelist 5.11</li>
+
+<li>tablelist::tile 5.11</li>
+
+<li>tcltest 2.3.8</li>
+
+<li>textutil 0.8</li>
+
+<li>textutil::string 0.8</li>
+
+<li>tls 1.6.3.1</li>
+
+<li>tooltip 1.4.5</li>
+</ul>
+</dd>
+
+<dt>New:</dt>
+
+<dd>None</dd>
+
+<dt>Removed:</dt>
+
+<dd>
+<ul>
+<li>Itcl 3.4</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+
+<p><strong>ActiveTcl 8.5.16</strong> September, 2014</p>
+
+<p>This ActiveTcl release is based on the 8.5.16 Tcl core.</p>
+
+<p>This release includes:</p>
+
+<ul>
+<li>Bugfixes in the Tcl/Tk core.</li>
+
+<li>
+<dl>
+<dt>Updated (Seed repository):</dt>
+
+<dd>
+<ul>
+<li>comm 4.6.3.1</li>
+
+<li>fileutil 1.14.8</li>
+
+<li>ftp 2.4.13</li>
+
+<li>http 2.7.13</li>
+
+<li>Img 1.4.2</li>
+
+<li>jpegtcl 8.4</li>
+
+<li>platform 1.0.13</li>
+
+<li>report 0.3.2</li>
+
+<li>sqlite 3.8.6</li>
+
+<li>struct::list 1.8.3</li>
+
+<li>struct::matrix 2.0.3</li>
+
+<li>tablelist 5.11</li>
+
+<li>tablelist::tile 5.11</li>
+
+<li>tcltest 2.3.8</li>
+
+<li>textutil 0.8</li>
+
+<li>textutil::string 0.8</li>
+
+<li>tls 1.6.3.1</li>
+
+<li>tooltip 1.4.5</li>
+</ul>
+</dd>
+
+<dt>New:</dt>
+
+<dd>None</dd>
+
+<dt>Removed:</dt>
+
+<dd>None</dd>
+</dl>
+</li>
+</ul>
+
+<p><strong>ActiveTcl 8.5.15</strong> September, 2013</p>
+
+<p>Latest change: UPX compression of basekits has been dropped for
+Linux, removing it in its entirety.</p>
+
+<p>This ActiveTcl release is based on the 8.5.15 Tcl core.</p>
+
+<p>This release includes:</p>
+
+<ul>
+<li>Bugfixes in the Tcl/Tk core.</li>
+
+<li>
+<dl>
+<dt>Updated (Seed repository):</dt>
+
+<dd>
+<ul>
+<li>BWidget 1.9.7</li>
+
+<li>fileutil 1.14.6</li>
+
+<li>http 2.7.12</li>
+
+<li>msgcat 1.5.2</li>
+
+<li>platform 1.0.12</li>
+
+<li>sqlite 3.8.0.1</li>
+
+<li>table_list 5.9</li>
+
+<li>zlib 1.2.8</li>
+</ul>
+</dd>
+
+<dt>New:</dt>
+
+<dd>None</dd>
+
+<dt>Removed:</dt>
+
+<dd>None</dd>
+</dl>
+</li>
+</ul>
+
+<p><strong>ActiveTcl 8.4.20.0</strong> June, 2013</p>
+
+<p>This ActiveTcl release is based on the 8.4.20 Tcl core.</p>
+
+<ul>
+<li>Bugfixes in the Tcl/Tk core.</li>
+
+<li>
+<dl>
+<dt>Updated:</dt>
+
+<dd>
+<ul>
+<li>BWidget 1.9.6</li>
+
+<li>Expect 5.45.1</li>
+
+<li>Img 1.4.1</li>
+
+<li>TLS 1.6.3</li>
+
+<li>Tcllib 1.15</li>
+
+<li>Tile 0.8.4</li>
+
+<li>TkTreeCtrl 2.4.1</li>
+
+<li>Tklib 0.6</li>
+
+<li>dde 1.3 (windows)</li>
+
+<li>platform 1.0.12</li>
+
+<li>pngtcl 1.4.12</li>
+
+<li>registry 1.2 (windows)</li>
+
+<li>sqlite 3.7.17</li>
+
+<li>trofs 0.4.6</li>
+
+<li>vfs 1.4.2</li>
+
+<li>zlibtcl 1.2.8</li>
+</ul>
+</dd>
+
+<dt>New:</dt>
+
+<dt>Removed:</dt>
+
+<dd>None</dd>
+</dl>
+</li>
+</ul>
+
+<p><strong>ActiveTcl 8.5.14</strong>March, 2013</p>
+
+<p>This ActiveTcl release is based on the 8.5.14 Tcl core.</p>
+
+<p>This release includes:</p>
+
+<ul>
+<li>Bugfixes in the Tcl/Tk core.</li>
+
+<li>
+<dl>
+<dt>Updated (Seed repository):</dt>
+
+<dd>
+<ul>
+<li>TclOO 1</li>
+
+<li>csv 0.8</li>
+
+<li>fileutil 1.14.5</li>
+
+<li>http 2.7.11</li>
+
+<li>msgcat 1.5.1</li>
+
+<li>platform 1.0.11</li>
+
+<li>sqlite 3.7.16</li>
+
+<li>struct::list 1.8.2</li>
+
+<li>struct::queue 1.4.5</li>
+
+<li>struct::stack 1.5.3</li>
+
+<li>tcltest 2.3.5</li>
+
+<li>vfs 1.4.2</li>
+
+<li>vfs::zip 1.0.4.1</li>
+
+<li>widget::all 1.2.4</li>
+
+<li>widget::calendar 1.0.1</li>
+
+<li>widget::dateentry 0.96</li>
+</ul>
+</dd>
+
+<dt>New:</dt>
+
+<dd>None</dd>
+
+<dt>Removed:</dt>
+
+<dd>None</dd>
+</dl>
+</li>
+</ul>
+
+<p><strong>ActiveTcl 8.6.0.0</strong> January, 2013</p>
+
+<p>This ActiveTcl release is based on the 8.6.0 Tcl core.</p>
+
+<p><strong>ActiveTcl 8.5.13</strong> November, 2012</p>
+
+<p>This ActiveTcl release is based on the 8.5.13 Tcl core.</p>
+
+<p>This release includes:</p>
+
+<ul>
+<li>Bugfixes in the Tcl/Tk core.</li>
+</ul>
+
+<p><strong>ActiveTcl 8.5.12.1</strong> August, 2012</p>
+
+<p>This ActiveTcl release is based on the 8.5.12 Tcl core
+incorporating fixes to the OSX platform.</p>
+
+<p>This release includes:</p>
+
+<ul>
+<li>Bugfixes in the Tcl/Tk core.</li>
+</ul>
+
+<p><strong>ActiveTcl 8.5.12.0</strong> July, 2012</p>
+
+<p>This ActiveTcl release is based on the 8.5.12 Tcl core.</p>
+
+<p>This release includes:</p>
+
+<ul>
+<li>Bugfixes in several packages, and in the Tcl/Tk core.</li>
+
+<li>
+<dl>
+<dt>Updated (Seed repository):</dt>
+
+<dd>
+<ul>
+<li>Img 1.4.1</li>
+
+<li>Sqlite 3.7.13</li>
+
+<li>TLS 1.6.3</li>
+
+<li>Tablelist 5.6</li>
+
+<li>http 2.7.9</li>
+
+<li>msgcat 1.4.5</li>
+
+<li>pngtcl 1.4.12</li>
+
+<li>treectrl 2.4.1</li>
+
+<li>zlibtcl 1.2.7</li>
+</ul>
+</dd>
+
+<dt>New:</dt>
+
+<dd>None</dd>
+
+<dt>Removed:</dt>
+
+<dd>None</dd>
+</dl>
+</li>
+</ul>
+
+<p><strong>ActiveTcl 8.5.11.1</strong> February, 2012</p>
+
+<p>This ActiveTcl release is based on the 8.5.11 Tcl core.</p>
+
+<p>This release includes:</p>
+
+<ul>
+<li>Bugfixes in several packages, and in the Tcl/Tk core.</li>
+
+<li>
+<dl>
+<dt>Updated (Seed repository):</dt>
+
+<dd>
+<ul>
+<li>http 2.7.8</li>
+
+<li>tcltest 2.3.4</li>
+
+<li>Sqlite 3.7.9</li>
+
+<li>Tablelist 5.5</li>
+
+<li>img::png 1.4.1</li>
+
+<li>pngtcl 1.4.8</li>
+
+<li>jpegtcl 8.3</li>
+
+<li>logger 0.9.2</li>
+
+<li>textutil::adjust 0.7.1</li>
+
+<li>csv 0.7.3</li>
+
+<li>widget::calendar 1</li>
+
+<li>widget::dateentry 0.95</li>
+</ul>
+</dd>
+
+<dt>New:</dt>
+
+<dd>None</dd>
+
+<dt>Removed:</dt>
+
+<dd>None</dd>
+</dl>
+</li>
+</ul>
+
+<p><strong>ActiveTcl 8.4.19.6</strong> February, 2012</p>
+
+<p>This ActiveTcl release is based on the 8.4.19 Tcl core.</p>
+
+<ul>
+<li>Bugfixes in the Tcl/Tk core.</li>
+
+<li>
+<dl>
+<dt>Updated:</dt>
+
+<dd>
+<ul>
+<li>Tcllib 1.14 
+
+<ul>
+<li>logger 0.9.2</li>
+
+<li>textutil::adjust 0.7.1</li>
+
+<li>csv 0.7.3</li>
+</ul>
+</li>
+
+<li>Tklib 0.5 parts 
+
+<ul>
+<li>Tablelist 5.5</li>
+
+<li>widget::calendar 1</li>
+
+<li>widget::dateentry 0.95</li>
+</ul>
+</li>
+
+<li>BWidget 1.9.5</li>
+
+<li>img::png 1.4.1</li>
+
+<li>pngtcl 1.4.8</li>
+
+<li>jpegtcl 8.3</li>
+
+<li>platform 1.0.10</li>
+
+<li>Sqlite 3.7.9</li>
+
+<li>TclWS</li>
+
+<li>TkTable 2.11</li>
+
+<li>TkTreeCtrl 2.3.2</li>
+
+<li>XOTcl 1.6.7</li>
+</ul>
+</dd>
+
+<dt>New:</dt>
+
+<dd>
+<ul>
+<li>Tcllib 1.14 parts 
+
+<ul>
+<li>lambda</li>
+
+<li>math::decimal</li>
+
+<li>ooutil</li>
+
+<li>try</li>
+
+<li>valtype::*</li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+
+<dl>
+<dt>Removed:</dt>
+
+<dd>None</dd>
+</dl>
+
+<p><strong>ActiveTcl 8.5.11.0</strong> November, 2011</p>
+
+<p>This ActiveTcl release is based on the 8.5.11 Tcl core.</p>
+
+<p>This release includes:</p>
+
+<ul>
+<li>Bugfixes in several packages, and in the Tcl/Tk core.</li>
+
+<li>
+<dl>
+<dt>Updated (Seed repository):</dt>
+
+<dd>
+<ul>
+<li>http 2.7.7</li>
+
+<li>ftp 2.4.11</li>
+
+<li>struct::list 1.8.1</li>
+
+<li>widget::calendar 0.98</li>
+
+<li>Sqlite 3.7.8</li>
+
+<li>Tablelist 5.4</li>
+</ul>
+</dd>
+
+<dt>New:</dt>
+
+<dd>None</dd>
+
+<dt>Removed:</dt>
+
+<dd>None</dd>
+</dl>
+</li>
+</ul>
+
+<p><strong>ActiveTcl 8.4.19.5</strong> February, 2011</p>
+
+<p>This ActiveTcl release is based on the 8.4.19 Tcl core.</p>
+
+<ul>
+<li>Bugfixes in the Tcl/Tk core.</li>
+
+<li>
+<dl>
+<dt>Updated:</dt>
+
+<dd>
+<ul>
+<li>Tcllib 1.13</li>
+
+<li>Tklib 0.5 parts 
+
+<ul>
+<li>Tablelist 5.2</li>
+</ul>
+</li>
+
+<li>Memchan 2.3</li>
+
+<li>newclock 1.0.1</li>
+
+<li>Sqlite 3.7.4</li>
+
+<li>platform 1.0.9</li>
+
+<li>TLS 1.6.1</li>
+
+<li>TkTreeCtrl 2.2.10</li>
+
+<li>BWidget 1.9.4</li>
+</ul>
+</dd>
+
+<dt>New:</dt>
+
+<dd>
+<ul>
+<li>Tcllib 1.13 parts 
+
+<ul>
+<li>hook 0.1</li>
+</ul>
+</li>
+
+<li>Tklib 0.5 parts 
+
+<ul>
+<li>widget::arrowbutton 1</li>
+
+<li>wcb 3.3</li>
+
+<li>mentry 3.4</li>
+
+<li>diagram 1</li>
+
+<li>controlwidget 0.1</li>
+
+<li>meter 1</li>
+
+<li>led 1</li>
+
+<li>rdial 0.3</li>
+
+<li>tachometer 0.1</li>
+
+<li>voltmeter 0.1</li>
+
+<li>radioMatrix 1</li>
+
+<li>bindDown 1</li>
+</ul>
+</li>
+</ul>
+</dd>
+
+<dt>Removed:</dt>
+
+<dd>None</dd>
+</dl>
+</li>
+</ul>
+
+<p><strong>ActiveTcl 8.5.10.1</strong> July, 2011</p>
+
+<p>This ActiveTcl release is based on the 8.5.10 Tcl core.</p>
+
+<p>This release includes:</p>
+
+<ul>
+<li>Bugfixes in several packages, and in the Tcl/Tk core.</li>
+
+<li>
+<dl>
+<dt>Updated (Seed repository):</dt>
+
+<dd>
+<ul>
+<li>Sqlite 3.7.7.1</li>
+
+<li>Tablelist 5.3.1</li>
+</ul>
+</dd>
+
+<dt>New:</dt>
+
+<dd>None</dd>
+
+<dt>Removed:</dt>
+
+<dd>None</dd>
+</dl>
+</li>
+</ul>
+
+<p><strong>ActiveTcl 8.5.10.0</strong> June, 2011</p>
+
+<p>This ActiveTcl release is based on the 8.5.10 Tcl core.</p>
+
+<p>This release includes:</p>
+
+<ul>
+<li>Bugfixes in several packages, and in the Tcl/Tk core.</li>
+
+<li>http 2.7.6</li>
+
+<li>msgcat 1.4.4</li>
+
+<li>platform 1.0.10</li>
+
+<li>tcltest 2.3.3</li>
+
+<li>
+<dl>
+<dt>Updated (Seed repository):</dt>
+
+<dd>
+<ul>
+<li>BWidget 1.9.5</li>
+
+<li>Sqlite 3.7.7</li>
+
+<li>TclOO 0.6.3</li>
+
+<li>Tktable 2.11</li>
+
+<li>TreeCtrl 2.3.2</li>
+
+<li>cmdline 1.3.3</li>
+
+<li>style::as 1.4.1</li>
+</ul>
+</dd>
+
+<dt>New:</dt>
+
+<dd>None</dd>
+
+<dt>Removed:</dt>
+
+<dd>None</dd>
+</dl>
+</li>
+</ul>
+
+<p><strong>ActiveTcl 8.5.9.2</strong> February, 2011</p>
+
+<p>This ActiveTcl release is based on the 8.5.9 Tcl core.</p>
+
+<p>This release includes:</p>
+
+<ul>
+<li>Bugfixes in several packages, and in the Tcl/Tk core.</li>
+
+<li>
+<dl>
+<dt>Updated (Seed repository):</dt>
+
+<dd>
+<ul>
+<li>BWidget 1.9.4</li>
+
+<li>Memchan 2.3</li>
+
+<li>Sqlite 3.7.4</li>
+</ul>
+</dd>
+
+<dt>New:</dt>
+
+<dd>None</dd>
+
+<dt>Removed:</dt>
+
+<dd>None</dd>
+</dl>
+</li>
+</ul>
+
+<p><strong>ActiveTcl 8.5.9.1</strong> December, 2010</p>
+
+<p>This ActiveTcl release is based on the 8.5.9 Tcl core.</p>
+
+<p>This release includes:</p>
+
+<ul>
+<li>Bugfixes in several packages, and in the Tcl/Tk core.</li>
+
+<li><strong>NOTE</strong> On OSX the build has switched ix86/ppc to
+ix86/ix86_64.</li>
+
+<li><strong>NOTE</strong> On OSX the build has switched from
+Tk/Carbon to Tk/Cocoa.</li>
+
+<li>
+<dl>
+<dt>Updated (Seed repository):</dt>
+
+<dd>
+<ul>
+<li>Tcllib 1.12 parts 
+
+<ul>
+<li>comm 4.6.2</li>
+
+<li>struct::list 1.8</li>
+</ul>
+</li>
+
+<li>Tklib 0.5 parts 
+
+<ul>
+<li>Tablelist 5.2</li>
+
+<li>widget::all 1.2.3</li>
+
+<li>widget::calendar 0.96</li>
+
+<li>widget::dateentry 0.93</li>
+</ul>
+</li>
+
+<li>Thread 2.6.7</li>
+
+<li>Sqlite 3.7.3</li>
+</ul>
+</dd>
+
+<dt>New:</dt>
+
+<dd>None</dd>
+
+<dt>Removed:</dt>
+
+<dd>None</dd>
+</dl>
+</li>
+</ul>
+
+<p><strong>ActiveTcl 8.4.19.4</strong> December, 2010</p>
+
+<p>This ActiveTcl release is based on the 8.4.19 Tcl core.</p>
+
+<ul>
+<li>Bugfixes in the Tcl/Tk core.</li>
+
+<li>
+<dl>
+<dt>Updated:</dt>
+
+<dd>
+<ul>
+<li>Tcllib 1.12 parts 
+
+<ul>
+<li>comm 4.6.2</li>
+
+<li>struct::list 1.8</li>
+
+<li>doctools 1.4.11</li>
+</ul>
+</li>
+
+<li>Tklib 0.5 parts 
+
+<ul>
+<li>Tablelist 5.2</li>
+
+<li>widget::all 1.2.3</li>
+
+<li>widget::calendar 0.96</li>
+
+<li>widget::dateentry 0.93</li>
+
+<li>plotchart 1.9.2</li>
+</ul>
+</li>
+
+<li>BWidget 1.9.2</li>
+
+<li>Expect 5.45</li>
+
+<li>Sqlite 3.7.3</li>
+
+<li>platform 1.0.9</li>
+
+<li>TLS 1.6.1</li>
+
+<li>TkTreeCtrl 2.2.10</li>
+</ul>
+</dd>
+
+<dt>New:</dt>
+
+<dd>
+<ul>
+<li>WS::Client</li>
+
+<li>WS::Server</li>
+
+<li>WS::Utils</li>
+
+<li>WS::Embeded</li>
+
+<li>Tcllib 1.12 parts 
+
+<ul>
+<li>grammar::aycock 1.0</li>
+
+<li>gpx 1</li>
+
+<li>imap4 0.3</li>
+
+<li>math::numtheory 1.0</li>
+
+<li>math::calculus::symdiff 1.0</li>
+
+<li>namespacex 0.1</li>
+
+<li>pki 0.1</li>
+</ul>
+</li>
+
+<li>Tklib 0.5 parts 
+
+<ul>
+<li>canvas::mvg 1</li>
+
+<li>canvas::snap 1.0.1</li>
+</ul>
+</li>
+</ul>
+</dd>
+
+<dt>Removed:</dt>
+
+<dd>None</dd>
+</dl>
+</li>
+</ul>
+
+<p><strong>ActiveTcl 8.5.9.0</strong> October, 2010</p>
+
+<p>This ActiveTcl release is based on the 8.5.9 Tcl core.</p>
+
+<p>This release includes:</p>
+
+<ul>
+<li>Bugfixes in several packages, and in the Tcl/Tk core.</li>
+
+<li>The virtual filesystem explorer tool (tclvfse) has moved out of
+the Tcl Dev Kit into ActiveTcl.</li>
+
+<li>
+<dl>
+<dt>Updated (Seed repository):</dt>
+
+<dd>
+<ul>
+<li>Tcllib 1.12 parts 
+
+<ul>
+<li>base64 2.4.2</li>
+
+<li>cmdline 1.3.2</li>
+
+<li>fileutil 1.14.4</li>
+
+<li>snit 2.3.2</li>
+</ul>
+</li>
+
+<li>Tklib 0.5 parts 
+
+<ul>
+<li>Tablelist 5.1</li>
+
+<li>widget 3.1</li>
+
+<li>widget::calendar 0.95</li>
+
+<li>widget::dateentry 0.92</li>
+
+<li>widget::dialog 1.3.1</li>
+
+<li>widget::menuentry 1.0.1</li>
+
+<li>widget::scrolledwindow 1.2.1</li>
+
+<li>widget::statusbar 1.2.1</li>
+
+<li>widget::superframe 1.0.1</li>
+
+<li>widget::toolbar 1.2.1</li>
+</ul>
+</li>
+
+<li>platform 1.0.9</li>
+
+<li>BWidget 1.9.2</li>
+
+<li>Sqlite 3.7.2</li>
+
+<li>TLS 1.6.1</li>
+
+<li>Thread 2.6.6</li>
+
+<li>Treectrl 2.2.10</li>
+
+<li>Various img::* 1.4.0.4</li>
+
+<li>jpegtcl 8.2</li>
+
+<li>pngtcl 1.4.3</li>
+
+<li>tifftcl 3.9.4</li>
+
+<li>(OS X only) Tclapplescript 2.0</li>
+</ul>
+</dd>
+
+<dt>New:</dt>
+
+<dd>None</dd>
+
+<dt>Removed:</dt>
+
+<dd>None</dd>
+</dl>
+</li>
+</ul>
+
+<p><strong>ActiveTcl 8.4.19.4</strong> May, 2010</p>
+
+<p>This ActiveTcl release is based on the 8.4.19 Tcl core.</p>
+
+<ul>
+<li>Bugfixes in the Tcl/Tk core.</li>
+
+<li>
+<dl>
+<dt>Updated:</dt>
+
+<dd>
+<ul>
+<li>Img 1.4 (pngtcl 1.4.1, zlibtcl 1.2.5)</li>
+
+<li>platform 1.0.8</li>
+
+<li>Tcllib 1.12 (ascii85, pt::*, tepam, struct::queue 1.4.2,
+struct::stack 1.5.1)</li>
+
+<li>Sqlite 3.6.23</li>
+
+<li>XOTcl 1.6.6</li>
+
+<li>BWidget 1.9.1</li>
+</ul>
+</dd>
+
+<dt>New:</dt>
+
+<dd>None</dd>
+
+<dt>Removed:</dt>
+
+<dd>None</dd>
+</dl>
+</li>
+</ul>
+
+<p><strong>ActiveTcl 8.5.8.2</strong> May, 2010</p>
+
+<p>This ActiveTcl release is based on the 8.5.8 Tcl core.</p>
+
+<p>This release includes:</p>
+
+<ul>
+<li>Bugfixes in several packages, and in the Tcl/Tk core.</li>
+
+<li>
+<dl>
+<dt>Updated (Seed repository):</dt>
+
+<dd>
+<ul>
+<li>Tcllib 1.12 parts 
+
+<ul>
+<li>struct::stack 1.5.1</li>
+
+<li>struct::queue 1.4.2</li>
+</ul>
+</li>
+
+<li>platform 1.0.8</li>
+
+<li>pngtcl 1.4.1</li>
+
+<li>zlibtcl 1.2.5</li>
+
+<li>Sqlite 3.6.23</li>
+</ul>
+</dd>
+
+<dt>New:</dt>
+
+<dd>None</dd>
+
+<dt>Removed:</dt>
+
+<dd>None</dd>
+</dl>
+</li>
+</ul>
+
+<p><strong>ActiveTcl 8.5.8.1</strong> January, 2010</p>
+
+<p>This ActiveTcl release is based on the 8.5.8 Tcl core.</p>
+
+<p>This release includes:</p>
+
+<ul>
+<li>Bugfixes in several packages, and in the Tcl/Tk core.</li>
+
+<li>
+<dl>
+<dt>Updated (Seed repository):</dt>
+
+<dd>
+<ul>
+<li>Tcllib 1.12 parts 
+
+<ul>
+<li>snit 1.4.1 / 2.3.2</li>
+
+<li>struct::stack 1.4</li>
+
+<li>fileutil 1.14.2</li>
+</ul>
+</li>
+
+<li>TclOO 0.6.2</li>
+</ul>
+</dd>
+
+<dt>New:</dt>
+
+<dd>None</dd>
+
+<dt>Removed:</dt>
+
+<dd>None</dd>
+</dl>
+</li>
+</ul>
+
+<p><strong>ActiveTcl 8.5.8.0</strong> November, 2009</p>
+
+<p>This ActiveTcl release is based on the 8.5.8 Tcl core.</p>
+
+<p>This release includes:</p>
+
+<ul>
+<li>Bugfixes in several packages, and in the Tcl/Tk core.</li>
+
+<li>
+<dl>
+<dt>Updated (Seed repository):</dt>
+
+<dd>
+<ul>
+<li>Tcllib 1.11.1 parts 
+
+<ul>
+<li>snit 1.4 / 2.3</li>
+
+<li>struct::graph 2.4</li>
+
+<li>comm 4.6.1</li>
+
+<li>log 1.3</li>
+
+<li>fileutil 1.14.1</li>
+</ul>
+</li>
+
+<li>Tklib 0.5 parts 
+
+<ul>
+<li>Tablelist(tile) 4.12.1</li>
+
+<li>widget::calendar 0.94</li>
+</ul>
+</li>
+
+<li>Sqlite 3.6.20</li>
+</ul>
+</dd>
+
+<dt>New:</dt>
+
+<dd>None</dd>
+
+<dt>Removed:</dt>
+
+<dd>None</dd>
+</dl>
+</li>
+</ul>
+
+<p><strong>ActiveTcl 8.5.7.1</strong> September, 2009</p>
+
+<p>This ActiveTcl release is based on the 8.5.7 Tcl core.</p>
+
+<p>This release includes:</p>
+
+<ul>
+<li>Bugfixes in several packages, and in the Tcl/Tk core. 
+
+<ul>
+<li>platform 1.0.5</li>
+
+<li>tcltest 2.3.2</li>
+</ul>
+</li>
+
+<li>
+<dl>
+<dt>Updated (Seed repository):</dt>
+
+<dd>
+<ul>
+<li>Bwidget 1.9</li>
+
+<li>Tcllib 1.11.1 parts 
+
+<ul>
+<li>snit 1.3.3 / 2.2.3</li>
+
+<li>struct::tree 2.1.2</li>
+
+<li>comm 4.6</li>
+</ul>
+</li>
+
+<li>Tklib 0.5 parts 
+
+<ul>
+<li>Tablelist 4.12</li>
+
+<li>widget::calendar 0.91</li>
+</ul>
+</li>
+
+<li>Trf 2.1.4</li>
+
+<li>Treectrl 2.2.9</li>
+
+<li>Sqlite 3.6.17</li>
+</ul>
+</dd>
+
+<dt>New:</dt>
+
+<dd>None</dd>
+
+<dt>Removed:</dt>
+
+<dd>None</dd>
+</dl>
+</li>
+</ul>
+
+<p><strong>ActiveTcl 8.4.19.2</strong> August, 2009</p>
+
+<p>This ActiveTcl release is based on the 8.4.19 Tcl core.</p>
+
+<ul>
+<li>Bugfixes in the Tcl/Tk core.</li>
+
+<li>
+<dl>
+<dt>Updated:</dt>
+
+<dd>
+<ul>
+<li>Bwidget 1.9</li>
+
+<li>Img 1.4</li>
+
+<li>platform 1.0.5</li>
+
+<li>platform::shell 1.1.4</li>
+
+<li>Tcllib 1.11.1</li>
+
+<li>Tklib 0.5</li>
+
+<li>Trf 2.1.4</li>
+
+<li>Treectrl 2.2.9</li>
+
+<li>Sqlite 3.6.18</li>
+
+<li>TclVFS 1.4.1</li>
+
+<li>XOTcl 1.6.3</li>
+</ul>
+</dd>
+
+<dt>New:</dt>
+
+<dd>None</dd>
+
+<dt>Removed:</dt>
+
+<dd>None</dd>
+</dl>
+</li>
+</ul>
+
+<p><strong>ActiveTcl 8.5.7.0</strong> April, 2009</p>
+
+<p>This ActiveTcl release is based on the 8.5.7 Tcl core.</p>
+
+<p>This release includes:</p>
+
+<ul>
+<li>Bugfixes in several packages, and in the Tcl/Tk core.</li>
+
+<li>
+<dl>
+<dt>Updated (Seed repository):</dt>
+
+<dd>
+<ul>
+<li>Img 1.4</li>
+
+<li>Tcllib 1.11.1 parts (base64 2.4.1, fileutil 1.13.6)</li>
+
+<li>Tklib 0.4 parts (Tablelist 4.11.1)</li>
+
+<li>Tclvfs 1.4.1</li>
+
+<li>Sqlite 3.6.12</li>
+</ul>
+</dd>
+
+<dt>New:</dt>
+
+<dd>None</dd>
+
+<dt>Removed:</dt>
+
+<dd>None</dd>
+</dl>
+</li>
+</ul>
+
+<p><strong>ActiveTcl 8.5.6.0</strong> January, 2009</p>
+
+<p>This ActiveTcl release is based on the 8.5.6 Tcl core.</p>
+
+<p>This release includes:</p>
+
+<ul>
+<li>Bugfixes in several packages, and in the Tcl/Tk core.</li>
+
+<li>
+<dl>
+<dt>Updated (Seed repository):</dt>
+
+<dd>
+<ul>
+<li>Img 1.4</li>
+
+<li>Tcllib 1.11.1 parts</li>
+
+<li>Tklib 0.4 parts</li>
+
+<li>Tclvfs 1.4 parts</li>
+</ul>
+</dd>
+
+<dt>New:</dt>
+
+<dd>None</dd>
+
+<dt>Removed:</dt>
+
+<dd>None</dd>
+</dl>
+</li>
+</ul>
+
+<p><strong>ActiveTcl 8.5.5.0</strong> October, 2008</p>
+
+<p>This ActiveTcl release is based on the 8.5.5 Tcl core.
+<strong>Note:</strong> This release should be deployed in a
+production environment after extensive testing only.</p>
+
+<p>This release includes:</p>
+
+<ul>
+<li>Bugfixes in several packages, and in the Tcl/Tk core.</li>
+</ul>
+
+<p><strong>ActiveTcl 8.4.19.1</strong> August, 2008</p>
+
+<p>This ActiveTcl release is based on the 8.4.19 Tcl core.</p>
+
+<ul>
+<li>Bugfixes in the Tcl/Tk core.</li>
+
+<li>
+<dl>
+<dt>Updated:</dt>
+
+<dd>
+<ul>
+<li>XOTcl 1.6.1</li>
+
+<li>Treecrtl 2.2.7</li>
+
+<li>Tile 0.8.3</li>
+
+<li>Tcllib 1.10</li>
+
+<li>Tklib 0.4</li>
+</ul>
+</dd>
+
+<dt>New:</dt>
+
+<dd>None</dd>
+
+<dt>Removed:</dt>
+
+<dd>None</dd>
+</dl>
+</li>
+</ul>
+
+<p><strong>ActiveTcl 8.5.4.0</strong> August, 2008</p>
+
+<p>This ActiveTcl release is based on the 8.5.4 Tcl core.
+<strong>Note:</strong> This release should be deployed in a
+production environment after extensive testing only.</p>
+
+<p>This release includes:</p>
+
+<ul>
+<li>Bugfixes in several packages, and in the Tcl/Tk core.</li>
+</ul>
+
+<p><strong>ActiveTcl 8.5.3.0</strong> June, 2008</p>
+
+<p>This ActiveTcl release is based on the 8.5.3 Tcl core.
+<strong>Note:</strong> This release should be deployed in a
+production environment after extensive testing only.</p>
+
+<p>This release includes:</p>
+
+<ul>
+<li>Bugfixes in several packages, and in the Tcl/Tk core.</li>
+
+<li>
+<p>A set of preinstalled packages like in ActiveTcl 8.4, although
+not as large as ActiveTcl 8.4. The packages come in the form of a
+preloaded TEApot repository which is simply copied to the correct
+location on installation. Should the user however already have a
+TEApot repository in the chosen installation directory the
+installer will ask how to resolve the conflict. The three options
+given are</p>
+
+<ol>
+<li>Keep the existing repository and ignore the preloaded
+repository. This is the default.</li>
+
+<li>Replace the existing repository with the preloaded
+repository.</li>
+
+<li>Merge the contents of the preloaded repository into the
+existing repository.</li>
+</ol>
+
+<br>
+<br>
+</li>
+</ul>
+
+<p><strong>ActiveTcl 8.5.2.0</strong> April, 2008</p>
+
+<p>This ActiveTcl release is based on the 8.5.2 Tcl core.
+<strong>Note:</strong> This release should be deployed in a
+production environment after extensive testing only.</p>
+
+<p>This release includes:</p>
+
+<ul>
+<li>Bugfixes in several packages, and in the Tcl/Tk core.</li>
+</ul>
+
+<p><strong>ActiveTcl 8.4.19.0</strong> April, 2008</p>
+
+<p>This ActiveTcl release is based on the 8.4.19 Tcl core.</p>
+
+<ul>
+<li>Bugfixes in the Tcl/Tk core.</li>
+
+<li>
+<dl>
+<dt>Updated:</dt>
+
+<dd>
+<ul>
+<li>TclSOAP 1.6.7.1 (Now using Tdom instead of TclDOM. Potentional
+incompatibility)</li>
+
+<li>Expect 5.44.1.5</li>
+
+<li>Treectrl 2.2.5</li>
+
+<li>Sqlite 3.5.7</li>
+
+<li>Tdom 0.8.3</li>
+
+<li>Tcllib 1.10</li>
+
+<li>Tklib 0.4</li>
+
+<li>XOTcl 1.6.0</li>
+
+<li>TLS 1.6 (+ OpenSSL 0.9.8g)</li>
+</ul>
+</dd>
+
+<dt>New:</dt>
+
+<dd>None</dd>
+
+<dt>Removed:</dt>
+
+<dd>None</dd>
+</dl>
+</li>
+</ul>
+
+<p><strong>ActiveTcl 8.5.1.0</strong> February, 2008</p>
+
+<p>This ActiveTcl release is based on the 8.5.1 Tcl core.
+<strong>Note:</strong> This release should be deployed in a
+production environment after extensive testing only.</p>
+
+<p>This release includes:</p>
+
+<ul>
+<li>Bugfixes in several packages, and in the Tcl/Tk core.</li>
+</ul>
+
+<p><strong>ActiveTcl 8.4.18.0</strong> February, 2008</p>
+
+<p>This ActiveTcl release is based on the 8.4.18 Tcl core.</p>
+
+<ul>
+<li>Bugfixes in the Tcl/Tk core.</li>
+
+<li>
+<dl>
+<dt>Updated:</dt>
+
+<dd>
+<ul>
+<li>Tile 0.8.2</li>
+
+<li>Expect 5.44.1.4</li>
+
+<li>Treectrl 2.2.4</li>
+
+<li>Tcllib 1.10</li>
+
+<li>Tklib 0.4</li>
+</ul>
+</dd>
+
+<dt>New:</dt>
+
+<dd>None</dd>
+
+<dt>Removed:</dt>
+
+<dd>None</dd>
+</dl>
+</li>
+</ul>
+
+<p><strong>ActiveTcl 8.5.0.0</strong> December, 2007</p>
+
+<p>This ActiveTcl release is the first release based on the final
+8.5.0 Tcl core. <strong>Note:</strong> This first non-beta release
+should be deployed in a production environment after extensive
+testing only.</p>
+
+<p>This release includes:</p>
+
+<ul>
+<li>Bugfixes in several packages, and in the Tcl/Tk core.</li>
+</ul>
+
+<p><strong>ActiveTcl 8.4.17.0</strong> December, 2007</p>
+
+<p>This ActiveTcl release is based on the 8.4.17 Tcl core.</p>
+
+<p>Linux x86_64 has been added to the set of platforms.</p>
+
+<p>Solaris 2.8 is now required, Solaris 2.6 has been dropped.</p>
+
+<ul>
+<li>Bugfixes in the Tcl/Tk core.</li>
+
+<li>
+<dl>
+<dt>Updated:</dt>
+
+<dd>
+<ul>
+<li>Sqlite 3.5.2</li>
+
+<li>Tcllib 1.10</li>
+
+<li>XOTcl 1.5.6</li>
+</ul>
+</dd>
+
+<dt>New:</dt>
+
+<dd>None</dd>
+
+<dt>Removed:</dt>
+
+<dd>None</dd>
+</dl>
+</li>
+</ul>
+
+<p><strong>ActiveTcl 8.4.16.1</strong> October, 2007</p>
+
+<p>This ActiveTcl release is based on the 8.4.16 Tcl core.</p>
+
+<ul>
+<li>Bugfixes in the Tcl/Tk core.</li>
+
+<li>
+<dl>
+<dt>Updated:</dt>
+
+<dd>
+<ul>
+<li>Basekits. Fixed problem with them not able to run on Ubuntu
+7.10 (Gutsy Gibbon). Updated to upx 3.00.</li>
+
+<li>Trf 2.1.2 (Mac OS X endianess fixes, zip fix)</li>
+
+<li>XOTcl 1.5.6</li>
+
+<li>Img (png 1.2.12, tiff 3.8.2)</li>
+</ul>
+</dd>
+
+<dt>New:</dt>
+
+<dd>None</dd>
+
+<dt>Removed:</dt>
+
+<dd>None</dd>
+</dl>
+</li>
+</ul>
+
+<p><strong>ActiveTcl 8.4.16.0</strong> September, 2007</p>
+
+<p>This ActiveTcl release is based on the 8.4.16 Tcl core.</p>
+
+<ul>
+<li>Bugfixes in the Tcl/Tk core.</li>
+
+<li>
+<dl>
+<dt>Updated:</dt>
+
+<dd>
+<ul>
+<li>Expect 5.44.1.2 (unicode changes)</li>
+
+<li>Sqlite 3.4.1</li>
+
+<li>Tcllib 1.10</li>
+
+<li>tDom 0.8.2</li>
+
+<li>XOTcl 1.5.5</li>
+</ul>
+</dd>
+
+<dt>New:</dt>
+
+<dd>None</dd>
+
+<dt>Removed:</dt>
+
+<dd>None</dd>
+</dl>
+</li>
+</ul>
+
+<p><strong>ActiveTcl 8.4.15.0</strong> July, 2007</p>
+
+<p>This ActiveTcl release is based on the 8.4.15 Tcl core.</p>
+
+<ul>
+<li>Bugfixes in the Tcl/Tk core.</li>
+
+<li>
+<dl>
+<dt>Updated:</dt>
+
+<dd>
+<ul>
+<li>Bwidget 1.8</li>
+
+<li>Expect 5.44.1</li>
+
+<li>Incr Tcl/Tk 3.4</li>
+
+<li>Metakit 2.4.9.7</li>
+
+<li>Sqlite 3.4.0</li>
+
+<li>Tcllib 1.9</li>
+
+<li>Tkcon 2.5</li>
+
+<li>Tklib 0.4.1</li>
+
+<li>Treectrl 2.2.3</li>
+</ul>
+</dd>
+
+<dt>New:</dt>
+
+<dd>
+<ul>
+<li>TLS 1.5.1 (+ OpenSSL 0.9.8e)</li>
+
+<li>Trofs 0.4.4</li>
+</ul>
+</dd>
+
+<dt>Removed:</dt>
+
+<dd>None</dd>
+</dl>
+</li>
+</ul>
+
+<p><strong>ActiveTcl 8.4.14.0</strong> November, 2006</p>
+
+<p>This ActiveTcl release is based on the 8.4.14 Tcl core.</p>
+
+<ul>
+<li>Bugfixes in the Tcl/Tk core.</li>
+
+<li>
+<dl>
+<dt>Updated:</dt>
+
+<dd>
+<ul>
+<li>OraTcl 4.4</li>
+
+<li>Sqlite 3.3.8</li>
+
+<li>Tcllib 1.9</li>
+
+<li>Tile 0.7.8</li>
+
+<li>Tklib 0.4.1</li>
+
+<li>XOTcl 1.5.3</li>
+
+<li>Bwidget 1.8</li>
+
+<li>Thread 2.6.5 (Windows, OS X only)</li>
+</ul>
+</dd>
+
+<dt>New:</dt>
+
+<dd>
+<ul>
+<li>The teacup client of the TEApot repository system.</li>
+
+<li>Mac OS X universal binaries</li>
+</ul>
+</dd>
+
+<dt>Removed:</dt>
+
+<dd>None</dd>
+</dl>
+</li>
+</ul>
+
+<p><strong>ActiveTcl 8.4.13.0</strong> April, 2006</p>
+
+<p>This ActiveTcl release is based on the 8.4.13 Tcl core.</p>
+
+<ul>
+<li>Bugfixes in the Tcl/Tk core.</li>
+
+<li>
+<dl>
+<dt>Updated:</dt>
+
+<dd>
+<ul>
+<li>Snack 2.2.10</li>
+
+<li>Sqlite 3.2.8</li>
+
+<li>Tcllib 1.8</li>
+
+<li>Tile 0.7.5</li>
+
+<li>Tklib 0.4.1</li>
+
+<li>Xotcl 1.3.9</li>
+
+<li>Thread 2.6.3 (Windows, OS X only)</li>
+</ul>
+</dd>
+
+<dt>New:</dt>
+
+<dd>
+<ul>
+<li>platform</li>
+</ul>
+</dd>
+
+<dt>Removed:</dt>
+
+<dd>None</dd>
+</dl>
+</li>
+</ul>
+
+<p><strong>ActiveTcl 8.4.12.0</strong> December, 2005</p>
+
+<p>This ActiveTcl release is based on the 8.4.12 Tcl core.</p>
+
+<ul>
+<li>Bugfixes in the Tcl/Tk core.</li>
+
+<li>
+<dl>
+<dt>Updated:</dt>
+
+<dd>
+<ul>
+<li>TclApps</li>
+
+<li>Tklib 0.4.1</li>
+
+<li>Tcllib 1.8</li>
+
+<li>Tile 0.7.3</li>
+
+<li>Tclvfs 1.3</li>
+
+<li>Thread</li>
+
+<li>Treectrl 2.1</li>
+
+<li>TclX</li>
+
+<li>Bwidget</li>
+
+<li>Metakit</li>
+
+<li>Tbcload</li>
+
+<li>Tcldom</li>
+
+<li>Tclsoap</li>
+
+<li>Xotcl</li>
+</ul>
+</dd>
+
+<dt>New:</dt>
+
+<dd>
+<ul>
+<li>dict 8.5.3 (Backport of 8.5 feature, as package)</li>
+</ul>
+</dd>
+
+<dt>Removed:</dt>
+
+<dd>None</dd>
+</dl>
+</li>
+</ul>
+
+<p><strong>ActiveTcl 8.4.11.2</strong> October, 2005</p>
+
+<p>This ActiveTcl release is based on the 8.4.11 Tcl core.</p>
+
+<ul>
+<li>Bugfixes in the Tcl/Tk core.</li>
+
+<li>
+<dl>
+<dt>Updated:</dt>
+
+<dd>
+<ul>
+<li>Tcllib 1.8</li>
+
+<li>Tklib 0.3</li>
+
+<li>XoTcl 1.3.8</li>
+
+<li>Img/zlib 1.2.3</li>
+
+<li>Tile 0.7.1</li>
+
+<li>Treectrl 2.1</li>
+
+<li>Vu 2.3</li>
+</ul>
+</dd>
+
+<dt>New:</dt>
+
+<dd>
+<ul>
+<li>Sqlite 3.2.7</li>
+
+<li>tdomhtml 0.1.0</li>
+
+<li>tnc 0.1.0</li>
+
+<li>domtext</li>
+
+<li>domtree</li>
+</ul>
+</dd>
+
+<dt>Removed:</dt>
+
+<dd>None</dd>
+</dl>
+</li>
+</ul>
+
+<p><strong>ActiveTcl 8.4.11.1</strong> August, 2005</p>
+
+<p>This ActiveTcl release is based on the 8.4.11 Tcl core and is
+for the Windows platform only.</p>
+
+<ul>
+<li>Bugfixes in the Tcl/Tk core.</li>
+
+<li>Expect for Windows has been integrated with ActiveTcl as a free
+component.</li>
+</ul>
+
+<p><strong>ActiveTcl 8.4.11.0</strong> July, 2005</p>
+
+<p>This ActiveTcl release is based on the 8.4.11 Tcl core.</p>
+
+<ul>
+<li>Bugfixes in the Tcl/Tk core.</li>
+
+<li>All packages, where possible, have been compiled to be Tcl
+thread aware (--enable-threads). Note however, that the Tcl/Tk core
+itself is <strong>not built with threads enabled</strong>, except
+on OS X.</li>
+
+<li>Tcllib's critcl based accelerator packages have been added,
+except for AIX, OS X and Solaris/x86.</li>
+
+<li>For OS X the packages 
+
+<ul>
+<li>Thread 2.6.1</li>
+
+<li>MacCarbonPrint 0.2</li>
+
+<li>MacSpeech 2.0</li>
+
+<li>QuickTimeTcl 3.1b5</li>
+
+<li>TclAE 2.0</li>
+
+<li>TclAddressbook 1.1.4</li>
+
+<li>TclApplescript 1.0</li>
+
+<li>TclResource 1.1.1</li>
+
+<li>carboncritlib</li>
+</ul>
+
+have been added.</li>
+</ul>
+
+<p><strong>ActiveTcl 8.4.10.1</strong> June, 2005</p>
+
+<p>This ActiveTcl release is based on the 8.4.10 Tcl core.</p>
+
+<ul>
+<li>Release updates for the Solaris/x86 and AIX platforms.</li>
+</ul>
+
+<p><strong>ActiveTcl 8.4.10.0</strong> June, 2005</p>
+
+<p>This ActiveTcl release is based on the 8.4.10 Tcl core.</p>
+
+<ul>
+<li>Bugfixes in the Tcl/Tk core.</li>
+
+<li>Minor module updates.</li>
+</ul>
+
+<p><strong>ActiveTcl 8.4.9.1</strong> April, 2005</p>
+
+<p>This ActiveTcl release is based on the 8.4.9 Tcl core.</p>
+
+<ul>
+<li>Bugfixes in the Tcl/Tk core.</li>
+
+<li>Bugfixes in Tcllib, Incr Tcl</li>
+
+<li>XoTcl 1.3.6</li>
+
+<li>Expect 5.44.1</li>
+</ul>
+
+<p><strong>ActiveTcl 8.4.9.0</strong> December, 2004</p>
+
+<p>This ActiveTcl release is based on the 8.4.9 Tcl core.</p>
+
+<ul>
+<li>Bugfixes in the Tcl/Tk core.</li>
+
+<li>XoTcl 1.3.4</li>
+</ul>
+
+<p><strong>ActiveTcl 8.4.8.0</strong> November, 2004</p>
+
+<p>This ActiveTcl release is based on the 8.4.8 Tcl core.</p>
+
+<ul>
+<li>Bugfixes in several packages, and in the Tcl/Tk core.</li>
+
+<li>TkTreeCtrl updated to 1.1</li>
+
+<li>TCom updated to 3.9</li>
+
+<li>Snack updated to 2.2.8</li>
+
+<li>Incr Tcl updated to 3.3</li>
+
+<li>Tile updated to 0.5</li>
+</ul>
+
+<p><strong>ActiveTcl 8.4.7.1</strong> October, 2004</p>
+
+<p>This ActiveTcl release is based on the 8.4.7 Tcl core.</p>
+
+<ul>
+<li>Bugfixes in several packages, and in the Tcl/Tk core.</li>
+
+<li>Tcllib updated to 1.7</li>
+</ul>
+
+<p><strong>ActiveTcl 8.4.7.0</strong> July, 2004</p>
+
+<p>This ActiveTcl release is based on the 8.4.7 Tcl core.</p>
+
+<ul>
+<li>Bugfixes in several packages, and in the Tcl/Tk core.</li>
+
+<li>Expect updated to 5.42b0.</li>
+
+<li>Tktable updated to 2.9.</li>
+</ul>
+
+<p><strong>ActiveTcl 8.4.6.1</strong> May, 2004</p>
+
+<ul>
+<li>Bugfixes in several packages, and in the Tcl/Tk core.</li>
+
+<li>The installer now installs correctly from paths containing
+unicode characters.</li>
+</ul>
+
+<p><strong>ActiveTcl 8.4.6.0</strong> February, 2004</p>
+
+<p>This ActiveTcl release is based on the 8.4.6 Tcl core. It
+includes Tcllib version 1.6.</p>
+
+<p><strong>ActiveTcl 8.4.5.0</strong> November, 2003</p>
+
+<p>This ActiveTcl release is based on the 8.4.5 Tcl core, and
+includes minor module updates.</p>
+
+<p><strong>ActiveTcl 8.4.4.0</strong> July, 2003</p>
+
+<p>This ActiveTcl release is based on the 8.4.4 Tcl core.</p>
+
+<p><strong>ActiveTcl 8.4.3.0</strong> May, 2003</p>
+
+<p>This is the first ActiveTcl release based on the 8.4.3 Tcl
+core.</p>
+
+<ul>
+<li>Tcom 3.8 (Windows only)</li>
+
+<li>tcllib 1.4</li>
+</ul>
+
+<p><strong>ActiveTcl 8.4.2.0</strong> February, 2003</p>
+
+<p>This is the first ActiveTcl release based on the 8.4.2 Tcl
+core</p>
+
+<ul>
+<li>BWidgets version 1.6</li>
+
+<li>TclXML version version 2.6</li>
+
+<li>TclSOAP version 1.6.6</li>
+</ul>
+
+<p><strong>ActiveTcl 8.3.5.0</strong> October, 2002</p>
+
+<p>This is the first ActiveTcl release based on the 8.3.5 Tcl
+core</p>
+
+<ul>
+<li>TclXML version 2.4</li>
+
+<li>TclDOM version 2.4</li>
+
+<li>BWidgets version 1.5</li>
+</ul>
+
+<p><strong>ActiveTcl 8.3.4.4</strong> October, 2002</p>
+
+<ul>
+<li>TclXML version 2.3 (including expat)</li>
+
+<li>TclDOM version 2.3</li>
+
+<li>Fixed bug in handling of PATHEXT variable when running a
+Windows installation as a user without administrative rights</li>
+</ul>
+
+<p><strong>ActiveTcl 8.4.1.1</strong> December, 2002</p>
+
+<ul>
+<li>Snack version 2.2</li>
+
+<li>TclXML version 2.5</li>
+
+<li>TkImg version 1.3</li>
+</ul>
+
+<p><strong>ActiveTcl 8.4.1.0</strong> October, 2002</p>
+
+<ul>
+<li>TclXML version 2.4</li>
+
+<li>TclDOM version 2.4</li>
+
+<li>BWidgets version 1.5</li>
+</ul>
+
+<p><strong>ActiveTcl 8.4.0.1</strong> September, 2002</p>
+
+<ul>
+<li>This version is built from the official Tcl 8.4 sources, as
+opposed to unofficial CVS head versions (ActiveTcl 8.4.0.1b1).</li>
+
+<li>This version includes Snack version 2.1.5</li>
+</ul>
+
+<p><strong>ActiveTcl 8.4.0.1 beta 2</strong> March, 2002</p>
+
+<p><strong>ActiveTcl 8.4.0.1 beta 1</strong> January, 2002</p>
+
+<p>ActiveTcl 8.4.0.1b1 is made up of the latest Tcl/Tk 8.4a4 core
+from CVS, plus the following extensions (a * denotes updates since
+the last release):</p>
+
+<pre>
+   % [incr Tcl/Tk] 3.2 and iwidgets 4.0.0
+     http://incrtcl.sourceforge.net/
+   % Tcllib 1.2 and Bwidgets 1.4.0
+     http://tcllib.sourceforge.net/
+   % tktable 2.7 
+     http://tktable.sourceforge.net/
+   % tkcon 2.3
+     http://tkcon.sourceforge.net/
+   % TclX 8.3 
+     http://tclx.sourceforge.net/
+   % expect 5.38 (Unix only) *
+     http://expect.nist.gov/
+   % Img 1.2.4
+     http://purl.oclc.org/net/nijtmans/img.html 
+   % TclXML 2.0 (now including expat C library) and TclDOM 2.0
+     http://sf.net/projects/tclxml 
+   % TclSOAP 1.6
+     http://sf.net/projects/tclsoap 
+   % Snack 2.1.3
+     http://www.speech.kth.se/snack/ 
+   % TkHTML 2.0
+     http://www.hwaci.com/sw/tkhtml/index.html
+</pre>
+
+<p><strong>ActiveTcl 8.3.4.3</strong> June, 2002</p>
+
+<p>ActiveTcl 8.3.4.3 consists of the latest stable core of Tcl/Tk
+(8.3.4 with patches).</p>
+
+<p><strong>ActiveTcl 8.3.4.2</strong> January, 2002</p>
+
+<p><strong>ActiveTcl 8.3.4.1</strong> October, 2001</p>
+
+<p><strong>ActiveTcl 8.3.3.3</strong> August, 2001</p>
+
+<p><strong>ActiveTcl 8.3.3.2</strong> July, 2001</p>
+</body>
+</html>
+

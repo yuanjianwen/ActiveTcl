@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>ttk::frame manual page - Tk Themed Widget</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tk Commands, version 8.6.6</a> <small>&gt;</small> ttk_frame</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<DL>
+<DD><A class="doc" href="ttk_frame.html#M2" NAME="L1850">NAME</A>
+<DL><DD>ttk::frame &mdash; Simple container widget</DD></DL>
+<DD><A class="doc" href="ttk_frame.html#M3" NAME="L1851">SYNOPSIS</A>
+<DL>
+</DL>
+<DD><A class="doc" href="ttk_frame.html#M4" NAME="L1852">DESCRIPTION</A>
+<DD><A class="doc" href="ttk_frame.html#M5" NAME="L1853">STANDARD OPTIONS</A>
+<DL>
+<DD><A class="doc" href="ttk_widget.html#M-class">-class, undefined, undefined</A>
+<DD><A class="doc" href="ttk_widget.html#M-cursor">-cursor, cursor, Cursor</A>
+<DD><A class="doc" href="ttk_widget.html#M-style">-style, style, Style</A>
+<DD><A class="doc" href="ttk_widget.html#M-takefocus">-takefocus, takeFocus, TakeFocus</A>
+</DL>
+<DD><A class="doc" href="ttk_frame.html#M6" NAME="L1854">WIDGET-SPECIFIC OPTIONS</A>
+<DL>
+<DD><A class="doc" href="ttk_frame.html#M7" NAME="L1855">-borderwidth, borderWidth, BorderWidth</A>
+<DD><A class="doc" href="ttk_frame.html#M8" NAME="L1856">-relief, relief, Relief</A>
+<DD><A class="doc" href="ttk_frame.html#M9" NAME="L1857">-padding, padding, Padding</A>
+<DD><A class="doc" href="ttk_frame.html#M10" NAME="L1858">-width, width, Width</A>
+<DD><A class="doc" href="ttk_frame.html#M11" NAME="L1859">-height, height, Height</A>
+</DL>
+<DD><A class="doc" href="ttk_frame.html#M12" NAME="L1860">WIDGET COMMAND</A>
+<DD><A class="doc" href="ttk_frame.html#M13" NAME="L1861">NOTES</A>
+<DD><A class="doc" href="ttk_frame.html#M14" NAME="L1862">SEE ALSO</A>
+<DD><A class="doc" href="ttk_frame.html#M15" NAME="L1863">KEYWORDS</A>
+</DL>
+<H3><A NAME="M2">NAME</A></H3>
+ttk::frame &mdash; Simple container widget
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>ttk::frame</B> <I>pathName </I>?<I>options</I>?<BR>
+<H3><A NAME="M4">DESCRIPTION</A></H3>
+A <B>ttk::frame</B> widget is a container, used to group other widgets
+together.
+<H3><A NAME="M5">STANDARD OPTIONS</A></H3>
+<DL>
+<DT><B><A class="doc" href="ttk_widget.html#M-class">-class, undefined, undefined</A></B>
+<DT><B><A class="doc" href="ttk_widget.html#M-cursor">-cursor, cursor, Cursor</A></B>
+<DT><B><A class="doc" href="ttk_widget.html#M-style">-style, style, Style</A></B>
+<DT><B><A class="doc" href="ttk_widget.html#M-takefocus">-takefocus, takeFocus, TakeFocus</A></B>
+</DL>
+<H3><A NAME="M6">WIDGET-SPECIFIC OPTIONS</A></H3>
+<DL>
+<DT>Command-Line Name: <B><A NAME="M7">-borderwidth</A></B>
+<DT>Database Name: <B>borderWidth</B>
+<DT>Database Class: <B>BorderWidth</B>
+<DD>The desired width of the widget border.  Defaults to 0.
+<P><DT>Command-Line Name: <B><A NAME="M8">-relief</A></B>
+<DT>Database Name: <B>relief</B>
+<DT>Database Class: <B>Relief</B>
+<DD>One of the standard Tk border styles:
+<B>flat</B>, <B>groove</B>, <B>raised</B>, <B>ridge</B>,
+<B>solid</B>, or <B>sunken</B>.
+Defaults to <B>flat</B>.
+<P><DT>Command-Line Name: <B><A NAME="M9">-padding</A></B>
+<DT>Database Name: <B>padding</B>
+<DT>Database Class: <B>Padding</B>
+<DD>Additional padding to include inside the border.
+<P><DT>Command-Line Name: <B><A NAME="M10">-width</A></B>
+<DT>Database Name: <B>width</B>
+<DT>Database Class: <B>Width</B>
+<DD>If specified, the widget's requested width in pixels.
+<P><DT>Command-Line Name: <B><A NAME="M11">-height</A></B>
+<DT>Database Name: <B>height</B>
+<DT>Database Class: <B>Height</B>
+<DD>If specified, the widget's requested height in pixels.
+</DL>
+<H3><A NAME="M12">WIDGET COMMAND</A></H3>
+Supports the standard widget commands
+<B>configure</B>, <B>cget</B>, <B>identify</B>, <B>instate</B>, and <B>state</B>;
+see <I>ttk::widget(n)</I>.
+<H3><A NAME="M13">NOTES</A></H3>
+Note that if the <B><A class="doc" href="../TkCmd/pack.html">pack</A></B>, <B><A class="doc" href="../TkCmd/grid.html">grid</A></B>, or other geometry managers
+are used to manage the children of the <B><A class="doc" href="../TkCmd/frame.html">frame</A></B>,
+by the GM's requested size will normally take precedence
+over the <B><A class="doc" href="../TkCmd/frame.html">frame</A></B> widget's <B>-width</B> and <B>-height</B> options.
+<B><A class="doc" href="../TkCmd/pack.html">pack propagate</A></B> and <B><A class="doc" href="../TkCmd/grid.html">grid propagate</A></B> can be used
+to change this.
+<H3><A NAME="M14">SEE ALSO</A></H3>
+<B><A class="doc" href="../TkCmd/ttk_widget.html">ttk::widget</A></B>, <B><A class="doc" href="../TkCmd/ttk_labelframe.html">ttk::labelframe</A></B>, <B><A class="doc" href="../TkCmd/frame.html">frame</A></B>
+<H3><A NAME="M15">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/W.html#widget">widget</A>, <A class="doc" href="../Keywords/F.html#frame">frame</A>, <A class="doc" href="../Keywords/C.html#container">container</A>
+<div class="copy">Copyright &copy; 2005 Joe English
+</div>
+</BODY></HTML>

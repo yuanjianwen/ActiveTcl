@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>HWND manual page - Tk Library Procedures</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tk C API, version 8.6.6</a> <small>&gt;</small> GetHWND</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<H3><A NAME="M2">NAME</A></H3>
+Tk_GetHWND, Tk_AttachHWND &mdash; manage interactions between the Windows handle and an X window
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>#include &lt;tkPlatDecls.h&gt;</B><BR>
+HWND<BR>
+<B>Tk_GetHWND</B>(<I>window</I>)<BR>
+Window<BR>
+<B>Tk_AttachHWND</B>(<I>tkwin, hwnd</I>)<BR>
+<H3><A NAME="M4">ARGUMENTS</A></H3>
+<DL class="arguments">
+<DT>Window <B>window</B> (in)<DD>
+X token for window.
+<P><DT><A class="doc" href="../TkLib/WindowId.html">Tk_Window</A> <B>tkwin</B> (in)<DD>
+Tk window for window.
+<P><DT>HWND <B>hwnd</B> (in)<DD>
+Windows HWND for window.
+<P></DL>
+<H3><A NAME="M5">DESCRIPTION</A></H3>
+<B>Tk_GetHWND</B> returns the Windows HWND identifier for X Windows
+window given by <I>window</I>.
+<P>
+<B>Tk_AttachHWND</B> binds the Windows HWND identifier to the
+specified <A class="doc" href="../TkLib/WindowId.html">Tk_Window</A> given by <I>tkwin</I>. It returns an X Windows
+window that encapsulates the HWND.
+<H3><A NAME="M6">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/I.html#identifier">identifier</A>, <A class="doc" href="../Keywords/W.html#window">window</A>
+<div class="copy">Copyright &copy; 1998-2000 by Scriptics Corporation.
+</div>
+</BODY></HTML>

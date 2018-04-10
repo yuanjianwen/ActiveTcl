@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>Tcl_GetVersion manual page - Tcl Library Procedures</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tcl C API, version 8.6.6</a> <small>&gt;</small> GetVersion</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<H3><A NAME="M2">NAME</A></H3>
+Tcl_GetVersion &mdash; get the version of the library at runtime
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>#include &lt;tcl.h&gt;</B><BR>
+<B>Tcl_GetVersion</B>(<I>major, minor, patchLevel, type</I>)<BR>
+<H3><A NAME="M4">ARGUMENTS</A></H3>
+<DL class="arguments">
+<DT>int <B>*major</B> (out)<DD>
+Major version number of the Tcl library.
+<P><DT>int <B>*minor</B> (out)<DD>
+Minor version number of the Tcl library.
+<P><DT>int <B>*patchLevel</B> (out)<DD>
+The patch level of the Tcl library (or alpha or beta number).
+<P><DT>Tcl_ReleaseType <B>*type</B> (out)<DD>
+The type of release, also indicates the type of patch level. Can be
+one of <B>TCL_ALPHA_RELEASE</B>, <B>TCL_BETA_RELEASE</B>, or
+<B>TCL_FINAL_RELEASE</B>.
+<P></DL>
+<H3><A NAME="M5">DESCRIPTION</A></H3>
+<B>Tcl_GetVersion</B> should be used to query the version number
+of the Tcl library at runtime.  This is useful when using a
+dynamically loaded Tcl library or when writing a stubs-aware
+extension.  For instance, if you write an extension that is
+linked against the Tcl stubs library, it could be loaded into
+a program linked to an older version of Tcl than you expected.
+Use <B>Tcl_GetVersion</B> to verify that fact, and possibly to
+change the behavior of your extension.
+<P>
+<B>Tcl_GetVersion</B> accepts NULL for any of the arguments. For instance if
+you do not care about the <I>patchLevel</I> of the library, pass
+a NULL for the <I>patchLevel</I> argument.
+
+<H3><A NAME="M6">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/V.html#version">version</A>, <A class="doc" href="../Keywords/P.html#patchlevel">patchlevel</A>, <A class="doc" href="../Keywords/M.html#major">major</A>, <A class="doc" href="../Keywords/M.html#minor">minor</A>, <A class="doc" href="../Keywords/A.html#alpha">alpha</A>, <A class="doc" href="../Keywords/B.html#beta">beta</A>, <A class="doc" href="../Keywords/R.html#release">release</A>
+<div class="copy">Copyright &copy; 1999 Scriptics Corporation
+</div>
+</BODY></HTML>

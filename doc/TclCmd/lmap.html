@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>lmap manual page - Built-In Commands</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tcl Commands, version 8.6.6</a> <small>&gt;</small> lmap</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<H3><A NAME="M2">NAME</A></H3>
+lmap &mdash; Iterate over all elements in one or more lists and collect results
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>lmap </B><I>varname list body</I><BR>
+<B>lmap </B><I>varlist1 list1</I> ?<I>varlist2 list2 ...</I>? <I>body</I><BR>
+<H3><A NAME="M4">DESCRIPTION</A></H3>
+The <B>lmap</B> command implements a loop where the loop variable(s) take on
+values from one or more lists, and the loop returns a list of results
+collected from each iteration.
+<P>
+In the simplest case there is one loop variable, <I>varname</I>, and one list,
+<I>list</I>, that is a list of values to assign to <I>varname</I>. The
+<I>body</I> argument is a Tcl script. For each element of <I>list</I> (in order
+from first to last), <B>lmap</B> assigns the contents of the element to
+<I>varname</I> as if the <B><A class="doc" href="../TclCmd/lindex.html">lindex</A></B> command had been used to extract the
+element, then calls the Tcl interpreter to execute <I>body</I>. If execution of
+the body completes normally then the result of the body is appended to an
+accumulator list. <B>lmap</B> returns the accumulator list.
+<P>
+In the general case there can be more than one value list (e.g., <I>list1</I>
+and <I>list2</I>), and each value list can be associated with a list of loop
+variables (e.g., <I>varlist1</I> and <I>varlist2</I>). During each iteration of
+the loop the variables of each <I>varlist</I> are assigned consecutive values
+from the corresponding <I>list</I>. Values in each <I>list</I> are used in order
+from first to last, and each value is used exactly once. The total number of
+loop iterations is large enough to use up all the values from all the value
+lists. If a value list does not contain enough elements for each of its loop
+variables in each iteration, empty values are used for the missing elements.
+<P>
+The <B><A class="doc" href="../TclCmd/break.html">break</A></B> and <B><A class="doc" href="../TclCmd/continue.html">continue</A></B> statements may be invoked inside
+<I>body</I>, with the same effect as in the <B><A class="doc" href="../TclCmd/for.html">for</A></B> and <B><A class="doc" href="../TclCmd/foreach.html">foreach</A></B>
+commands. In these cases the body does not complete normally and the result is
+not appended to the accumulator list.
+<H3><A NAME="M5">EXAMPLES</A></H3>
+Zip lists together:
+<P>
+<PRE>set list1 {a b c d}
+set list2 {1 2 3 4}
+set zipped [<B>lmap</B> a $list1 b $list2 {list $a $b}]
+# The value of zipped is &quot;{a 1} {b 2} {c 3} {d 4}&quot;</PRE>
+<P>
+Filter a list to remove odd values:
+<P>
+<PRE>set values {1 2 3 4 5 6 7 8}
+proc isEven {n} {expr {($n % 2) == 0}}
+set goodOnes [<B>lmap</B> x $values {expr {
+    [isEven $x] ? $x : [continue]
+}}]
+# The value of goodOnes is &quot;2 4 6 8&quot;</PRE>
+<P>
+Take a prefix from a list based on the contents of the list:
+<P>
+<PRE>set values {8 7 6 5 4 3 2 1}
+proc isGood {counter} {expr {$n &gt; 3}}
+set prefix [<B>lmap</B> x $values {expr {
+    [isGood $x] ? $x : [break]
+}}]
+# The value of prefix is &quot;8 7 6 5 4&quot;</PRE>
+<H3><A NAME="M6">SEE ALSO</A></H3>
+<B><A class="doc" href="../TclCmd/break.html">break</A></B>, <B><A class="doc" href="../TclCmd/continue.html">continue</A></B>, <B><A class="doc" href="../TclCmd/for.html">for</A></B>, <B><A class="doc" href="../TclCmd/foreach.html">foreach</A></B>, <B><A class="doc" href="../TclCmd/while.html">while</A></B>
+<H3><A NAME="M7">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/F.html#foreach">foreach</A>, <A class="doc" href="../Keywords/I.html#iteration">iteration</A>, <A class="doc" href="../Keywords/L.html#list">list</A>, <A class="doc" href="../Keywords/L.html#loop">loop</A>, <A class="doc" href="../Keywords/M.html#map">map</A>
+<div class="copy">Copyright &copy; 2012 Trevor Davel
+</div>
+</BODY></HTML>

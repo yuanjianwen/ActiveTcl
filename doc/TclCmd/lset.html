@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>lset manual page - Tcl Built-In Commands</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tcl Commands, version 8.6.6</a> <small>&gt;</small> lset</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<H3><A NAME="M2">NAME</A></H3>
+lset &mdash; Change an element in a list
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>lset </B><I>varName ?index ...? newValue</I><BR>
+<H3><A NAME="M4">DESCRIPTION</A></H3>
+The <B>lset</B> command accepts a parameter, <I>varName</I>, which
+it interprets as the name of a variable containing a Tcl list.
+It also accepts zero or more <I>indices</I> into
+the list.  The indices may be presented either consecutively on the
+command line, or grouped in a
+Tcl list and presented as a single argument.
+Finally, it accepts a new value for an element of <I>varName</I>.
+<P>
+If no indices are presented, the command takes the form:
+<P>
+<PRE><B>lset</B> varName newValue</PRE>
+<P>
+or
+<P>
+<PRE><B>lset</B> varName {} newValue</PRE>
+<P>
+In this case, <I>newValue</I> replaces the old value of the variable
+<I>varName</I>.
+<P>
+When presented with a single index, the <B>lset</B> command
+treats the content of the <I>varName</I> variable as a Tcl list.
+It addresses the <I>index</I>'th element in it
+(0 refers to the first element of the list).
+When interpreting the list, <B>lset</B> observes the same rules
+concerning braces and quotes and backslashes as the Tcl command
+interpreter; however, variable
+substitution and command substitution do not occur.
+The command constructs a new list in which the designated element is
+replaced with <I>newValue</I>.  This new list is stored in the
+variable <I>varName</I>, and is also the return value from the <B>lset</B>
+command.
+<P>
+If <I>index</I> is negative or greater than the number
+of elements in <I>$varName</I>, then an error occurs.
+<P>
+If <I>index</I> is equal to the number of elements in <I>$varName</I>,
+then the given element is appended to the list.
+<P>
+The interpretation of each simple <I>index</I> value is the same as
+for the command <B><A class="doc" href="../TclCmd/string.html">string index</A></B>, supporting simple index
+arithmetic and indices relative to the end of the list.
+<P>
+If additional <I>index</I> arguments are supplied, then each argument is
+used in turn to address an element within a sublist designated
+by the previous indexing operation,
+allowing the script to alter elements in sublists (or append elements
+to sublists).  The command,
+<P>
+<PRE><B>lset</B> a 1 2 newValue</PRE>
+<P>
+or
+<P>
+<PRE><B>lset</B> a {1 2} newValue</PRE>
+<P>
+replaces element 2 of sublist 1 with <I>newValue</I>.
+<P>
+The integer appearing in each <I>index</I> argument must be greater
+than or equal to zero.  The integer appearing in each <I>index</I>
+argument must be less than or equal to the length of the corresponding
+list.  In other words, the <B>lset</B> command can change the size
+of a list only by appending an element (setting the one after the current
+end).  If an index is outside the permitted range, an error is reported.
+<H3><A NAME="M5">EXAMPLES</A></H3>
+In each of these examples, the initial value of <I>x</I> is:
+<P>
+<PRE>set x [list [list a b c] [list d e f] [list g h i]]
+      <I><font size="+1">&#8594;</font> {a b c} {d e f} {g h i}</I></PRE>
+<P>
+The indicated return value also becomes the new value of <I>x</I>
+(except in the last case, which is an error which leaves the value of
+<I>x</I> unchanged.)
+<P>
+<PRE><B>lset</B> x {j k l}
+      <I><font size="+1">&#8594;</font> j k l</I>
+<B>lset</B> x {} {j k l}
+      <I><font size="+1">&#8594;</font> j k l</I>
+<B>lset</B> x 0 j
+      <I><font size="+1">&#8594;</font> j {d e f} {g h i}</I>
+<B>lset</B> x 2 j
+      <I><font size="+1">&#8594;</font> {a b c} {d e f} j</I>
+<B>lset</B> x end j
+      <I><font size="+1">&#8594;</font> {a b c} {d e f} j</I>
+<B>lset</B> x end-1 j
+      <I><font size="+1">&#8594;</font> {a b c} j {g h i}</I>
+<B>lset</B> x 2 1 j
+      <I><font size="+1">&#8594;</font> {a b c} {d e f} {g j i}</I>
+<B>lset</B> x {2 1} j
+      <I><font size="+1">&#8594;</font> {a b c} {d e f} {g j i}</I>
+<B>lset</B> x {2 3} j
+      <I><font size="+1">&#8594;</font> list index out of range</I></PRE>
+<P>
+In the following examples, the initial value of <I>x</I> is:
+<P>
+<PRE>set x [list [list [list a b] [list c d]] &#92;
+            [list [list e f] [list g h]]]
+      <I><font size="+1">&#8594;</font> {{a b} {c d}} {{e f} {g h}}</I></PRE>
+<P>
+The indicated return value also becomes the new value of <I>x</I>.
+<P>
+<PRE><B>lset</B> x 1 1 0 j
+      <I><font size="+1">&#8594;</font> {{a b} {c d}} {{e f} {j h}}</I>
+<B>lset</B> x {1 1 0} j
+      <I><font size="+1">&#8594;</font> {{a b} {c d}} {{e f} {j h}}</I></PRE>
+<H3><A NAME="M6">SEE ALSO</A></H3>
+<B><A class="doc" href="../TclCmd/list.html">list</A></B>, <B><A class="doc" href="../TclCmd/lappend.html">lappend</A></B>, <B><A class="doc" href="../TclCmd/lindex.html">lindex</A></B>, <B><A class="doc" href="../TclCmd/linsert.html">linsert</A></B>, <B><A class="doc" href="../TclCmd/llength.html">llength</A></B>, <B><A class="doc" href="../TclCmd/lsearch.html">lsearch</A></B>, <B><A class="doc" href="../TclCmd/lsort.html">lsort</A></B>, <B><A class="doc" href="../TclCmd/lrange.html">lrange</A></B>, <B><A class="doc" href="../TclCmd/lreplace.html">lreplace</A></B>, <B><A class="doc" href="../TclCmd/string.html">string</A></B>
+<H3><A NAME="M7">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/E.html#element">element</A>, <A class="doc" href="../Keywords/I.html#index">index</A>, <A class="doc" href="../Keywords/L.html#list">list</A>, <A class="doc" href="../Keywords/R.html#replace">replace</A>, <A class="doc" href="../Keywords/S.html#set">set</A>
+<div class="copy">Copyright &copy; 2001 by Kevin B. Kenny &lt;kennykb(at)acm.org&gt;. All rights reserved.
+</div>
+</BODY></HTML>

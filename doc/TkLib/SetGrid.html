@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>Tk_SetGrid manual page - Tk Library Procedures</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tk C API, version 8.6.6</a> <small>&gt;</small> SetGrid</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<H3><A NAME="M2">NAME</A></H3>
+Tk_SetGrid, Tk_UnsetGrid &mdash; control the grid for interactive resizing
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>#include &lt;tk.h&gt;</B><BR>
+<B>Tk_SetGrid</B>(<I>tkwin, reqWidth, reqHeight, widthInc, heightInc</I>)<BR>
+<B>Tk_UnsetGrid</B>(<I>tkwin</I>)<BR>
+<H3><A NAME="M4">ARGUMENTS</A></H3>
+<DL class="arguments">
+<DT><A class="doc" href="../TkLib/WindowId.html">Tk_Window</A> <B>tkwin</B> (in)<DD>
+Token for window.
+<P><DT>int <B>reqWidth</B> (in)<DD>
+Width in grid units that corresponds to the pixel dimension <I>tkwin</I>
+has requested via <B><A class="doc" href="../TkLib/GeomReq.html">Tk_GeometryRequest</A></B>.
+<P><DT>int <B>reqHeight</B> (in)<DD>
+Height in grid units that corresponds to the pixel dimension <I>tkwin</I>
+has requested via <B><A class="doc" href="../TkLib/GeomReq.html">Tk_GeometryRequest</A></B>.
+<P><DT>int <B>widthInc</B> (in)<DD>
+Width of one grid unit, in pixels.
+<P><DT>int <B>heightInc</B> (in)<DD>
+Height of one grid unit, in pixels.
+<P></DL>
+<H3><A NAME="M5">DESCRIPTION</A></H3>
+<B>Tk_SetGrid</B> turns on gridded geometry management for <I>tkwin</I>'s
+toplevel window and specifies the geometry of the grid.
+<B>Tk_SetGrid</B> is typically invoked by a widget when its <B>setGrid</B>
+option is true.
+It restricts interactive resizing of <I>tkwin</I>'s toplevel window so
+that the space allocated to the toplevel is equal to its requested
+size plus or minus even multiples of <I>widthInc</I> and <I>heightInc</I>.
+Furthermore, the <I>reqWidth</I> and <I>reqHeight</I> values are
+passed to the window manager so that it can report the window's
+size in grid units during interactive resizes.
+If <I>tkwin</I>'s configuration changes (e.g., the size of a grid unit
+changes) then the widget should invoke <B>Tk_SetGrid</B> again with the new
+information.
+<P>
+<B>Tk_UnsetGrid</B> cancels gridded geometry management for
+<I>tkwin</I>'s toplevel window.
+<P>
+For each toplevel window there can be at most one internal window
+with gridding enabled.
+If <B>Tk_SetGrid</B> or <B>Tk_UnsetGrid</B> is invoked when some
+other window is already controlling gridding for <I>tkwin</I>'s
+toplevel, the calls for the new window have no effect.
+<P>
+See the <B><A class="doc" href="../TkCmd/wm.html">wm</A></B> manual entry for additional information on gridded geometry
+management.
+<H3><A NAME="M6">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/G.html#grid">grid</A>, <A class="doc" href="../Keywords/W.html#window">window</A>, <A class="doc" href="../Keywords/W.html#window manager">window manager</A>
+<div class="copy">Copyright &copy; 1990-1994 The Regents of the University of California.
+Copyright &copy; 1994-1996 Sun Microsystems, Inc.
+</div>
+</BODY></HTML>

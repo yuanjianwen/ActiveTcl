@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>source manual page - Built-In Commands</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tcl Commands, version 8.6.6</a> <small>&gt;</small> source</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<H3><A NAME="M2">NAME</A></H3>
+source &mdash; Evaluate a file or resource as a Tcl script
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>source </B><I>fileName</I><BR>
+<B>source</B> <B>-encoding </B><I>encodingName fileName</I><BR>
+<H3><A NAME="M4">DESCRIPTION</A></H3>
+This command takes the contents of the specified file or resource
+and passes it to the Tcl interpreter as a text script.  The return
+value from <B>source</B> is the return value of the last command
+executed in the script.  If an error occurs in evaluating the contents
+of the script then the <B>source</B> command will return that error.
+If a <B><A class="doc" href="../TclCmd/return.html">return</A></B> command is invoked from within the script then the
+remainder of the file will be skipped and the <B>source</B> command
+will return normally with the result from the <B><A class="doc" href="../TclCmd/return.html">return</A></B> command.
+<P>
+The end-of-file character for files is
+&#8220;&#92;32&#8221;
+(^Z) for all platforms.
+The source command will read files up to this character.  This
+restriction does not exist for the <B><A class="doc" href="../TclCmd/read.html">read</A></B> or <B><A class="doc" href="../TclCmd/gets.html">gets</A></B> commands,
+allowing for files containing code and data segments (scripted documents).
+If you require a
+&#8220;^Z&#8221;
+in code for string comparison, you can use
+&#8220;&#92;032&#8221;
+or
+&#8220;&#92;u001a&#8221;,
+which will be safely substituted by the Tcl interpreter into
+&#8220;^Z&#8221;.
+<P>
+A leading BOM (Byte order mark) contained in the file is ignored for unicode encodings (utf-8, unicode).
+<P>
+The <B>-encoding</B> option is used to specify the encoding of
+the data stored in <I>fileName</I>.  When the <B>-encoding</B> option
+is omitted, the system encoding is assumed.
+<H3><A NAME="M5">EXAMPLE</A></H3>
+Run the script in the file <B>foo.tcl</B> and then the script in the
+file <B>bar.tcl</B>:
+<P>
+<PRE><B>source</B> foo.tcl
+<B>source</B> bar.tcl</PRE>
+<P>
+Alternatively:
+<P>
+<PRE>foreach scriptFile {foo.tcl bar.tcl} {
+    <B>source</B> $scriptFile
+}</PRE>
+<H3><A NAME="M6">SEE ALSO</A></H3>
+<B><A class="doc" href="../TclCmd/file.html">file</A></B>, <B><A class="doc" href="../TclCmd/cd.html">cd</A></B>, <B><A class="doc" href="../TclCmd/encoding.html">encoding</A></B>, <B><A class="doc" href="../TclCmd/info.html">info</A></B>
+<H3><A NAME="M7">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/F.html#file">file</A>, <A class="doc" href="../Keywords/S.html#script">script</A>
+<div class="copy">Copyright &copy; 1993 The Regents of the University of California.
+Copyright &copy; 1994-1996 Sun Microsystems, Inc.
+Copyright &copy; 2000 Scriptics Corporation.
+</div>
+</BODY></HTML>

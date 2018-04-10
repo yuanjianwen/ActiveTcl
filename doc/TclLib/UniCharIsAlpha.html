@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>Tcl_UniCharIsAlpha manual page - Tcl Library Procedures</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tcl C API, version 8.6.6</a> <small>&gt;</small> UniCharIsAlpha</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<DL>
+<DD><A class="doc" href="UniCharIsAlpha.html#M2" NAME="L879">NAME</A>
+<DL><DD>Tcl_UniCharIsAlnum, Tcl_UniCharIsAlpha, Tcl_UniCharIsControl, Tcl_UniCharIsDigit, Tcl_UniCharIsGraph, Tcl_UniCharIsLower, Tcl_UniCharIsPrint, Tcl_UniCharIsPunct, Tcl_UniCharIsSpace, Tcl_UniCharIsUpper, Tcl_UniCharIsWordChar &mdash; routines for classification of Tcl_UniChar characters</DD></DL>
+<DD><A class="doc" href="UniCharIsAlpha.html#M3" NAME="L880">SYNOPSIS</A>
+<DL>
+<DD><B>#include &lt;tcl.h&gt;</B>
+<DD>int
+<DD><B>Tcl_UniCharIsAlnum</B>(<I>ch</I>)
+<DD>int
+<DD><B>Tcl_UniCharIsAlpha</B>(<I>ch</I>)
+<DD>int
+<DD><B>Tcl_UniCharIsControl</B>(<I>ch</I>)
+<DD>int
+<DD><B>Tcl_UniCharIsDigit</B>(<I>ch</I>)
+<DD>int
+<DD><B>Tcl_UniCharIsGraph</B>(<I>ch</I>)
+<DD>int
+<DD><B>Tcl_UniCharIsLower</B>(<I>ch</I>)
+<DD>int
+<DD><B>Tcl_UniCharIsPrint</B>(<I>ch</I>)
+<DD>int
+<DD><B>Tcl_UniCharIsPunct</B>(<I>ch</I>)
+<DD>int
+<DD><B>Tcl_UniCharIsSpace</B>(<I>ch</I>)
+<DD>int
+<DD><B>Tcl_UniCharIsUpper</B>(<I>ch</I>)
+<DD>int
+<DD><B>Tcl_UniCharIsWordChar</B>(<I>ch</I>)
+</DL>
+<DD><A class="doc" href="UniCharIsAlpha.html#M4" NAME="L881">ARGUMENTS</A>
+<DL class="arguments">
+</DL>
+<DD><A class="doc" href="UniCharIsAlpha.html#M5" NAME="L882">DESCRIPTION</A>
+<DD><A class="doc" href="UniCharIsAlpha.html#M6" NAME="L883">CHARACTER CLASSES</A>
+<DD><A class="doc" href="UniCharIsAlpha.html#M7" NAME="L884">KEYWORDS</A>
+</DL>
+<H3><A NAME="M2">NAME</A></H3>
+Tcl_UniCharIsAlnum, Tcl_UniCharIsAlpha, Tcl_UniCharIsControl, Tcl_UniCharIsDigit, Tcl_UniCharIsGraph, Tcl_UniCharIsLower, Tcl_UniCharIsPrint, Tcl_UniCharIsPunct, Tcl_UniCharIsSpace, Tcl_UniCharIsUpper, Tcl_UniCharIsWordChar &mdash; routines for classification of <A class="doc" href="../TclLib/Utf.html">Tcl_UniChar</A> characters
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>#include &lt;tcl.h&gt;</B><BR>
+int<BR>
+<B>Tcl_UniCharIsAlnum</B>(<I>ch</I>)<BR>
+int<BR>
+<B>Tcl_UniCharIsAlpha</B>(<I>ch</I>)<BR>
+int<BR>
+<B>Tcl_UniCharIsControl</B>(<I>ch</I>)<BR>
+int<BR>
+<B>Tcl_UniCharIsDigit</B>(<I>ch</I>)<BR>
+int<BR>
+<B>Tcl_UniCharIsGraph</B>(<I>ch</I>)<BR>
+int<BR>
+<B>Tcl_UniCharIsLower</B>(<I>ch</I>)<BR>
+int<BR>
+<B>Tcl_UniCharIsPrint</B>(<I>ch</I>)<BR>
+int<BR>
+<B>Tcl_UniCharIsPunct</B>(<I>ch</I>)<BR>
+int<BR>
+<B>Tcl_UniCharIsSpace</B>(<I>ch</I>)<BR>
+int<BR>
+<B>Tcl_UniCharIsUpper</B>(<I>ch</I>)<BR>
+int<BR>
+<B>Tcl_UniCharIsWordChar</B>(<I>ch</I>)<BR>
+<H3><A NAME="M4">ARGUMENTS</A></H3>
+<DL class="arguments">
+<DT>int <B>ch</B> (in)<DD>
+The <A class="doc" href="../TclLib/Utf.html">Tcl_UniChar</A> to be examined.
+<P></DL>
+<H3><A NAME="M5">DESCRIPTION</A></H3>
+All of the routines described examine Tcl_UniChars and return a
+boolean value. A non-zero return value means that the character does
+belong to the character class associated with the called routine. The
+rest of this document just describes the character classes associated
+with the various routines.
+<P>
+Note: A <A class="doc" href="../TclLib/Utf.html">Tcl_UniChar</A> is a Unicode character represented as an unsigned,
+fixed-size quantity.
+
+<H3><A NAME="M6">CHARACTER CLASSES</A></H3>
+<B>Tcl_UniCharIsAlnum</B> tests if the character is an alphanumeric Unicode character.
+<P>
+<B>Tcl_UniCharIsAlpha</B> tests if the character is an alphabetic Unicode character.
+<P>
+<B>Tcl_UniCharIsControl</B> tests if the character is a Unicode control character.
+<P>
+<B>Tcl_UniCharIsDigit</B> tests if the character is a numeric Unicode character.
+<P>
+<B>Tcl_UniCharIsGraph</B> tests if the character is any Unicode print character except space.
+<P>
+<B>Tcl_UniCharIsLower</B> tests if the character is a lowercase Unicode character.
+<P>
+<B>Tcl_UniCharIsPrint</B> tests if the character is a Unicode print character.
+<P>
+<B>Tcl_UniCharIsPunct</B> tests if the character is a Unicode punctuation character.
+<P>
+<B>Tcl_UniCharIsSpace</B> tests if the character is a whitespace Unicode character.
+<P>
+<B>Tcl_UniCharIsUpper</B> tests if the character is an uppercase Unicode character.
+<P>
+<B>Tcl_UniCharIsWordChar</B> tests if the character is alphanumeric or
+a connector punctuation mark.
+
+<H3><A NAME="M7">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/U.html#unicode">unicode</A>, <A class="doc" href="../Keywords/C.html#classification">classification</A>
+<div class="copy">Copyright &copy; 1997 Sun Microsystems, Inc.
+</div>
+</BODY></HTML>

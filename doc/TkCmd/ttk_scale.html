@@ -1,0 +1,157 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>ttk::scale manual page - Tk Themed Widget</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tk Commands, version 8.6.6</a> <small>&gt;</small> ttk_scale</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<DL>
+<DD><A class="doc" href="ttk_scale.html#M2" NAME="L2023">NAME</A>
+<DL><DD>ttk::scale &mdash; Create and manipulate a scale widget</DD></DL>
+<DD><A class="doc" href="ttk_scale.html#M3" NAME="L2024">SYNOPSIS</A>
+<DL>
+</DL>
+<DD><A class="doc" href="ttk_scale.html#M4" NAME="L2025">DESCRIPTION</A>
+<DD><A class="doc" href="ttk_scale.html#M5" NAME="L2026">STANDARD OPTIONS</A>
+<DL>
+<DD><A class="doc" href="ttk_widget.html#M-class">-class, undefined, undefined</A>
+<DD><A class="doc" href="ttk_widget.html#M-cursor">-cursor, cursor, Cursor</A>
+<DD><A class="doc" href="ttk_widget.html#M-style">-style, style, Style</A>
+<DD><A class="doc" href="ttk_widget.html#M-takefocus">-takefocus, takeFocus, TakeFocus</A>
+</DL>
+<DD><A class="doc" href="ttk_scale.html#M6" NAME="L2027">WIDGET-SPECIFIC OPTIONS</A>
+<DL>
+<DD><A class="doc" href="ttk_scale.html#M7" NAME="L2028">-command, command, Command</A>
+<DD><A class="doc" href="ttk_scale.html#M8" NAME="L2029">-from, from, From</A>
+<DD><A class="doc" href="ttk_scale.html#M9" NAME="L2030">-length, length, Length</A>
+<DD><A class="doc" href="ttk_scale.html#M10" NAME="L2031">-orient, orient, Orient</A>
+<DD><A class="doc" href="ttk_scale.html#M11" NAME="L2032">-to, to, To</A>
+<DD><A class="doc" href="ttk_scale.html#M12" NAME="L2033">-value, value, Value</A>
+<DD><A class="doc" href="ttk_scale.html#M13" NAME="L2034">-variable, variable, Variable</A>
+</DL>
+<DD><A class="doc" href="ttk_scale.html#M14" NAME="L2035">WIDGET COMMAND</A>
+<DL class="widget command">
+<DD><A class="doc" href="ttk_scale.html#M15" NAME="L2036"><I>pathName </I><B>cget </B><I>option</I></A>
+<DD><A class="doc" href="ttk_scale.html#M16" NAME="L2037"><I>pathName </I><B>configure </B>?<I>option</I>? ?<I>value option value ...</I>?</A>
+<DD><A class="doc" href="ttk_scale.html#M17" NAME="L2038"><I>pathName </I><B>get </B>?<I>x y</I>?</A>
+<DD><A class="doc" href="ttk_scale.html#M18" NAME="L2039"><I>pathName </I><B>identify </B><I>x y</I></A>
+<DD><A class="doc" href="ttk_scale.html#M19" NAME="L2040"><I>pathName </I><B>instate </B><I>statespec</I> ?<I>script</I>?</A>
+<DD><A class="doc" href="ttk_scale.html#M20" NAME="L2041"><I>pathName </I><B>set </B><I>value</I></A>
+<DD><A class="doc" href="ttk_scale.html#M21" NAME="L2042"><I>pathName </I><B>state</B> ?<I>stateSpec</I>?</A>
+</DL>
+<DD><A class="doc" href="ttk_scale.html#M22" NAME="L2043">INTERNAL COMMANDS</A>
+<DL class="internal commands">
+<DD><A class="doc" href="ttk_scale.html#M23" NAME="L2044"><I>pathName </I><B>coords </B>?<I>value</I>?</A>
+</DL>
+<DD><A class="doc" href="ttk_scale.html#M24" NAME="L2045">SEE ALSO</A>
+<DD><A class="doc" href="ttk_scale.html#M25" NAME="L2046">KEYWORDS</A>
+</DL>
+<H3><A NAME="M2">NAME</A></H3>
+ttk::scale &mdash; Create and manipulate a scale widget
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>ttk::scale </B><I>pathName </I>?<I>options...</I>?<BR>
+<H3><A NAME="M4">DESCRIPTION</A></H3>
+A <B>ttk::scale</B> widget is typically used to control the numeric value of a
+linked variable that varies uniformly over some range. A scale displays a
+<I>slider</I> that can be moved along over a <I>trough</I>, with the relative
+position of the slider over the trough indicating the value of the variable.
+<H3><A NAME="M5">STANDARD OPTIONS</A></H3>
+<DL>
+<DT><B><A class="doc" href="ttk_widget.html#M-class">-class, undefined, undefined</A></B>
+<DT><B><A class="doc" href="ttk_widget.html#M-cursor">-cursor, cursor, Cursor</A></B>
+<DT><B><A class="doc" href="ttk_widget.html#M-style">-style, style, Style</A></B>
+<DT><B><A class="doc" href="ttk_widget.html#M-takefocus">-takefocus, takeFocus, TakeFocus</A></B>
+</DL>
+<H3><A NAME="M6">WIDGET-SPECIFIC OPTIONS</A></H3>
+<DL>
+<DT>Command-Line Name: <B><A NAME="M7">-command</A></B>
+<DT>Database Name: <B>command</B>
+<DT>Database Class: <B>Command</B>
+<DD>Specifies the prefix of a Tcl command to invoke whenever the scale's value is
+changed via a widget command. The actual command consists of this option
+followed by a space and a real number indicating the new value of the scale.
+<P><DT>Command-Line Name: <B><A NAME="M8">-from</A></B>
+<DT>Database Name: <B>from</B>
+<DT>Database Class: <B>From</B>
+<DD>A real value corresponding to the left or top end of the scale.
+<P><DT>Command-Line Name: <B><A NAME="M9">-length</A></B>
+<DT>Database Name: <B>length</B>
+<DT>Database Class: <B>Length</B>
+<DD>Specifies the desired long dimension of the scale in screen units (i.e. any of
+the forms acceptable to <B><A class="doc" href="../TkLib/GetPixels.html">Tk_GetPixels</A></B>). For vertical scales this is the
+scale's height; for horizontal scales it is the scale's width.
+<P><DT>Command-Line Name: <B><A NAME="M10">-orient</A></B>
+<DT>Database Name: <B>orient</B>
+<DT>Database Class: <B>Orient</B>
+<DD>Specifies which orientation whether the widget should be laid out horizontally
+or vertically. Must be either <B>horizontal</B> or <B>vertical</B> or an
+abbreviation of one of these.
+<P><DT>Command-Line Name: <B><A NAME="M11">-to</A></B>
+<DT>Database Name: <B>to</B>
+<DT>Database Class: <B>To</B>
+<DD>Specifies a real value corresponding to the right or bottom end of the scale.
+This value may be either less than or greater than the <B>-from</B> option.
+<P><DT>Command-Line Name: <B><A NAME="M12">-value</A></B>
+<DT>Database Name: <B>value</B>
+<DT>Database Class: <B>Value</B>
+<DD>Specifies the current floating-point value of the variable.
+<P><DT>Command-Line Name: <B><A NAME="M13">-variable</A></B>
+<DT>Database Name: <B>variable</B>
+<DT>Database Class: <B>Variable</B>
+<DD>Specifies the name of a global variable to link to the scale. Whenever the
+value of the variable changes, the scale will update to reflect this value.
+Whenever the scale is manipulated interactively, the variable will be modified
+to reflect the scale's new value.
+</DL>
+<H3><A NAME="M14">WIDGET COMMAND</A></H3>
+<P>
+<DL class="widget command">
+<DT><A NAME="M15"><I>pathName </I><B>cget </B><I>option</I></A><DD>
+Returns the current value of the specified <I>option</I>; see
+<I>ttk::widget(n)</I>.
+<P><DT><A NAME="M16"><I>pathName </I><B>configure </B>?<I>option</I>? ?<I>value option value ...</I>?</A><DD>
+Modify or query widget options; see <I>ttk::widget(n)</I>.
+<P><DT><A NAME="M17"><I>pathName </I><B>get </B>?<I>x y</I>?</A><DD>
+Get the current value of the <B>-value</B> option, or the value corresponding
+to the coordinates <I>x,y</I> if they are specified. <I>X</I> and <I>y</I> are
+pixel coordinates relative to the scale widget origin.
+<P><DT><A NAME="M18"><I>pathName </I><B>identify </B><I>x y</I></A><DD>
+Returns the name of the element at position <I>x</I>, <I>y</I>.
+See <I>ttk::widget(n)</I>.
+<P><DT><A NAME="M19"><I>pathName </I><B>instate </B><I>statespec</I> ?<I>script</I>?</A><DD>
+Test the widget state; see <I>ttk::widget(n)</I>.
+<P><DT><A NAME="M20"><I>pathName </I><B>set </B><I>value</I></A><DD>
+Set the value of the widget (i.e. the <B>-value</B> option) to <I>value</I>.
+The value will be clipped to the range given by the <B>-from</B> and
+<B>-to</B> options. Note that setting the linked variable (i.e. the variable
+named in the <B>-variable</B> option) does not cause such clipping.
+<P><DT><A NAME="M21"><I>pathName </I><B>state</B> ?<I>stateSpec</I>?</A><DD>
+Modify or query the widget state; see <I>ttk::widget(n)</I>.
+<P></DL>
+<H3><A NAME="M22">INTERNAL COMMANDS</A></H3>
+<P>
+<DL class="internal commands">
+<DT><A NAME="M23"><I>pathName </I><B>coords </B>?<I>value</I>?</A><DD>
+Get the coordinates corresponding to <I>value</I>, or the coordinates
+corresponding to the current value of the <B>-value</B> option if <I>value</I>
+is omitted.
+<P></DL>
+<H3><A NAME="M24">SEE ALSO</A></H3>
+<B><A class="doc" href="../TkCmd/ttk_widget.html">ttk::widget</A></B>, <B><A class="doc" href="../TkCmd/scale.html">scale</A></B>
+<H3><A NAME="M25">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/S.html#scale">scale</A>, <A class="doc" href="../Keywords/S.html#slider">slider</A>, <A class="doc" href="../Keywords/T.html#trough">trough</A>, <A class="doc" href="../Keywords/W.html#widget">widget</A>
+<div class="copy"></div>
+</BODY></HTML>

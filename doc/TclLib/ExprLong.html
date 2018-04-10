@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>Tcl_ExprLong manual page - Tcl Library Procedures</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tcl C API, version 8.6.6</a> <small>&gt;</small> ExprLong</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<DL>
+<DD><A class="doc" href="ExprLong.html#M2" NAME="L294">NAME</A>
+<DL><DD>Tcl_ExprLong, Tcl_ExprDouble, Tcl_ExprBoolean, Tcl_ExprString &mdash; evaluate an expression</DD></DL>
+<DD><A class="doc" href="ExprLong.html#M3" NAME="L295">SYNOPSIS</A>
+<DL>
+<DD><B>#include &lt;tcl.h&gt;</B>
+<DD>int
+<DD><B>Tcl_ExprLong</B>(<I>interp, expr, longPtr</I>)
+<DD>int
+<DD><B>Tcl_ExprDouble</B>(<I>interp, expr, doublePtr</I>)
+<DD>int
+<DD><B>Tcl_ExprBoolean</B>(<I>interp, expr, booleanPtr</I>)
+<DD>int
+<DD><B>Tcl_ExprString</B>(<I>interp, expr</I>)
+</DL>
+<DD><A class="doc" href="ExprLong.html#M4" NAME="L296">ARGUMENTS</A>
+<DL class="arguments">
+</DL>
+<DD><A class="doc" href="ExprLong.html#M5" NAME="L297">DESCRIPTION</A>
+<DD><A class="doc" href="ExprLong.html#M6" NAME="L298">SEE ALSO</A>
+<DD><A class="doc" href="ExprLong.html#M7" NAME="L299">KEYWORDS</A>
+</DL>
+<H3><A NAME="M2">NAME</A></H3>
+Tcl_ExprLong, Tcl_ExprDouble, Tcl_ExprBoolean, Tcl_ExprString &mdash; evaluate an expression
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>#include &lt;tcl.h&gt;</B><BR>
+int<BR>
+<B>Tcl_ExprLong</B>(<I>interp, expr, longPtr</I>)<BR>
+int<BR>
+<B>Tcl_ExprDouble</B>(<I>interp, expr, doublePtr</I>)<BR>
+int<BR>
+<B>Tcl_ExprBoolean</B>(<I>interp, expr, booleanPtr</I>)<BR>
+int<BR>
+<B>Tcl_ExprString</B>(<I>interp, expr</I>)<BR>
+<H3><A NAME="M4">ARGUMENTS</A></H3>
+<DL class="arguments">
+<DT><A class="doc" href="../TclLib/Interp.html">Tcl_Interp</A> <B>*interp</B> (in)<DD>
+Interpreter in whose context to evaluate <I>expr</I>.
+<P><DT>const char <B>*expr</B> (in)<DD>
+Expression to be evaluated.
+<P><DT>long <B>*longPtr</B> (out)<DD>
+Pointer to location in which to store the integer value of the
+expression.
+<P><DT>int <B>*doublePtr</B> (out)<DD>
+Pointer to location in which to store the floating-point value of the
+expression.
+<P><DT>int <B>*booleanPtr</B> (out)<DD>
+Pointer to location in which to store the 0/1 boolean value of the
+expression.
+<P></DL>
+<H3><A NAME="M5">DESCRIPTION</A></H3>
+These four procedures all evaluate the expression
+given by the <I>expr</I> argument
+and return the result in one of four different forms.
+The expression can have any of the forms accepted by the <B><A class="doc" href="../TclCmd/expr.html">expr</A></B> command.
+Note that these procedures have been largely replaced by the
+value-based procedures <B><A class="doc" href="../TclLib/ExprLongObj.html">Tcl_ExprLongObj</A></B>, <B><A class="doc" href="../TclLib/ExprLongObj.html">Tcl_ExprDoubleObj</A></B>,
+<B><A class="doc" href="../TclLib/ExprLongObj.html">Tcl_ExprBooleanObj</A></B>, and <B><A class="doc" href="../TclLib/ExprLongObj.html">Tcl_ExprObj</A></B>.
+Those value-based procedures evaluate an expression held in a Tcl value
+instead of a string.
+The value argument can retain an internal representation
+that is more efficient to execute.
+<P>
+The <I>interp</I> argument refers to an interpreter used to
+evaluate the expression (e.g. for variables and nested Tcl
+commands) and to return error information.
+<P>
+For all of these procedures the return value is a standard
+Tcl result: <B><A class="doc" href="../TclCmd/catch.html">TCL_OK</A></B> means the expression was successfully
+evaluated, and <B><A class="doc" href="../TclCmd/catch.html">TCL_ERROR</A></B> means that an error occurred while
+evaluating the expression.
+If <B><A class="doc" href="../TclCmd/catch.html">TCL_ERROR</A></B> is returned then
+the interpreter's result will hold a message describing the error.
+If an error occurs while executing a Tcl command embedded in
+the expression then that error will be returned.
+<P>
+If the expression is successfully evaluated, then its value is
+returned in one of four forms, depending on which procedure
+is invoked.
+<B>Tcl_ExprLong</B> stores an integer value at <I>*longPtr</I>.
+If the expression's actual value is a floating-point number,
+then it is truncated to an integer.
+If the expression's actual value is a non-numeric string then
+an error is returned.
+<P>
+<B>Tcl_ExprDouble</B> stores a floating-point value at <I>*doublePtr</I>.
+If the expression's actual value is an integer, it is converted to
+floating-point.
+If the expression's actual value is a non-numeric string then
+an error is returned.
+<P>
+<B>Tcl_ExprBoolean</B> stores a 0/1 integer value at <I>*booleanPtr</I>.
+If the expression's actual value is an integer or floating-point
+number, then they store 0 at <I>*booleanPtr</I> if
+the value was zero and 1 otherwise.
+If the expression's actual value is a non-numeric string then
+it must be one of the values accepted by <B><A class="doc" href="../TclLib/GetInt.html">Tcl_GetBoolean</A></B>
+such as
+&#8220;yes&#8221;
+or
+&#8220;no&#8221;,
+or else an error occurs.
+<P>
+<B>Tcl_ExprString</B> returns the value of the expression as a
+string stored in the interpreter's result.
+
+<H3><A NAME="M6">SEE ALSO</A></H3>
+<B><A class="doc" href="../TclLib/ExprLongObj.html">Tcl_ExprLongObj</A></B>, <B><A class="doc" href="../TclLib/ExprLongObj.html">Tcl_ExprDoubleObj</A></B>, <B><A class="doc" href="../TclLib/ExprLongObj.html">Tcl_ExprBooleanObj</A></B>, <B><A class="doc" href="../TclLib/ExprLongObj.html">Tcl_ExprObj</A></B>
+<H3><A NAME="M7">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/B.html#boolean">boolean</A>, <A class="doc" href="../Keywords/D.html#double">double</A>, <A class="doc" href="../Keywords/E.html#evaluate">evaluate</A>, <A class="doc" href="../Keywords/E.html#expression">expression</A>, <A class="doc" href="../Keywords/I.html#integer">integer</A>, <A class="doc" href="../Keywords/V.html#value">value</A>, <A class="doc" href="../Keywords/S.html#string">string</A>
+<div class="copy">Copyright &copy; 1989-1993 The Regents of the University of California.
+Copyright &copy; 1994-1997 Sun Microsystems, Inc.
+</div>
+</BODY></HTML>

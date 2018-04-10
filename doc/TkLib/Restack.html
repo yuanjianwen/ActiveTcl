@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>Tk_RestackWindow manual page - Library Procedures</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tk C API, version 8.6.6</a> <small>&gt;</small> Restack</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<H3><A NAME="M2">NAME</A></H3>
+Tk_RestackWindow &mdash; Change a window's position in the stacking order
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>#include &lt;tk.h&gt;</B><BR>
+int<BR>
+<B>Tk_RestackWindow</B>(<I>tkwin, aboveBelow, other</I>)<BR>
+<H3><A NAME="M4">ARGUMENTS</A></H3>
+<DL class="arguments">
+<DT><A class="doc" href="../TkLib/WindowId.html">Tk_Window</A> <B>tkwin</B> (in)<DD>
+Token for window to restack.
+<P><DT>int <B>aboveBelow</B> (in)<DD>
+Indicates new position of <I>tkwin</I> relative to <I>other</I>;
+must be <B>Above</B> or <B>Below</B>.
+<P><DT><A class="doc" href="../TkLib/WindowId.html">Tk_Window</A> <B>other</B> (in)<DD>
+<I>Tkwin</I> will be repositioned just above or below this window.
+Must be a sibling of <I>tkwin</I> or a descendant of a sibling.
+If NULL then <I>tkwin</I> is restacked above or below all siblings.
+<P></DL>
+<H3><A NAME="M5">DESCRIPTION</A></H3>
+<B>Tk_RestackWindow</B> changes the stacking order of <I>window</I> relative
+to its siblings.
+If <I>other</I> is specified as NULL then <I>window</I> is repositioned
+at the top or bottom of its stacking order, depending on whether
+<I>aboveBelow</I> is <B>Above</B> or <B>Below</B>.
+If <I>other</I> has a non-NULL value then <I>window</I> is repositioned
+just above or below <I>other</I>.
+<P>
+The <I>aboveBelow</I> argument must have one of the symbolic values
+<B>Above</B> or <B>Below</B>.
+Both of these values are defined by the include file &lt;X11/Xlib.h&gt;.
+<H3><A NAME="M6">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/A.html#above">above</A>, <A class="doc" href="../Keywords/B.html#below">below</A>, <A class="doc" href="../Keywords/O.html#obscure">obscure</A>, <A class="doc" href="../Keywords/S.html#stacking order">stacking order</A>
+<div class="copy">Copyright &copy; 1990 The Regents of the University of California.
+Copyright &copy; 1994-1996 Sun Microsystems, Inc.
+</div>
+</BODY></HTML>

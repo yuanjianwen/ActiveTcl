@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>Tcl_DetachPids manual page - Library Procedures</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tcl C API, version 8.6.6</a> <small>&gt;</small> DetachPids</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<DL>
+<DD><A class="doc" href="DetachPids.html#M2" NAME="L197">NAME</A>
+<DL><DD>Tcl_DetachPids, Tcl_ReapDetachedProcs, Tcl_WaitPid &mdash; manage child processes in background</DD></DL>
+<DD><A class="doc" href="DetachPids.html#M3" NAME="L198">SYNOPSIS</A>
+<DL>
+<DD><B>#include &lt;tcl.h&gt;</B>
+<DD><B>Tcl_DetachPids</B>(<I>numPids, pidPtr</I>)
+<DD><B>Tcl_ReapDetachedProcs</B>()
+<DD>Tcl_Pid
+<DD><B>Tcl_WaitPid</B>(<I>pid, statusPtr, options</I>)
+</DL>
+<DD><A class="doc" href="DetachPids.html#M4" NAME="L199">ARGUMENTS</A>
+<DL class="arguments">
+</DL>
+<DD><A class="doc" href="DetachPids.html#M5" NAME="L200">DESCRIPTION</A>
+<DD><A class="doc" href="DetachPids.html#M6" NAME="L201">KEYWORDS</A>
+</DL>
+<H3><A NAME="M2">NAME</A></H3>
+Tcl_DetachPids, Tcl_ReapDetachedProcs, Tcl_WaitPid &mdash; manage child processes in background
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>#include &lt;tcl.h&gt;</B><BR>
+<B>Tcl_DetachPids</B>(<I>numPids, pidPtr</I>)<BR>
+<B>Tcl_ReapDetachedProcs</B>()<BR>
+Tcl_Pid<BR>
+<B>Tcl_WaitPid</B>(<I>pid, statusPtr, options</I>)<BR>
+<H3><A NAME="M4">ARGUMENTS</A></H3>
+<DL class="arguments">
+<DT>int <B>numPids</B> (in)<DD>
+Number of process ids contained in the array pointed to by <I>pidPtr</I>.
+<P><DT>int <B>*pidPtr</B> (in)<DD>
+Address of array containing <I>numPids</I> process ids.
+<P><DT>Tcl_Pid <B><A class="doc" href="../TclCmd/pid.html">pid</A></B> (in)<DD>
+The id of the process (pipe) to wait for.
+<P><DT>int <B>*statusPtr</B> (out)<DD>
+The result of waiting on a process (pipe). Either 0 or ECHILD.
+<P><DT>int <B><A class="doc" href="../TkCmd/options.html">options</A></B> (in)<DD>
+The options controlling the wait. WNOHANG specifies not to wait when
+checking the process.
+<P></DL>
+<H3><A NAME="M5">DESCRIPTION</A></H3>
+<B>Tcl_DetachPids</B> and <B>Tcl_ReapDetachedProcs</B> provide a
+mechanism for managing subprocesses that are running in background.
+These procedures are needed because the parent of a process must
+eventually invoke the <B>waitpid</B> kernel call (or one of a few other
+similar kernel calls) to wait for the child to exit.  Until the
+parent waits for the child, the child's state cannot be completely
+reclaimed by the system.  If a parent continually creates children
+and doesn't wait on them, the system's process table will eventually
+overflow, even if all the children have exited.
+<P>
+<B>Tcl_DetachPids</B> may be called to ask Tcl to take responsibility
+for one or more processes whose process ids are contained in the
+<I>pidPtr</I> array passed as argument.  The caller presumably
+has started these processes running in background and does not
+want to have to deal with them again.
+<P>
+<B>Tcl_ReapDetachedProcs</B> invokes the <B>waitpid</B> kernel call
+on each of the background processes so that its state can be cleaned
+up if it has exited.  If the process has not exited yet,
+<B>Tcl_ReapDetachedProcs</B> does not wait for it to exit;  it will check again
+the next time it is invoked.
+Tcl automatically calls <B>Tcl_ReapDetachedProcs</B> each time the
+<B><A class="doc" href="../TclCmd/exec.html">exec</A></B> command is executed, so in most cases it is not necessary
+for any code outside of Tcl to invoke <B>Tcl_ReapDetachedProcs</B>.
+However, if you call <B>Tcl_DetachPids</B> in situations where the
+<B><A class="doc" href="../TclCmd/exec.html">exec</A></B> command may never get executed, you may wish to call
+<B>Tcl_ReapDetachedProcs</B> from time to time so that background
+processes can be cleaned up.
+<P>
+<B>Tcl_WaitPid</B> is a thin wrapper around the facilities provided by
+the operating system to wait on the end of a spawned process and to
+check a whether spawned process is still running. It is used by
+<B>Tcl_ReapDetachedProcs</B> and the channel system to portably access
+the operating system.
+
+<H3><A NAME="M6">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/B.html#background">background</A>, <A class="doc" href="../Keywords/C.html#child">child</A>, <A class="doc" href="../Keywords/D.html#detach">detach</A>, <A class="doc" href="../Keywords/P.html#process">process</A>, <A class="doc" href="../Keywords/W.html#wait">wait</A>
+<div class="copy">Copyright &copy; 1989-1993 The Regents of the University of California.
+Copyright &copy; 1994-1996 Sun Microsystems, Inc.
+</div>
+</BODY></HTML>

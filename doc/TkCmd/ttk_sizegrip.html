@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>ttk::sizegrip manual page - Tk Themed Widget</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tk Commands, version 8.6.6</a> <small>&gt;</small> ttk_sizegrip</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<DL>
+<DD><A class="doc" href="ttk_sizegrip.html#M2" NAME="L2082">NAME</A>
+<DL><DD>ttk::sizegrip &mdash; Bottom-right corner resize widget</DD></DL>
+<DD><A class="doc" href="ttk_sizegrip.html#M3" NAME="L2083">SYNOPSIS</A>
+<DL>
+</DL>
+<DD><A class="doc" href="ttk_sizegrip.html#M4" NAME="L2084">DESCRIPTION</A>
+<DD><A class="doc" href="ttk_sizegrip.html#M5" NAME="L2085">STANDARD OPTIONS</A>
+<DL>
+<DD><A class="doc" href="ttk_widget.html#M-class">-class, undefined, undefined</A>
+<DD><A class="doc" href="ttk_widget.html#M-cursor">-cursor, cursor, Cursor</A>
+<DD><A class="doc" href="ttk_widget.html#M-state">-state, state, State</A>
+<DD><A class="doc" href="ttk_widget.html#M-style">-style, style, Style</A>
+<DD><A class="doc" href="ttk_widget.html#M-takefocus">-takefocus, takeFocus, TakeFocus</A>
+</DL>
+<DD><A class="doc" href="ttk_sizegrip.html#M6" NAME="L2086">WIDGET COMMAND</A>
+<DD><A class="doc" href="ttk_sizegrip.html#M7" NAME="L2087">PLATFORM-SPECIFIC NOTES</A>
+<DD><A class="doc" href="ttk_sizegrip.html#M8" NAME="L2088">EXAMPLES</A>
+<DD><A class="doc" href="ttk_sizegrip.html#M9" NAME="L2089">BUGS</A>
+<DD><A class="doc" href="ttk_sizegrip.html#M10" NAME="L2090">SEE ALSO</A>
+<DD><A class="doc" href="ttk_sizegrip.html#M11" NAME="L2091">KEYWORDS</A>
+</DL>
+<H3><A NAME="M2">NAME</A></H3>
+ttk::sizegrip &mdash; Bottom-right corner resize widget
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>ttk::sizegrip</B> <I>pathName </I>?<I>options</I>?<BR>
+<H3><A NAME="M4">DESCRIPTION</A></H3>
+A <B>ttk::sizegrip</B> widget (also known as a <I>grow box</I>)
+allows the user to resize the containing toplevel window
+by pressing and dragging the grip.
+<H3><A NAME="M5">STANDARD OPTIONS</A></H3>
+<DL>
+<DT><B><A class="doc" href="ttk_widget.html#M-class">-class, undefined, undefined</A></B>
+<DT><B><A class="doc" href="ttk_widget.html#M-cursor">-cursor, cursor, Cursor</A></B>
+<DT><B><A class="doc" href="ttk_widget.html#M-state">-state, state, State</A></B>
+<DT><B><A class="doc" href="ttk_widget.html#M-style">-style, style, Style</A></B>
+<DT><B><A class="doc" href="ttk_widget.html#M-takefocus">-takefocus, takeFocus, TakeFocus</A></B>
+</DL>
+<H3><A NAME="M6">WIDGET COMMAND</A></H3>
+Sizegrip widgets support the standard
+<B>cget</B>, <B>configure</B>, <B>identify</B>, <B>instate</B>, and <B>state</B>
+methods.  No other widget methods are used.
+<H3><A NAME="M7">PLATFORM-SPECIFIC NOTES</A></H3>
+On Mac OSX, toplevel windows automatically include a built-in
+size grip by default.
+Adding a <B>ttk::sizegrip</B> there is harmless, since
+the built-in grip will just mask the widget.
+<H3><A NAME="M8">EXAMPLES</A></H3>
+Using pack:
+<PRE>pack [ttk::frame $top.statusbar] -side bottom -fill x
+pack [<B>ttk::sizegrip</B> $top.statusbar.grip] -side right -anchor se</PRE>
+<P>
+Using grid:
+<PRE>grid [<B>ttk::sizegrip</B> $top.statusbar.grip] &#92;
+    -row $lastRow -column $lastColumn -sticky se
+# ... optional: add vertical scrollbar in $lastColumn,
+# ... optional: add horizontal scrollbar in $lastRow</PRE>
+<H3><A NAME="M9">BUGS</A></H3>
+If the containing toplevel's position was specified
+relative to the right or bottom of the screen
+(e.g.,
+&#8220;<B>wm geometry ... </B><I>w</I><B>x</B><I>h</I><B>-</B><I>x</I><B>-</B><I>y</I>&#8221;
+instead of
+&#8220;<B>wm geometry ... </B><I>w</I><B>x</B><I>h</I><B>+</B><I>x</I><B>+</B><I>y</I>&#8221;),
+the sizegrip widget will not resize the window.
+<P>
+<B>ttk::sizegrip</B> widgets only support
+&#8220;southeast&#8221;
+resizing.
+<H3><A NAME="M10">SEE ALSO</A></H3>
+<B><A class="doc" href="../TkCmd/ttk_widget.html">ttk::widget</A></B>
+<H3><A NAME="M11">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/W.html#widget">widget</A>, <A class="doc" href="../Keywords/S.html#sizegrip">sizegrip</A>, <A class="doc" href="../Keywords/G.html#grow box">grow box</A>
+<div class="copy">Copyright &copy; 2006 Joe English
+</div>
+</BODY></HTML>

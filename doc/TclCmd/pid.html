@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>pid manual page - Tcl Built-In Commands</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tcl Commands, version 8.6.6</a> <small>&gt;</small> pid</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<H3><A NAME="M2">NAME</A></H3>
+pid &mdash; Retrieve process identifiers
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>pid </B>?<I>fileId</I>?<BR>
+<H3><A NAME="M4">DESCRIPTION</A></H3>
+If the <I>fileId</I> argument is given then it should normally
+refer to a process pipeline created with the <B><A class="doc" href="../TclCmd/open.html">open</A></B> command.
+In this case the <B>pid</B> command will return a list whose elements
+are the process identifiers of all the processes in the pipeline,
+in order.
+The list will be empty if <I>fileId</I> refers to an open file
+that is not a process pipeline.
+If no <I>fileId</I> argument is given then <B>pid</B> returns the process
+identifier of the current process.
+All process identifiers are returned as decimal strings.
+<H3><A NAME="M5">EXAMPLE</A></H3>
+Print process information about the processes in a pipeline using the
+SysV <B>ps</B> program before reading the output of that pipeline:
+<P>
+<PRE>set pipeline [open &quot;| zcat somefile.gz | grep foobar | sort -u&quot;]
+# Print process information
+exec ps -fp [<B>pid</B> $pipeline] &gt;@stdout
+# Print a separator and then the output of the pipeline
+puts [string repeat - 70]
+puts [read $pipeline]
+close $pipeline</PRE>
+<H3><A NAME="M6">SEE ALSO</A></H3>
+<B><A class="doc" href="../TclCmd/exec.html">exec</A></B>, <B><A class="doc" href="../TclCmd/open.html">open</A></B>
+<H3><A NAME="M7">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/F.html#file">file</A>, <A class="doc" href="../Keywords/P.html#pipeline">pipeline</A>, <A class="doc" href="../Keywords/P.html#process identifier">process identifier</A>
+<div class="copy">Copyright &copy; 1993 The Regents of the University of California.
+Copyright &copy; 1994-1996 Sun Microsystems, Inc.
+</div>
+</BODY></HTML>

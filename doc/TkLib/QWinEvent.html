@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>Tk_QueueWindowEvent manual page - Tk Library Procedures</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tk C API, version 8.6.6</a> <small>&gt;</small> QWinEvent</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<H3><A NAME="M2">NAME</A></H3>
+Tk_CollapseMotionEvents, Tk_QueueWindowEvent &mdash; Add a window event to the Tcl event queue
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>#include &lt;tk.h&gt;</B><BR>
+int<BR>
+<B>Tk_CollapseMotionEvents</B>(<I>display, collapse</I>)<BR>
+<B>Tk_QueueWindowEvent</B>(<I>eventPtr, position</I>)<BR>
+<H3><A NAME="M4">ARGUMENTS</A></H3>
+<DL class="arguments">
+<DT>Display <B>*display</B> (in)<DD>
+Display for which to control motion event collapsing.
+<P><DT>int <B>collapse</B> (in)<DD>
+Indicates whether motion events should be collapsed or not.
+<P><DT>XEvent <B>*eventPtr</B> (in)<DD>
+An event to add to the event queue. It is important
+that all unused fields of the structure be set to zero.
+<P><DT>Tcl_QueuePosition <B>position</B> (in)<DD>
+Where to add the new event in the queue:  <B>TCL_QUEUE_TAIL</B>,
+<B>TCL_QUEUE_HEAD</B>, or <B>TCL_QUEUE_MARK</B>.
+<P></DL>
+<H3><A NAME="M5">DESCRIPTION</A></H3>
+<B>Tk_QueueWindowEvent</B> places a window event on Tcl's internal event
+queue for eventual servicing.  It creates a <A class="doc" href="../TclLib/Notifier.html">Tcl_Event</A> structure, copies the
+event into that structure, and calls <B><A class="doc" href="../TclLib/Notifier.html">Tcl_QueueEvent</A></B> to add the event
+to the queue.  When the event is eventually removed from the queue it is
+processed just like all window events.
+<P>
+When multiple motion events are received for the same window in rapid
+succession, they are collapsed by default.  This behavior can be controlled
+with <B>Tk_CollapseMotionEvents</B>.  <B>Tk_CollapseMotionEvents</B> always
+returns the previous value for collapse behavior on the <I>display</I>.
+<P>
+The <I>position</I> argument to <B>Tk_QueueWindowEvent</B> has
+the same significance as for <B><A class="doc" href="../TclLib/Notifier.html">Tcl_QueueEvent</A></B>;  see the
+documentation for <B><A class="doc" href="../TclLib/Notifier.html">Tcl_QueueEvent</A></B> for details.
+<H3><A NAME="M6">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/C.html#callback">callback</A>, <A class="doc" href="../Keywords/C.html#clock">clock</A>, <A class="doc" href="../Keywords/H.html#handler">handler</A>, <A class="doc" href="../Keywords/M.html#modal timeout">modal timeout</A>, <A class="doc" href="../Keywords/E.html#events">events</A>
+<div class="copy">Copyright &copy; 1995-1996 Sun Microsystems, Inc.
+</div>
+</BODY></HTML>

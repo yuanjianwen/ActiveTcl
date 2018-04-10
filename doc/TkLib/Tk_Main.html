@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>Tk_Main manual page - Tk Library Procedures</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tk C API, version 8.6.6</a> <small>&gt;</small> Tk_Main</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<H3><A NAME="M2">NAME</A></H3>
+Tk_Main &mdash; main program for Tk-based applications
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>#include &lt;tk.h&gt;</B><BR>
+<B>Tk_Main</B>(<I>argc, argv, appInitProc</I>)<BR>
+<H3><A NAME="M4">ARGUMENTS</A></H3>
+<DL class="arguments">
+<DT>int <B><A class="doc" href="../TclCmd/tclvars.html">argc</A></B> (in)<DD>
+Number of elements in <I>argv</I>.
+<P><DT>char <B>*argv[]</B> (in)<DD>
+Array of strings containing command-line arguments. On Windows, when
+using -DUNICODE, the parameter type changes to wchar_t *.
+<P><DT>Tcl_AppInitProc <B>*appInitProc</B> (in)<DD>
+Address of an application-specific initialization procedure.
+The value for this argument is usually <B><A class="doc" href="../TclLib/AppInit.html">Tcl_AppInit</A></B>.
+<P></DL>
+<H3><A NAME="M5">DESCRIPTION</A></H3>
+<B>Tk_Main</B> acts as the main program for most Tk-based applications.
+Starting with Tk 4.0 it is not called <B>main</B> anymore because it
+is part of the Tk library and having a function <B>main</B>
+in a library (particularly a shared library) causes problems on many
+systems.
+Having <B>main</B> in the Tk library would also make it hard to use
+Tk in C++ programs, since C++ programs must have special C++
+<B>main</B> functions.
+<P>
+Normally each application contains a small <B>main</B> function that does
+nothing but invoke <B>Tk_Main</B>.
+<B>Tk_Main</B> then does all the work of creating and running a
+<B><A class="doc" href="../UserCmd/wish.html">wish</A></B>-like application.
+<P>
+When it is has finished its own initialization, but before
+it processes commands, <B>Tk_Main</B> calls the procedure given by
+the <I>appInitProc</I> argument.  This procedure provides a
+&#8220;hook&#8221;
+for the application to perform its own initialization, such as defining
+application-specific commands.  The procedure must have an interface
+that matches the type <B>Tcl_AppInitProc</B>:
+<PRE>typedef int <B>Tcl_AppInitProc</B>(
+        <A class="doc" href="../TclLib/Interp.html">Tcl_Interp</A> *<I>interp</I>);</PRE>
+<I>AppInitProc</I> is almost always a pointer to <B><A class="doc" href="../TclLib/AppInit.html">Tcl_AppInit</A></B>;
+for more details on this procedure, see the documentation
+for <B><A class="doc" href="../TclLib/AppInit.html">Tcl_AppInit</A></B>.
+<P>
+<B>Tk_Main</B> functions much the same as <B><A class="doc" href="../TclLib/Tcl_Main.html">Tcl_Main</A></B>.  In particular,
+<B>Tk_Main</B> supports both an interactive mode and a startup script
+mode, with the file name and encoding of a startup script under the
+control of the <B><A class="doc" href="../TclLib/Tcl_Main.html">Tcl_SetStartupScript</A></B> and <B><A class="doc" href="../TclLib/Tcl_Main.html">Tcl_GetStartupScript</A></B>
+routines. However it calls <B><A class="doc" href="../TkLib/MainLoop.html">Tk_MainLoop</A></B> after processing any
+supplied script, and in interactive uses events registered with
+<B><A class="doc" href="../TclLib/CrtFileHdlr.html">Tcl_CreateFileHandler</A></B> to process user input.
+<H3><A NAME="M6">SEE ALSO</A></H3>
+<B><A class="doc" href="../TclLib/DoOneEvent.html">Tcl_DoOneEvent</A></B>
+<H3><A NAME="M7">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/A.html#application-specific initialization">application-specific initialization</A>, <A class="doc" href="../Keywords/C.html#command-line arguments">command-line arguments</A>, <A class="doc" href="../Keywords/M.html#main program">main program</A>
+<div class="copy">Copyright &copy; 1994 The Regents of the University of California.
+Copyright &copy; 1994-1996 Sun Microsystems, Inc.
+</div>
+</BODY></HTML>

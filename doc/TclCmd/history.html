@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>history manual page - Built-In Commands</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tcl Commands, version 8.6.6</a> <small>&gt;</small> history</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<DL>
+<DD><A class="doc" href="history.html#M2" NAME="L685">NAME</A>
+<DL><DD>history &mdash; Manipulate the history list</DD></DL>
+<DD><A class="doc" href="history.html#M3" NAME="L686">SYNOPSIS</A>
+<DL>
+</DL>
+<DD><A class="doc" href="history.html#M4" NAME="L687">DESCRIPTION</A>
+<OL class="description">
+</OL>
+<DL class="description">
+<DD><A class="doc" href="history.html#M5" NAME="L688"><B>history</B></A>
+<DD><A class="doc" href="history.html#M6" NAME="L689"><B>history add</B><I> command </I>?<B>exec</B>?</A>
+<DD><A class="doc" href="history.html#M7" NAME="L690"><B>history change</B><I> newValue</I> ?<I>event</I>?</A>
+<DD><A class="doc" href="history.html#M8" NAME="L691"><B>history clear</B></A>
+<DD><A class="doc" href="history.html#M9" NAME="L692"><B>history event</B> ?<I>event</I>?</A>
+<DD><A class="doc" href="history.html#M10" NAME="L693"><B>history info </B>?<I>count</I>?</A>
+<DD><A class="doc" href="history.html#M11" NAME="L694"><B>history keep </B>?<I>count</I>?</A>
+<DD><A class="doc" href="history.html#M12" NAME="L695"><B>history nextid</B></A>
+<DD><A class="doc" href="history.html#M13" NAME="L696"><B>history redo </B>?<I>event</I>?</A>
+</DL>
+<DD><A class="doc" href="history.html#M14" NAME="L697">HISTORY REVISION</A>
+<DD><A class="doc" href="history.html#M15" NAME="L698">KEYWORDS</A>
+</DL>
+<H3><A NAME="M2">NAME</A></H3>
+history &mdash; Manipulate the history list
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>history </B>?<I>option</I>? ?<I>arg arg ...</I>?<BR>
+<H3><A NAME="M4">DESCRIPTION</A></H3>
+The <B>history</B> command performs one of several operations related to
+recently-executed commands recorded in a history list.  Each of
+these recorded commands is referred to as an
+&#8220;event&#8221;.
+When specifying an event to the <B>history</B> command, the following
+forms may be used:
+<P>
+<OL class="description">
+<LI value="1">
+A number:  if positive, it refers to the event with
+that number (all events are numbered starting at 1).  If the number
+is negative, it selects an event relative to the current event
+(<B>-1</B> refers to the previous event, <B>-2</B> to the one before that, and
+so on).  Event <B>0</B> refers to the current event.
+<P><LI value="2">
+A string:  selects the most recent event that matches the string.
+An event is considered to match the string either if the string is
+the same as the first characters of the event, or if the string
+matches the event in the sense of the <B><A class="doc" href="../TclCmd/string.html">string match</A></B> command.
+<P></OL>
+<P>
+The <B>history</B> command can take any of the following forms:
+<P>
+<DL class="description">
+<DT><A NAME="M5"><B>history</B></A><DD>
+Same
+as <B>history info</B>, described below.
+<P><DT><A NAME="M6"><B>history add</B><I> command </I>?<B>exec</B>?</A><DD>
+Adds the <I>command</I> argument to the history list as a new event.  If
+<B>exec</B> is specified (or abbreviated) then the command is also
+executed and its result is returned.  If <B>exec</B> is not specified
+then an empty string is returned as result.
+<P><DT><A NAME="M7"><B>history change</B><I> newValue</I> ?<I>event</I>?</A><DD>
+Replaces the value recorded for an event with <I>newValue</I>.  <I>Event</I>
+specifies the event to replace, and
+defaults to the <I>current</I> event (not event <B>-1</B>).  This command
+is intended for use in commands that implement new forms of history
+substitution and wish to replace the current event (which invokes the
+substitution) with the command created through substitution.  The return
+value is an empty string.
+<P><DT><A NAME="M8"><B>history clear</B></A><DD>
+Erase the history list.  The current keep limit is retained.
+The history event numbers are reset.
+<P><DT><A NAME="M9"><B>history event</B> ?<I>event</I>?</A><DD>
+Returns the value of the event given by <I>event</I>.  <I>Event</I>
+defaults to <B>-1</B>.
+<P><DT><A NAME="M10"><B>history info </B>?<I>count</I>?</A><DD>
+Returns a formatted string (intended for humans to read) giving
+the event number and contents for each of the events in the history
+list except the current event.  If <I>count</I> is specified
+then only the most recent <I>count</I> events are returned.
+<P><DT><A NAME="M11"><B>history keep </B>?<I>count</I>?</A><DD>
+This command may be used to change the size of the history list to
+<I>count</I> events.  Initially, 20 events are retained in the history
+list.  If <I>count</I> is not specified, the current keep limit is returned.
+<P><DT><A NAME="M12"><B>history nextid</B></A><DD>
+Returns the number of the next event to be recorded
+in the history list.  It is useful for things like printing the
+event number in command-line prompts.
+<P><DT><A NAME="M13"><B>history redo </B>?<I>event</I>?</A><DD>
+Re-executes the command indicated by <I>event</I> and returns its result.
+<I>Event</I> defaults to <B>-1</B>.  This command results in history
+revision:  see below for details.
+<P></DL>
+<H3><A NAME="M14">HISTORY REVISION</A></H3>
+Pre-8.0 Tcl had a complex history revision mechanism.
+The current mechanism is more limited, and the old
+history operations <B>substitute</B> and <B>words</B> have been removed.
+(As a consolation, the <B>clear</B> operation was added.)
+<P>
+The history option <B>redo</B> results in much simpler
+&#8220;history revision&#8221;.
+When this option is invoked then the most recent event
+is modified to eliminate the history command and replace it with
+the result of the history command.
+If you want to redo an event without modifying history, then use
+the <B><A class="doc" href="../TkCmd/event.html">event</A></B> operation to retrieve some event,
+and the <B>add</B> operation to add it to history and execute it.
+<H3><A NAME="M15">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/E.html#event">event</A>, <A class="doc" href="../Keywords/H.html#history">history</A>, <A class="doc" href="../Keywords/R.html#record">record</A>
+<div class="copy">Copyright &copy; 1993 The Regents of the University of California.
+Copyright &copy; 1994-1997 Sun Microsystems, Inc.
+</div>
+</BODY></HTML>

@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>tdbc::mapSqlState manual page - Tcl Database Connectivity</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">TDBC Package Commands, version 1.0.4</a> <small>&gt;</small> tdbc_mapSqlState</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<H3><A NAME="M2">NAME</A></H3>
+tdbc::mapSqlState &mdash; Map SQLSTATE to error class
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+package require <B>tdbc 1.0</B><BR>
+<BR>
+<B>tdbc::mapSqlState</B> <I>sqlstate</I><BR>
+<H3><A NAME="M4">DESCRIPTION</A></H3>
+The <B>tdbc::mapSqlState</B> command accepts a string that is expected
+to be a five-character 'SQL state' as returned from a SQL database when
+an error occurs. It examines the first two characters of the string,
+and returns an error class as a human- and machine-readable name (for example,
+<B>FEATURE_NOT_SUPPORTED</B>, <B>DATA_EXCEPTION</B> or 
+<B>INVALID_CURSOR_STATE</B>).
+<P>
+The TDBC specification requires database drivers to return a description
+of an error in the error code when an error occurs. The description is
+a string that has at least four elements: &quot;<B><A class="doc" href="../TdbcCmd/tdbc.html">TDBC</A></B> <I>errorClass</I>
+<I>sqlstate</I> <I>driverName</I> <I>details...</I>&quot;. The <B>tdbc::mapSqlState</B>
+command gives a convenient way for a TDBC driver to generate the
+<I>errorClass</I> element given the SQL state returned from a database. 
+<H3><A NAME="M5">SEE ALSO</A></H3>
+<B><A class="doc" href="../TdbcCmd/tdbc.html">tdbc</A></B>, <B><A class="doc" href="../TdbcCmd/tdbc_tokenize.html">tdbc::tokenize</A></B>, <B><A class="doc" href="../TdbcCmd/tdbc_connection.html">tdbc::connection</A></B>, <B><A class="doc" href="../TdbcCmd/tdbc_statement.html">tdbc::statement</A></B>, <B><A class="doc" href="../TdbcCmd/tdbc_resultset.html">tdbc::resultset</A></B>
+<H3><A NAME="M6">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/T.html#TDBC">TDBC</A>, <A class="doc" href="../Keywords/S.html#SQL">SQL</A>, <A class="doc" href="../Keywords/D.html#database">database</A>, <A class="doc" href="../Keywords/S.html#state">state</A>
+<H3><A NAME="M7">COPYRIGHT</A></H3>
+Copyright (c) 2009 by Kevin B. Kenny.
+<div class="copy">Copyright &copy; 2009 by Kevin B. Kenny.
+</div>
+</BODY></HTML>

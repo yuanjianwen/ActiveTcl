@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>seek manual page - Tcl Built-In Commands</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tcl Commands, version 8.6.6</a> <small>&gt;</small> seek</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<H3><A NAME="M2">NAME</A></H3>
+seek &mdash; Change the access position for an open channel
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>seek </B><I>channelId offset </I>?<I>origin</I>?<BR>
+<H3><A NAME="M4">DESCRIPTION</A></H3>
+Changes the current access position for <I>channelId</I>.
+<P>
+<I>ChannelId</I> must be an identifier for an open channel such as a
+Tcl standard channel (<B><A class="doc" href="../TclLib/GetStdChan.html">stdin</A></B>, <B><A class="doc" href="../TclLib/GetStdChan.html">stdout</A></B>, or <B><A class="doc" href="../TclLib/GetStdChan.html">stderr</A></B>),
+the return value from an invocation of <B><A class="doc" href="../TclCmd/open.html">open</A></B> or <B><A class="doc" href="../TclCmd/socket.html">socket</A></B>, or
+the result of a channel creation command provided by a Tcl extension.
+<P>
+The <I>offset</I> and <I>origin</I>
+arguments specify the position at which the next read or write will occur
+for <I>channelId</I>. <I>Offset</I> must be an integer (which may be
+negative) and <I>origin</I> must be one of the following:
+<P>
+<DL class="description">
+<DT><A NAME="M5"><B>start</B></A><DD>
+The new access position will be <I>offset</I> bytes from the start
+of the underlying file or device.
+<P><DT><A NAME="M6"><B>current</B></A><DD>
+The new access position will be <I>offset</I> bytes from the current
+access position; a negative <I>offset</I> moves the access position
+backwards in the underlying file or device.
+<P><DT><A NAME="M7"><B>end</B></A><DD>
+The new access position will be <I>offset</I> bytes from the end of
+the file or device.  A negative <I>offset</I> places the access position
+before the end of file, and a positive <I>offset</I> places the access
+position after the end of file.
+<P></DL>
+<P>
+The <I>origin</I> argument defaults to <B>start</B>.
+<P>
+The command flushes all buffered output for the channel before the command
+returns, even if the channel is in non-blocking mode.
+It also discards any buffered and unread input.
+This command returns an empty string.
+An error occurs if this command is applied to channels whose underlying
+file or device does not support seeking.
+<P>
+Note that <I>offset</I> values are byte offsets, not character
+offsets.  Both <B>seek</B> and <B><A class="doc" href="../TclCmd/tell.html">tell</A></B> operate in terms of bytes,
+not characters, unlike <B><A class="doc" href="../TclCmd/read.html">read</A></B>.
+<H3><A NAME="M8">EXAMPLES</A></H3>
+Read a file twice:
+<P>
+<PRE>set f [open file.txt]
+set data1 [read $f]
+<B>seek</B> $f 0
+set data2 [read $f]
+close $f
+# $data1 eq $data2 if the file wasn't updated</PRE>
+<P>
+Read the last 10 bytes from a file:
+<P>
+<PRE>set f [open file.data]
+# This is guaranteed to work with binary data but
+# may fail with other encodings...
+fconfigure $f -translation binary
+<B>seek</B> $f -10 end
+set data [read $f 10]
+close $f</PRE>
+<H3><A NAME="M9">SEE ALSO</A></H3>
+<B><A class="doc" href="../TclCmd/file.html">file</A></B>, <B><A class="doc" href="../TclCmd/open.html">open</A></B>, <B><A class="doc" href="../TclCmd/close.html">close</A></B>, <B><A class="doc" href="../TclCmd/gets.html">gets</A></B>, <B><A class="doc" href="../TclCmd/tell.html">tell</A></B>, <B><A class="doc" href="../TclLib/StdChannels.html">Tcl_StandardChannels</A></B>
+<H3><A NAME="M10">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/A.html#access position">access position</A>, <A class="doc" href="../Keywords/F.html#file">file</A>, <A class="doc" href="../Keywords/S.html#seek">seek</A>
+<div class="copy">Copyright &copy; 1993 The Regents of the University of California.
+Copyright &copy; 1994-1996 Sun Microsystems, Inc.
+</div>
+</BODY></HTML>

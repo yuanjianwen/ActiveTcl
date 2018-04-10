@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>Tk_FontId manual page - Tk Library Procedures</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tk C API, version 8.6.6</a> <small>&gt;</small> FontId</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<DL>
+<DD><A class="doc" href="FontId.html#M2" NAME="L210">NAME</A>
+<DL><DD>Tk_FontId, Tk_GetFontMetrics, Tk_PostscriptFontName &mdash; accessor functions for fonts</DD></DL>
+<DD><A class="doc" href="FontId.html#M3" NAME="L211">SYNOPSIS</A>
+<DL>
+<DD><B>#include &lt;tk.h&gt;</B>
+<DD>Font
+<DD><B>Tk_FontId(</B><I>tkfont</I><B>)</B>
+<DD><B>Tk_GetFontMetrics(</B><I>tkfont, fmPtr</I><B>)</B>
+<DD>int
+<DD><B>Tk_PostscriptFontName(</B><I>tkfont, dsPtr</I><B>)</B>
+</DL>
+<DD><A class="doc" href="FontId.html#M4" NAME="L212">ARGUMENTS</A>
+<DL class="arguments">
+</DL>
+<DD><A class="doc" href="FontId.html#M5" NAME="L213">DESCRIPTION</A>
+<DD><A class="doc" href="FontId.html#M6" NAME="L214">DATA STRUCTURES</A>
+<DD><A class="doc" href="FontId.html#M7" NAME="L215">SEE ALSO</A>
+<DD><A class="doc" href="FontId.html#M8" NAME="L216">KEYWORDS</A>
+</DL>
+<H3><A NAME="M2">NAME</A></H3>
+Tk_FontId, Tk_GetFontMetrics, Tk_PostscriptFontName &mdash; accessor functions for fonts
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>#include &lt;tk.h&gt;</B><BR>
+Font<BR>
+<B>Tk_FontId(</B><I>tkfont</I><B>)</B><BR>
+<B>Tk_GetFontMetrics(</B><I>tkfont, fmPtr</I><B>)</B><BR>
+int<BR>
+<B>Tk_PostscriptFontName(</B><I>tkfont, dsPtr</I><B>)</B><BR>
+<H3><A NAME="M4">ARGUMENTS</A></H3>
+<DL class="arguments">
+<DT><A class="doc" href="../TkLib/GetFont.html">Tk_Font</A> <B>tkfont</B> (in)<DD>
+Opaque font token being queried.  Must have been returned by a previous
+call to <B><A class="doc" href="../TkLib/GetFont.html">Tk_GetFont</A></B>.
+<P><DT>Tk_FontMetrics <B>*fmPtr</B> (out)<DD>
+Pointer to structure in which the font metrics for <I>tkfont</I> will
+be stored. See <B><A HREF="#M6">DATA STRUCTURES</A></B> below for details.
+<P><DT><A class="doc" href="../TclLib/DString.html">Tcl_DString</A> <B>*dsPtr</B> (out)<DD>
+Pointer to an initialized <B><A class="doc" href="../TclLib/DString.html">Tcl_DString</A></B> to which the name of the
+Postscript font that corresponds to <I>tkfont</I> will be appended.
+<P></DL>
+<H3><A NAME="M5">DESCRIPTION</A></H3>
+Given a <I>tkfont</I>, <B>Tk_FontId</B> returns the token that should be
+selected into an XGCValues structure in order to construct a graphics
+context that can be used to draw text in the specified font.
+<P>
+<B>Tk_GetFontMetrics</B> computes the ascent, descent, and linespace of the
+<I>tkfont</I> in pixels and stores those values in the structure pointer to by
+<I>fmPtr</I>.  These values can be used in computations such as to space
+multiple lines of text, to align the baselines of text in different
+fonts, and to vertically align text in a given region.  See the
+documentation for the <B><A class="doc" href="../TkCmd/font.html">font</A></B> command for definitions of the terms
+ascent, descent, and linespace, used in font metrics.
+<P>
+<B>Tk_PostscriptFontName</B> maps a <I>tkfont</I> to the corresponding
+Postscript font name that should be used when printing.  The return value
+is the size in points of the <I>tkfont</I> and the Postscript font name is
+appended to <I>dsPtr</I>.  <I>DsPtr</I> must refer to an initialized
+<B><A class="doc" href="../TclLib/DString.html">Tcl_DString</A></B>.  Given a
+&#8220;reasonable&#8221;
+Postscript printer, the
+following screen font families should print correctly:
+<DL><DD>
+<B>Avant Garde</B>, <B>Arial</B>, <B>Bookman</B>, <B>Courier</B>,
+<B>Courier New</B>, <B>Geneva</B>, <B>Helvetica</B>, <B>Monaco</B>,
+<B>New Century Schoolbook</B>, <B>New York</B>, <B>Palatino</B>, <B>Symbol</B>,
+<B>Times</B>, <B>Times New Roman</B>, <B>Zapf Chancery</B>, and
+<B>Zapf Dingbats</B>.
+</DL>
+<P>
+Any other font families may not print correctly because the computed
+Postscript font name may be incorrect or not exist on the printer.
+<H3><A NAME="M6">DATA STRUCTURES</A></H3>
+The <B>Tk_FontMetrics</B> data structure is used by <B>Tk_GetFontMetrics</B> to
+return information about a font and is defined as follows:
+<PRE>typedef struct Tk_FontMetrics {
+    int <I>ascent</I>;
+    int <I>descent</I>;
+    int <I>linespace</I>;
+} <B>Tk_FontMetrics</B>;</PRE>
+<P>
+The <I>ascent</I> field is the amount in pixels that the tallest
+letter sticks up above the baseline, plus any extra blank space added
+by the designer of the font.
+<P>
+The <I>descent</I> is the largest amount in pixels that any letter
+sticks below the baseline, plus any extra blank space added by the
+designer of the font.
+<P>
+The <I>linespace</I> is the sum of the ascent and descent.  How far
+apart two lines of text in the same font should be placed so that none
+of the characters in one line overlap any of the characters in the
+other line.
+<H3><A NAME="M7">SEE ALSO</A></H3>
+<B><A class="doc" href="../TkCmd/font.html">font</A></B>, <B>MeasureChar</B>
+<H3><A NAME="M8">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/F.html#font">font</A>, <A class="doc" href="../Keywords/M.html#measurement">measurement</A>, <A class="doc" href="../Keywords/P.html#Postscript">Postscript</A>
+<div class="copy">Copyright &copy; 1996 Sun Microsystems, Inc.
+</div>
+</BODY></HTML>

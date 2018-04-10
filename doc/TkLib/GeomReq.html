@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>Tk_GeometryRequest manual page - Tk Library Procedures</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tk C API, version 8.6.6</a> <small>&gt;</small> GeomReq</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<DL>
+<DD><A class="doc" href="GeomReq.html#M2" NAME="L222">NAME</A>
+<DL><DD>Tk_GeometryRequest, Tk_SetMinimumRequestSize, Tk_SetInternalBorder, Tk_SetInternalBorderEx &mdash; specify desired geometry or internal border for a window</DD></DL>
+<DD><A class="doc" href="GeomReq.html#M3" NAME="L223">SYNOPSIS</A>
+<DL>
+<DD><B>#include &lt;tk.h&gt;</B>
+<DD><B>Tk_GeometryRequest</B>(<I>tkwin, reqWidth, reqHeight</I>)
+<DD><B>Tk_SetMinimumRequestSize</B>(<I>tkwin, minWidth, minHeight</I>)
+<DD><B>Tk_SetInternalBorder</B>(<I>tkwin, width</I>)
+<DD><B>Tk_SetInternalBorderEx</B>(<I>tkwin, left, right, top, bottom</I>)
+</DL>
+<DD><A class="doc" href="GeomReq.html#M4" NAME="L224">ARGUMENTS</A>
+<DL class="arguments">
+</DL>
+<DD><A class="doc" href="GeomReq.html#M5" NAME="L225">DESCRIPTION</A>
+<DD><A class="doc" href="GeomReq.html#M6" NAME="L226">KEYWORDS</A>
+</DL>
+<H3><A NAME="M2">NAME</A></H3>
+Tk_GeometryRequest, Tk_SetMinimumRequestSize, Tk_SetInternalBorder, Tk_SetInternalBorderEx &mdash; specify desired geometry or internal border for a window
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>#include &lt;tk.h&gt;</B><BR>
+<B>Tk_GeometryRequest</B>(<I>tkwin, reqWidth, reqHeight</I>)<BR>
+<B>Tk_SetMinimumRequestSize</B>(<I>tkwin, minWidth, minHeight</I>)<BR>
+<B>Tk_SetInternalBorder</B>(<I>tkwin, width</I>)<BR>
+<B>Tk_SetInternalBorderEx</B>(<I>tkwin, left, right, top, bottom</I>)<BR>
+<H3><A NAME="M4">ARGUMENTS</A></H3>
+<DL class="arguments">
+<DT><A class="doc" href="../TkLib/WindowId.html">Tk_Window</A> <B>tkwin</B> (in)<DD>
+Window for which geometry is being requested.
+<P><DT>int <B>reqWidth</B> (in)<DD>
+Desired width for <I>tkwin</I>, in pixel units.
+<P><DT>int <B>reqHeight</B> (in)<DD>
+Desired height for <I>tkwin</I>, in pixel units.
+<P><DT>int <B>minWidth</B> (in)<DD>
+Desired minimum requested width for <I>tkwin</I>, in pixel units.
+<P><DT>int <B>minHeight</B> (in)<DD>
+Desired minimum requested height for <I>tkwin</I>, in pixel units.
+<P><DT>int <B>width</B> (in)<DD>
+Space to leave for internal border for <I>tkwin</I>, in pixel units.
+<P><DT>int <B>left</B> (in)<DD>
+Space to leave for left side of internal border for <I>tkwin</I>, in pixel units.
+<P><DT>int <B>right</B> (in)<DD>
+Space to leave for right side of internal border for <I>tkwin</I>, in pixel units.
+<P><DT>int <B>top</B> (in)<DD>
+Space to leave for top side of internal border for <I>tkwin</I>, in pixel units.
+<P><DT>int <B>bottom</B> (in)<DD>
+Space to leave for bottom side of internal border for <I>tkwin</I>, in pixel units.
+<P></DL>
+<H3><A NAME="M5">DESCRIPTION</A></H3>
+<B>Tk_GeometryRequest</B> is called by widget code to indicate its
+preference for the dimensions of a particular window.  The arguments
+to <B>Tk_GeometryRequest</B> are made available to the geometry
+manager for the window, which then decides on the actual geometry
+for the window.  Although geometry managers generally try to satisfy
+requests made to <B>Tk_GeometryRequest</B>, there is no guarantee that
+this will always be possible.  Widget code should not assume that
+a geometry request will be satisfied until it receives a
+<B>ConfigureNotify</B> event indicating that the geometry change has
+occurred.  Widget code should never call procedures like
+<B><A class="doc" href="../TkLib/ConfigWind.html">Tk_ResizeWindow</A></B> directly.  Instead, it should invoke
+<B>Tk_GeometryRequest</B> and leave the final geometry decisions to
+the geometry manager.
+<P>
+If <I>tkwin</I> is a top-level window, then the geometry information
+will be passed to the window manager using the standard ICCCM protocol.
+<P>
+<B>Tk_SetInternalBorder</B> is called by widget code to indicate that
+the widget has an internal border.  This means that the widget draws
+a decorative border inside the window instead of using the standard
+X borders, which are external to the window's area.  For example,
+internal borders are used to draw 3-D effects.  <I>Width</I>
+specifies the width of the border in pixels.  Geometry managers will
+use this information to avoid placing any children of <I>tkwin</I>
+overlapping the outermost <I>width</I> pixels of <I>tkwin</I>'s area.
+<P>
+<B>Tk_SetInternalBorderEx</B> works like <B>Tk_SetInternalBorder</B>
+but lets you specify different widths for different sides of the window.
+<P>
+<B>Tk_SetMinimumRequestSize</B> is called by widget code to indicate
+that a geometry manager should request at least this size for the
+widget.  This allows a widget to have some control over its size when
+a propagating geometry manager is used inside it.
+<P>
+The information specified in calls to <B>Tk_GeometryRequest</B>,
+<B>Tk_SetMinimumRequestSize</B>, <B>Tk_SetInternalBorder</B> and
+<B>Tk_SetInternalBorderEx</B> can be retrieved using the macros
+<B><A class="doc" href="../TkLib/WindowId.html">Tk_ReqWidth</A></B>, <B><A class="doc" href="../TkLib/WindowId.html">Tk_ReqHeight</A></B>, <B><A class="doc" href="../TkLib/WindowId.html">Tk_MinReqWidth</A></B>,
+<B><A class="doc" href="../TkLib/WindowId.html">Tk_MinReqHeight</A></B>, <B><A class="doc" href="../TkLib/WindowId.html">Tk_MinReqWidth</A></B>, <B><A class="doc" href="../TkLib/WindowId.html">Tk_InternalBorderLeft</A></B>,
+<B><A class="doc" href="../TkLib/WindowId.html">Tk_InternalBorderRight</A></B>, <B><A class="doc" href="../TkLib/WindowId.html">Tk_InternalBorderTop</A></B> and
+<B><A class="doc" href="../TkLib/WindowId.html">Tk_InternalBorderBottom</A></B>.
+See the <B><A class="doc" href="../TkLib/WindowId.html">Tk_WindowId</A></B> manual entry for details.
+<H3><A NAME="M6">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/G.html#geometry">geometry</A>, <A class="doc" href="../Keywords/R.html#request">request</A>
+<div class="copy">Copyright &copy; 1990-1994 The Regents of the University of California.
+Copyright &copy; 1994-1996 Sun Microsystems, Inc.
+</div>
+</BODY></HTML>

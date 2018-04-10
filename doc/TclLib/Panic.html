@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>Tcl_Panic manual page - Tcl Library Procedures</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tcl C API, version 8.6.6</a> <small>&gt;</small> Panic</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<DL>
+<DD><A class="doc" href="Panic.html#M2" NAME="L584">NAME</A>
+<DL><DD>Tcl_Panic, Tcl_PanicVA, Tcl_SetPanicProc &mdash; report fatal error and abort</DD></DL>
+<DD><A class="doc" href="Panic.html#M3" NAME="L585">SYNOPSIS</A>
+<DL>
+<DD><B>#include &lt;tcl.h&gt;</B>
+<DD>void
+<DD><B>Tcl_Panic</B>(<I>format</I>, <I>arg</I>, <I>arg</I>, <I>...</I>)
+<DD>void
+<DD><B>Tcl_PanicVA</B>(<I>format</I>, <I>argList</I>)
+<DD>void
+<DD><B>Tcl_SetPanicProc</B>(<I>panicProc</I>)
+</DL>
+<DD><A class="doc" href="Panic.html#M4" NAME="L586">ARGUMENTS</A>
+<DL class="arguments">
+</DL>
+<DD><A class="doc" href="Panic.html#M5" NAME="L587">DESCRIPTION</A>
+<DD><A class="doc" href="Panic.html#M6" NAME="L588">SEE ALSO</A>
+<DD><A class="doc" href="Panic.html#M7" NAME="L589">KEYWORDS</A>
+</DL>
+<H3><A NAME="M2">NAME</A></H3>
+Tcl_Panic, Tcl_PanicVA, Tcl_SetPanicProc &mdash; report fatal error and abort
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>#include &lt;tcl.h&gt;</B><BR>
+void<BR>
+<B>Tcl_Panic</B>(<I>format</I>, <I>arg</I>, <I>arg</I>, <I>...</I>)<BR>
+void<BR>
+<B>Tcl_PanicVA</B>(<I>format</I>, <I>argList</I>)<BR>
+void<BR>
+<B>Tcl_SetPanicProc</B>(<I>panicProc</I>)<BR>
+<H3><A NAME="M4">ARGUMENTS</A></H3>
+<DL class="arguments">
+<DT>const char* <B><A class="doc" href="../TclCmd/format.html">format</A></B> (in)<DD>
+A printf-style format string.
+<P><DT><B>arg</B> (in)<DD>
+Arguments matching the format string.
+<P><DT>va_list <B>argList</B> (in)<DD>
+An argument list of arguments matching the format string.
+Must have been initialized using <B>va_start</B>,
+and cleared using <B>va_end</B>.
+<P><DT>Tcl_PanicProc <B>*panicProc</B> (in)<DD>
+Procedure to report fatal error message and abort.
+<P></DL>
+<H3><A NAME="M5">DESCRIPTION</A></H3>
+When the Tcl library detects that its internal data structures are in an
+inconsistent state, or that its C procedures have been called in a
+manner inconsistent with their documentation, it calls <B>Tcl_Panic</B>
+to display a message describing the error and abort the process.  The
+<I>format</I> argument is a format string describing how to format the
+remaining arguments <I>arg</I> into an error message, according to the
+same formatting rules used by the <B>printf</B> family of functions.  The
+same formatting rules are also used by the built-in Tcl command
+<B><A class="doc" href="../TclCmd/format.html">format</A></B>.
+<P>
+In a freshly loaded Tcl library, <B>Tcl_Panic</B> prints the formatted
+error message to the standard error file of the process, and then
+calls <B>abort</B> to terminate the process.  <B>Tcl_Panic</B> does not
+return. On Windows, when a debugger is running, the formatted error
+message is sent to the debugger in stead. If the windows executable
+does not have a stderr channel (e.g. <B>wish.exe</B>), then a
+system dialog box is used to display the panic message.
+<P>
+<B>Tcl_SetPanicProc</B> may be used to modify the behavior of
+<B>Tcl_Panic</B>.  The <I>panicProc</I> argument should match the
+type <B>Tcl_PanicProc</B>:
+<P>
+<PRE>typedef void <B>Tcl_PanicProc</B>(
+        const char *<B><A class="doc" href="../TclCmd/format.html">format</A></B>,
+        <B>arg</B>, <B>arg</B>,...);</PRE>
+<P>
+After <B>Tcl_SetPanicProc</B> returns, any future calls to
+<B>Tcl_Panic</B> will call <I>panicProc</I>, passing along the
+<I>format</I> and <I>arg</I> arguments. <I>panicProc</I> should avoid
+making calls into the Tcl library, or into other libraries that may
+call the Tcl library, since the original call to <B>Tcl_Panic</B>
+indicates the Tcl library is not in a state of reliable operation.
+<P>
+The typical use of <B>Tcl_SetPanicProc</B> arranges for the error message
+to be displayed or reported in a manner more suitable for the
+application or the platform.
+<P>
+Although the primary callers of <B>Tcl_Panic</B> are the procedures of
+the Tcl library, <B>Tcl_Panic</B> is a public function and may be called
+by any extension or application that wishes to abort the process and
+have a panic message displayed the same way that panic messages from Tcl
+will be displayed.
+<P>
+<B>Tcl_PanicVA</B> is the same as <B>Tcl_Panic</B> except that instead of
+taking a variable number of arguments it takes an argument list.
+<H3><A NAME="M6">SEE ALSO</A></H3>
+<B>abort</B>, <B>printf</B>, <B><A class="doc" href="../TclCmd/exec.html">exec</A></B>, <B><A class="doc" href="../TclCmd/format.html">format</A></B>
+<H3><A NAME="M7">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/A.html#abort">abort</A>, <A class="doc" href="../Keywords/F.html#fatal">fatal</A>, <A class="doc" href="../Keywords/E.html#error">error</A>
+<div class="copy"></div>
+</BODY></HTML>

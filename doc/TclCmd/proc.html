@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>proc manual page - Built-In Commands</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tcl Commands, version 8.6.6</a> <small>&gt;</small> proc</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<H3><A NAME="M2">NAME</A></H3>
+proc &mdash; Create a Tcl procedure
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>proc </B><I>name args body</I><BR>
+<H3><A NAME="M4">DESCRIPTION</A></H3>
+The <B>proc</B> command creates a new Tcl procedure named
+<I>name</I>, replacing
+any existing command or procedure there may have been by that name.
+Whenever the new command is invoked, the contents of <I>body</I> will
+be executed by the Tcl interpreter.
+Normally, <I>name</I> is unqualified
+(does not include the names of any containing namespaces),
+and the new procedure is created in the current namespace.
+If <I>name</I> includes any namespace qualifiers,
+the procedure is created in the specified namespace.
+<I>Args</I> specifies the formal arguments to the
+procedure.  It consists of a list, possibly empty, each of whose
+elements specifies
+one argument.  Each argument specifier is also a list with either
+one or two fields.  If there is only a single field in the specifier
+then it is the name of the argument; if there are two fields, then
+the first is the argument name and the second is its default value.
+Arguments with default values that are followed by non-defaulted
+arguments become required arguments; enough actual arguments must be
+supplied to allow all arguments up to and including the last required
+formal argument.
+<P>
+When <I>name</I> is invoked a local variable
+will be created for each of the formal arguments to the procedure; its
+value will be the value of corresponding argument in the invoking command
+or the argument's default value.
+Actual arguments are assigned to formal arguments strictly in order.
+Arguments with default values need not be
+specified in a procedure invocation.  However, there must be enough
+actual arguments for all the
+formal arguments that do not have defaults, and there must not be any extra
+actual arguments.
+Arguments with default values that are followed by non-defaulted
+arguments become de-facto required arguments, though this may change
+in a future version of Tcl; portable code should ensure that all
+optional arguments come after all required arguments.
+<P>
+There is one special case to permit procedures with
+variable numbers of arguments.  If the last formal argument has the name
+&#8220;<B>args</B>&#8221;,
+then a call to the procedure may contain more actual arguments
+than the procedure has formal arguments.  In this case, all of the actual arguments
+starting at the one that would be assigned to <B>args</B> are combined into
+a list (as if the <B><A class="doc" href="../TclCmd/list.html">list</A></B> command had been used); this combined value
+is assigned to the local variable <B>args</B>.
+<P>
+When <I>body</I> is being executed, variable names normally refer to
+local variables, which are created automatically when referenced and
+deleted when the procedure returns.  One local variable is automatically
+created for each of the procedure's arguments.
+Other variables can only be accessed by invoking one of the <B><A class="doc" href="../TclCmd/global.html">global</A></B>,
+<B><A class="doc" href="../TclCmd/variable.html">variable</A></B>, <B><A class="doc" href="../TclCmd/upvar.html">upvar</A></B> or <B><A class="doc" href="../TclCmd/namespace.html">namespace upvar</A></B> commands.
+The current namespace when <I>body</I> is executed will be the
+namespace that the procedure's name exists in, which will be the
+namespace that it was created in unless it has been changed with
+<B><A class="doc" href="../TclCmd/rename.html">rename</A></B>.
+<P>
+The <B>proc</B> command returns an empty string.  When a procedure is
+invoked, the procedure's return value is the value specified in a
+<B><A class="doc" href="../TclCmd/return.html">return</A></B> command.  If the procedure does not execute an explicit
+<B><A class="doc" href="../TclCmd/return.html">return</A></B>, then its return value is the value of the last command
+executed in the procedure's body.
+If an error occurs while executing the procedure
+body, then the procedure-as-a-whole will return that same error.
+<H3><A NAME="M5">EXAMPLES</A></H3>
+This is a procedure that takes two arguments and prints both their sum
+and their product. It also returns the string
+&#8220;OK&#8221;
+to the caller as an explicit result.
+<P>
+<PRE><B>proc</B> printSumProduct {x y} {
+    set sum [expr {$x + $y}]
+    set prod [expr {$x * $y}]
+    puts &quot;sum is $sum, product is $prod&quot;
+    return &quot;OK&quot;
+}</PRE>
+<P>
+This is a procedure that accepts arbitrarily many arguments and prints
+them out, one by one.
+<P>
+<PRE><B>proc</B> printArguments args {
+    foreach arg $args {
+        puts $arg
+    }
+}</PRE>
+<P>
+This procedure is a bit like the <B><A class="doc" href="../TclCmd/incr.html">incr</A></B> command, except it
+multiplies the contents of the named variable by the value, which
+defaults to <B>2</B>:
+<P>
+<PRE><B>proc</B> mult {varName {multiplier 2}} {
+    upvar 1 $varName var
+    set var [expr {$var * $multiplier}]
+}</PRE>
+<H3><A NAME="M6">SEE ALSO</A></H3>
+<B><A class="doc" href="../TclCmd/info.html">info</A></B>, <B><A class="doc" href="../TclCmd/unknown.html">unknown</A></B>
+<H3><A NAME="M7">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/A.html#argument">argument</A>, <A class="doc" href="../Keywords/P.html#procedure">procedure</A>
+<div class="copy">Copyright &copy; 1993 The Regents of the University of California.
+Copyright &copy; 1994-1996 Sun Microsystems, Inc.
+</div>
+</BODY></HTML>

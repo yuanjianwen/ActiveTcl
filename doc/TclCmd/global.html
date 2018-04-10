@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>global manual page - Built-In Commands</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tcl Commands, version 8.6.6</a> <small>&gt;</small> global</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<H3><A NAME="M2">NAME</A></H3>
+global &mdash; Access global variables
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>global </B>?<I>varname ...</I>?<BR>
+<H3><A NAME="M4">DESCRIPTION</A></H3>
+This command has no effect unless executed in the context of a proc body.
+If the <B>global</B> command is executed in the context of a proc body, it
+creates local variables linked to the corresponding global variables (though
+these linked variables, like those created by <B><A class="doc" href="../TclCmd/upvar.html">upvar</A></B>, are not included
+in the list returned by <B><A class="doc" href="../TclCmd/info.html">info locals</A></B>).
+<P>
+If <I>varname</I> contains namespace qualifiers, the local variable's name is
+the unqualified name of the global variable, as determined by the
+<B><A class="doc" href="../TclCmd/namespace.html">namespace tail</A></B> command.
+<P>
+<I>varname</I> is always treated as the name of a variable, not an
+array element.  An error is returned if the name looks like an array element,
+such as <B>a(b)</B>.
+<H3><A NAME="M5">EXAMPLES</A></H3>
+This procedure sets the namespace variable <I>::a::x</I>
+<P>
+<PRE>proc reset {} {
+    <B>global</B> a::x
+    set x 0
+}</PRE>
+<P>
+This procedure accumulates the strings passed to it in a global
+buffer, separated by newlines.  It is useful for situations when you
+want to build a message piece-by-piece (as if with <B><A class="doc" href="../TclCmd/puts.html">puts</A></B>) but
+send that full message in a single piece (e.g. over a connection
+opened with <B><A class="doc" href="../TclCmd/socket.html">socket</A></B> or as part of a counted HTTP response).
+<P>
+<PRE>proc accum {string} {
+    <B>global</B> accumulator
+    append accumulator $string &#92;n
+}</PRE>
+<H3><A NAME="M6">SEE ALSO</A></H3>
+<B><A class="doc" href="../TclCmd/namespace.html">namespace</A></B>, <B><A class="doc" href="../TclCmd/upvar.html">upvar</A></B>, <B><A class="doc" href="../TclCmd/variable.html">variable</A></B>
+<H3><A NAME="M7">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/G.html#global">global</A>, <A class="doc" href="../Keywords/N.html#namespace">namespace</A>, <A class="doc" href="../Keywords/P.html#procedure">procedure</A>, <A class="doc" href="../Keywords/V.html#variable">variable</A>
+<div class="copy">Copyright &copy; 1993 The Regents of the University of California.
+Copyright &copy; 1994-1997 Sun Microsystems, Inc.
+</div>
+</BODY></HTML>

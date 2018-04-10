@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>unset manual page - Tcl Built-In Commands</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tcl Commands, version 8.6.6</a> <small>&gt;</small> unset</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<H3><A NAME="M2">NAME</A></H3>
+unset &mdash; Delete variables
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>unset </B>?<B>-nocomplain</B>? ?<B>--</B>? ?<I>name name name ...</I>?<BR>
+<H3><A NAME="M4">DESCRIPTION</A></H3>
+This command removes one or more variables.
+Each <I>name</I> is a variable name, specified in any of the
+ways acceptable to the <B><A class="doc" href="../TclCmd/set.html">set</A></B> command.
+If a <I>name</I> refers to an element of an array then that
+element is removed without affecting the rest of the array.
+If a <I>name</I> consists of an array name with no parenthesized
+index, then the entire array is deleted.
+The <B>unset</B> command returns an empty string as result.
+If <B>-nocomplain</B> is specified as the first argument, any possible
+errors are suppressed.  The option may not be abbreviated, in order to
+disambiguate it from possible variable names.  The option <B>--</B>
+indicates the end of the options, and should be used if you wish to
+remove a variable with the same name as any of the options.
+If an error occurs during variable deletion, any variables after the named one
+causing the error are not
+deleted.  An error can occur when the named variable does not exist, or the
+name refers to an array element but the variable is a scalar, or the name
+refers to a variable in a non-existent namespace.
+<H3><A NAME="M5">EXAMPLE</A></H3>
+Create an array containing a mapping from some numbers to their
+squares and remove the array elements for non-prime numbers:
+<P>
+<PRE>array set squares {
+    1 1    6 36
+    2 4    7 49
+    3 9    8 64
+    4 16   9 81
+    5 25  10 100
+}
+
+puts &quot;The squares are:&quot;
+parray squares
+
+<B>unset</B> squares(1) squares(4) squares(6)
+<B>unset</B> squares(8) squares(9) squares(10)
+
+puts &quot;The prime squares are:&quot;
+parray squares</PRE>
+<H3><A NAME="M6">SEE ALSO</A></H3>
+<B><A class="doc" href="../TclCmd/set.html">set</A></B>, <B><A class="doc" href="../TclCmd/trace.html">trace</A></B>, <B><A class="doc" href="../TclCmd/upvar.html">upvar</A></B>
+<H3><A NAME="M7">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/R.html#remove">remove</A>, <A class="doc" href="../Keywords/V.html#variable">variable</A>
+<div class="copy">Copyright &copy; 1993 The Regents of the University of California.
+Copyright &copy; 1994-1996 Sun Microsystems, Inc.
+Copyright &copy; 2000 Ajuba Solutions.
+</div>
+</BODY></HTML>

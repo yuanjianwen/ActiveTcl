@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>tdbc::resultset manual page - Tcl Database Connectivity</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">TDBC Package Commands, version 1.0.4</a> <small>&gt;</small> tdbc_resultset</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<H3><A NAME="M2">NAME</A></H3>
+tdbc::resultset &mdash; TDBC result set object
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+package require <B>tdbc 1.0</B><BR>
+package require <B>tdbc::</B><I>driver version</I><BR>
+<BR>
+<B>tdbc::</B><I>driver</I><B>::connection create </B><I>db</I> <I>?-option value</I>...?<BR>
+<BR>
+<B><A class="doc" href="../TclCmd/set.html">set</A></B> <I>stmt</I> <B>[</B><I>db</I> <B>prepare</B> <I>sql-code</I><B>]</B><BR>
+<B><A class="doc" href="../TclCmd/set.html">set</A></B> <I>resultset</I> <B>[</B><I>$stmt</I> <B>execute</B> ?<I>args...</I>?<B>]</B><BR>
+<BR>
+<I>$resultset</I> <B>columns</B><BR>
+<I>$resultset</I> <B>rowcount</B><BR>
+<I>$resultset</I> <B>nextrow</B> ?<B>-as</B> <B>lists</B>|<B>dicts</B>? ?<B>--</B>? <I>varname</I><BR>
+<I>$resultset</I> <B>nextlist</B> <I>varname</I><BR>
+<I>$resultset</I> <B>nextdict</B> <I>varname</I><BR>
+<I>$resultset</I> <B>nextresults</B><BR>
+<I>$resultset</I> <B>allrows</B> ?<B>-as lists|dicts</B>? ?<B>-columnsvariable</B> <I>name</I>? ?<B>--</B>?<BR>
+<I>$resultset</I> <B><A class="doc" href="../TclCmd/foreach.html">foreach</A></B> ?<B>-as lists|dicts</B>? ?<B>-columnsvariable</B> <I>name</I>? ?<B>--</B>? <I>varname</I> <I>script</I><BR>
+<I>$resultset</I> <B><A class="doc" href="../TclCmd/close.html">close</A></B><BR>
+<H3><A NAME="M4">DESCRIPTION</A></H3>
+Every database driver for TDBC (Tcl DataBase Connectivity) implements
+a <I>result set</I> object that represents a the results returned from
+executing SQL statement in a database. Instances of this object are created 
+by executing the <B>execute</B> object command on a statement object.
+<P>
+The <B>columns</B> obect command returns a list of the names of the columns 
+in the result set. The columns will appear in the same order as they appeared
+in the SQL statement that performed the database query. If the SQL statement
+does not return a set of columns (for instance, if it is an INSERT,
+UPDATE, or DELETE statement), the <B>columns</B> command will return an empty
+list.
+<P>
+The <B>rowcount</B> object command returns the number of rows in the database
+that were affected by the execution of an INSERT, UPDATE or DELETE statement.
+For a SELECT statement, the row count is unspecified.
+<P>
+The <B>nextlist</B> object command sets the variable given by <I>varname</I> 
+in the caller's scope to the next row of the results, expressed as a list 
+of column values. NULL values are replaced by empty strings. The
+columns of the result row appear in the same order in which they
+appeared on the SELECT statement. The
+return of <B>nextlist</B> is <B>1</B> if the operation succeeded, and
+<B>0</B>  if the end of the result set was reached.
+<P>
+The <B>nextdict</B> object command sets the variable given by <I>varname</I> 
+in the caller's scope to the next row of the results, expressed as a
+dictionary. The dictionary's keys are column names, and the values are
+the values of those columns in the row. If a column's value in the row
+is NULL, its key is omitted from the dictionary.
+The keys appear in the dictionary in the same order in which the
+columns appeared on the SELECT statement. The
+return of <B>nextdict</B> is <B>1</B> if the operation succeeded, and
+<B>0</B>  if the end of the result set was reached.
+<P>
+The <B>nextrow</B> object command is precisely equivalent to the
+<B>nextdict</B> or <B>nextlist</B> object command, depending on whether
+<B>-as dicts</B> (the default) or <B>-as lists</B> is specified. 
+<P>
+Some databases support the idea of a single statement that returns multiple
+sets of results. The <B>nextresults</B> object command is executed, typically
+after the <B>nextlist</B> of <B>nextdict</B> object command has returned
+<B>0</B>, to advance to the next result set. It returns <B>1</B> if there
+is another result set to process, and <B>0</B> if the result set just
+processed was the last. After calling <B>nextresults</B> and getting
+the return value of <B>1</B>, the caller may once again call <B>columns</B>
+to get the column descriptions of the next result set, and then return to
+calling <B>nextdict</B> or <B>nextlist</B> to process the rows of the
+next result set.  It is an error to call <B>columns</B>, <B>nextdict</B>,
+<B>nextlist</B> or <B>nextrow</B> after <B>nextresults</B> has returned <B>0</B>.
+<P>
+The <B>allrows</B> object command sets the variable designated by the
+<B>-columnsvariable</B> option (if present) to the result of the <B>columns</B>
+object command. It then executes the <B>nextrow</B> object command
+repeatedly until the end of the result set is reached. If <B>nextresults</B>
+returns a nonzero value, it executes the above two steps (<B>columns</B>
+followed by iterated <B>nextrow</B> calls) as long as further results are
+available. The rows returned by <B>nextrow</B>
+are assembled into a Tcl list and become the return value of the
+<B>allrows</B> command; the last value returned from <B>columns</B> is what
+the application will see in <B>-columnsvariable</B>.
+<P>
+The <B><A class="doc" href="../TclCmd/foreach.html">foreach</A></B> object command sets the variable designated by the
+<B>-columnsvariable</B> option (if present) to the result of the <B>columns</B>
+object command. It then executes the <B>nextrow</B> object command
+repeatedly until the end of the result set is reached, storing the
+successive rows in the variable designated by <I>varName</I>. For each
+row, it executes the given <I>script</I>. If the script terminates with
+an error, the error is reported by the <B><A class="doc" href="../TclCmd/foreach.html">foreach</A></B> command, and
+iteration stops. If the script performs a <B><A class="doc" href="../TclCmd/break.html">break</A></B> operation, the
+iteration terminates prematurely. If the script performs a
+<B><A class="doc" href="../TclCmd/continue.html">continue</A></B> operation, the iteration recommences with the next row.
+If the script performs a <B><A class="doc" href="../TclCmd/return.html">return</A></B>, results are the same as if a
+script outside the control of <B><A class="doc" href="../TclCmd/foreach.html">foreach</A></B> had returned. Any other
+unusual return code terminates the iteration and is reported from the
+<B><A class="doc" href="../TclCmd/foreach.html">foreach</A></B>. 
+<P>
+Once <B>nextrow</B> returns <B>0</B>, the <B><A class="doc" href="../TclCmd/foreach.html">foreach</A></B> object command 
+tries to advance to the next result set using <B>nextresults</B>.  If
+<B>nextresults</B> returns <B>1</B>, the above steps (<B>columns</B> and
+<B>nextrow</B>, with script invocation) are repeated as long as more
+result sets remain. The <I>script</I> will always see the correct description
+of the columns of the current result set in the variable designated
+byt <B>-columnsvariable</B>. At the end of the call, the variable
+designated by <B>-columnsvariable</B> will have the description of the
+columns of the last result set.
+<P>
+The <B><A class="doc" href="../TclCmd/close.html">close</A></B> object command deletes the result set and frees any
+associated system resources.
+<H3><A NAME="M5">SEE ALSO</A></H3>
+<B><A class="doc" href="../TclCmd/encoding.html">encoding</A></B>, <B><A class="doc" href="../TdbcCmd/tdbc.html">tdbc</A></B>, <B><A class="doc" href="../TdbcCmd/tdbc_connection.html">tdbc::connection</A></B>, <B><A class="doc" href="../TdbcCmd/tdbc_statement.html">tdbc::statement</A></B>, <B><A class="doc" href="../TdbcCmd/tdbc_tokenize.html">tdbc::tokenize</A></B>
+<H3><A NAME="M6">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/T.html#TDBC">TDBC</A>, <A class="doc" href="../Keywords/S.html#SQL">SQL</A>, <A class="doc" href="../Keywords/D.html#database">database</A>, <A class="doc" href="../Keywords/C.html#connectivity">connectivity</A>, <A class="doc" href="../Keywords/C.html#connection">connection</A>, <A class="doc" href="../Keywords/R.html#resultset">resultset</A>, <A class="doc" href="../Keywords/S.html#statement">statement</A>, <A class="doc" href="../Keywords/B.html#bound variable">bound variable</A>, <A class="doc" href="../Keywords/S.html#stored procedure">stored procedure</A>, <A class="doc" href="../Keywords/C.html#call">call</A>
+<H3><A NAME="M7">COPYRIGHT</A></H3>
+Copyright (c) 2008 by Kevin B. Kenny.
+<div class="copy">Copyright &copy; 2008 by Kevin B. Kenny.
+</div>
+</BODY></HTML>

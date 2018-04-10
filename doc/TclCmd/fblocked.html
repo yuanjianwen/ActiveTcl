@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>fblocked manual page - Tcl Built-In Commands</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tcl Commands, version 8.6.6</a> <small>&gt;</small> fblocked</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<H3><A NAME="M2">NAME</A></H3>
+fblocked &mdash; Test whether the last input operation exhausted all available input
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>fblocked </B><I>channelId</I><BR>
+<H3><A NAME="M4">DESCRIPTION</A></H3>
+The <B>fblocked</B> command returns 1 if the most recent input operation
+on <I>channelId</I> returned less information than requested because all
+available input was exhausted.
+For example, if <B><A class="doc" href="../TclCmd/gets.html">gets</A></B> is invoked when there are only three
+characters available for input and no end-of-line sequence, <B><A class="doc" href="../TclCmd/gets.html">gets</A></B>
+returns an empty string and a subsequent call to <B>fblocked</B> will
+return 1.
+<P>
+<I>ChannelId</I> must be an identifier for an open channel such as a
+Tcl standard channel (<B><A class="doc" href="../TclLib/GetStdChan.html">stdin</A></B>, <B><A class="doc" href="../TclLib/GetStdChan.html">stdout</A></B>, or <B><A class="doc" href="../TclLib/GetStdChan.html">stderr</A></B>),
+the return value from an invocation of <B><A class="doc" href="../TclCmd/open.html">open</A></B> or <B><A class="doc" href="../TclCmd/socket.html">socket</A></B>, or
+the result of a channel creation command provided by a Tcl extension.
+<H3><A NAME="M5">EXAMPLE</A></H3>
+The <B>fblocked</B> command is particularly useful when writing network
+servers, as it allows you to write your code in a line-by-line style
+without preventing the servicing of other connections.  This can be
+seen in this simple echo-service:
+<P>
+<PRE># This is called whenever a new client connects to the server
+proc connect {chan host port} {
+    set clientName [format &lt;%s:%d&gt; $host $port]
+    puts &quot;connection from $clientName&quot;
+    fconfigure $chan -blocking 0 -buffering line
+    fileevent $chan readable [list echoLine $chan $clientName]
+}
+
+# This is called whenever either at least one byte of input
+# data is available, or the channel was closed by the client.
+proc echoLine {chan clientName} {
+    gets $chan line
+    if {[eof $chan]} {
+        puts &quot;finishing connection from $clientName&quot;
+        close $chan
+    } elseif {![<B>fblocked</B> $chan]} {
+        # Didn't block waiting for end-of-line
+        puts &quot;$clientName - $line&quot;
+        puts $chan $line
+    }
+}
+
+# Create the server socket and enter the event-loop to wait
+# for incoming connections...
+socket -server connect 12345
+vwait forever</PRE>
+<H3><A NAME="M6">SEE ALSO</A></H3>
+<B><A class="doc" href="../TclCmd/gets.html">gets</A></B>, <B><A class="doc" href="../TclCmd/open.html">open</A></B>, <B><A class="doc" href="../TclCmd/read.html">read</A></B>, <B><A class="doc" href="../TclCmd/socket.html">socket</A></B>, <B><A class="doc" href="../TclLib/StdChannels.html">Tcl_StandardChannels</A></B>
+<H3><A NAME="M7">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/B.html#blocking">blocking</A>, <A class="doc" href="../Keywords/N.html#nonblocking">nonblocking</A>
+<div class="copy">Copyright &copy; 1996 Sun Microsystems, Inc.
+</div>
+</BODY></HTML>

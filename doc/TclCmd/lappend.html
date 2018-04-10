@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>lappend manual page - Built-In Commands</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tcl Commands, version 8.6.6</a> <small>&gt;</small> lappend</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<H3><A NAME="M2">NAME</A></H3>
+lappend &mdash; Append list elements onto a variable
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>lappend </B><I>varName </I>?<I>value value value ...</I>?<BR>
+<H3><A NAME="M4">DESCRIPTION</A></H3>
+This command treats the variable given by <I>varName</I> as a list
+and appends each of the <I>value</I> arguments to that list as a separate
+element, with spaces between elements.
+If <I>varName</I> does not exist, it is created as a list with elements
+given by the <I>value</I> arguments.
+<B>Lappend</B> is similar to <B><A class="doc" href="../TclCmd/append.html">append</A></B> except that the <I>value</I>s
+are appended as list elements rather than raw text.
+This command provides a relatively efficient way to build up
+large lists.  For example,
+&#8220;<B>lappend a $b</B>&#8221;
+is much more efficient than
+&#8220;<B>set a [concat $a [list $b]]</B>&#8221;
+when <B>$a</B> is long.
+<H3><A NAME="M5">EXAMPLE</A></H3>
+Using <B>lappend</B> to build up a list of numbers.
+<P>
+<PRE>% set var 1
+1
+% <B>lappend</B> var 2
+1 2
+% <B>lappend</B> var 3 4 5
+1 2 3 4 5</PRE>
+<H3><A NAME="M6">SEE ALSO</A></H3>
+<B><A class="doc" href="../TclCmd/list.html">list</A></B>, <B><A class="doc" href="../TclCmd/lindex.html">lindex</A></B>, <B><A class="doc" href="../TclCmd/linsert.html">linsert</A></B>, <B><A class="doc" href="../TclCmd/llength.html">llength</A></B>, <B><A class="doc" href="../TclCmd/lset.html">lset</A></B>, <B><A class="doc" href="../TclCmd/lsort.html">lsort</A></B>, <B><A class="doc" href="../TclCmd/lrange.html">lrange</A></B>
+<H3><A NAME="M7">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/A.html#append">append</A>, <A class="doc" href="../Keywords/E.html#element">element</A>, <A class="doc" href="../Keywords/L.html#list">list</A>, <A class="doc" href="../Keywords/V.html#variable">variable</A>
+<div class="copy">Copyright &copy; 1993 The Regents of the University of California.
+Copyright &copy; 1994-1996 Sun Microsystems, Inc.
+Copyright &copy; 2001 Kevin B. Kenny &lt;kennykb(at)acm.org&gt;. All rights reserved.
+</div>
+</BODY></HTML>

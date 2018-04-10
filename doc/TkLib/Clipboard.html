@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>Tk_ClipboardClear manual page - Tk Library Procedures</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tk C API, version 8.6.6</a> <small>&gt;</small> Clipboard</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<DL>
+<DD><A class="doc" href="Clipboard.html#M2" NAME="L36">NAME</A>
+<DL><DD>Tk_ClipboardClear, Tk_ClipboardAppend &mdash; Manage the clipboard</DD></DL>
+<DD><A class="doc" href="Clipboard.html#M3" NAME="L37">SYNOPSIS</A>
+<DL>
+<DD><B>#include &lt;tk.h&gt;</B>
+<DD>int
+<DD><B>Tk_ClipboardClear</B>(<I>interp, tkwin</I>)
+<DD>int
+<DD><B>Tk_ClipboardAppend</B>(<I>interp, tkwin, target, format, buffer</I>)
+</DL>
+<DD><A class="doc" href="Clipboard.html#M4" NAME="L38">ARGUMENTS</A>
+<DL class="arguments">
+</DL>
+<DD><A class="doc" href="Clipboard.html#M5" NAME="L39">DESCRIPTION</A>
+<DD><A class="doc" href="Clipboard.html#M6" NAME="L40">KEYWORDS</A>
+</DL>
+<H3><A NAME="M2">NAME</A></H3>
+Tk_ClipboardClear, Tk_ClipboardAppend &mdash; Manage the clipboard
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>#include &lt;tk.h&gt;</B><BR>
+int<BR>
+<B>Tk_ClipboardClear</B>(<I>interp, tkwin</I>)<BR>
+int<BR>
+<B>Tk_ClipboardAppend</B>(<I>interp, tkwin, target, format, buffer</I>)<BR>
+<H3><A NAME="M4">ARGUMENTS</A></H3>
+<DL class="arguments">
+<DT><A class="doc" href="../TclLib/Interp.html">Tcl_Interp</A> <B>*interp</B> (in)<DD>
+Interpreter to use for reporting errors.
+<P><DT><A class="doc" href="../TkLib/WindowId.html">Tk_Window</A> <B>tkwin</B> (in)<DD>
+Window that determines which display's clipboard to manipulate.
+<P><DT>Atom <B>target</B> (in)<DD>
+Conversion type for this clipboard item;  has same meaning as
+<I>target</I> argument to <B><A class="doc" href="../TkLib/CrtSelHdlr.html">Tk_CreateSelHandler</A></B>.
+<P><DT>Atom <B><A class="doc" href="../TclCmd/format.html">format</A></B> (in)<DD>
+Representation to use when data is retrieved;  has same meaning as
+<I>format</I> argument to <B><A class="doc" href="../TkLib/CrtSelHdlr.html">Tk_CreateSelHandler</A></B>.
+<P><DT>const char <B>*buffer</B> (in)<DD>
+Null terminated string containing the data to be appended to the clipboard.
+<P></DL>
+<H3><A NAME="M5">DESCRIPTION</A></H3>
+These two procedures manage the clipboard for Tk.
+The clipboard is typically managed by calling <B>Tk_ClipboardClear</B>
+once, then calling <B>Tk_ClipboardAppend</B> to add data for any
+number of targets.
+<P>
+<B>Tk_ClipboardClear</B> claims the CLIPBOARD selection and frees any
+data items previously stored on the clipboard in this application.
+It normally returns <B><A class="doc" href="../TclCmd/catch.html">TCL_OK</A></B>, but if an error occurs it returns
+<B><A class="doc" href="../TclCmd/catch.html">TCL_ERROR</A></B> and leaves an error message in interpreter
+<I>interp</I>'s result.
+<B>Tk_ClipboardClear</B> must be called before a sequence of
+<B>Tk_ClipboardAppend</B> calls can be issued.
+<P>
+<B>Tk_ClipboardAppend</B> appends a buffer of data to the clipboard.
+The first buffer for a given <I>target</I> determines the <I>format</I>
+for that <I>target</I>.
+Any successive appends for that <I>target</I> must have
+the same format or an error will be returned.
+<B>Tk_ClipboardAppend</B> returns <B><A class="doc" href="../TclCmd/catch.html">TCL_OK</A></B> if the buffer is
+successfully copied onto the clipboard.  If the clipboard is not
+currently owned by the application, either
+because <B>Tk_ClipboardClear</B> has not been called or because
+ownership of the clipboard has changed since the last call to
+<B>Tk_ClipboardClear</B>,
+<B>Tk_ClipboardAppend</B> returns <B><A class="doc" href="../TclCmd/catch.html">TCL_ERROR</A></B> and leaves an error
+message in the result of interpreter <I>interp</I>.
+<P>
+In order to guarantee atomicity, no event handling should occur
+between <B>Tk_ClipboardClear</B> and the following
+<B>Tk_ClipboardAppend</B> calls (otherwise someone could retrieve
+a partially completed clipboard or claim ownership away from
+this application).
+<P>
+<B>Tk_ClipboardClear</B> may invoke callbacks, including arbitrary
+Tcl scripts, as a result of losing the CLIPBOARD selection, so
+any calling function should take care to be re-entrant at the point
+<B>Tk_ClipboardClear</B> is invoked.
+<H3><A NAME="M6">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/A.html#append">append</A>, <A class="doc" href="../Keywords/C.html#clipboard">clipboard</A>, <A class="doc" href="../Keywords/C.html#clear">clear</A>, <A class="doc" href="../Keywords/F.html#format">format</A>, <A class="doc" href="../Keywords/T.html#type">type</A>
+<div class="copy">Copyright &copy; 1994 The Regents of the University of California.
+Copyright &copy; 1994-1996 Sun Microsystems, Inc.
+</div>
+</BODY></HTML>

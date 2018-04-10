@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>prefix manual page - Tcl Built-In Commands</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tcl Commands, version 8.6.6</a> <small>&gt;</small> prefix</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<DL>
+<DD><A class="doc" href="prefix.html#M2" NAME="L1414">NAME</A>
+<DL><DD>tcl::prefix &mdash; facilities for prefix matching</DD></DL>
+<DD><A class="doc" href="prefix.html#M3" NAME="L1415">SYNOPSIS</A>
+<DL>
+</DL>
+<DD><A class="doc" href="prefix.html#M4" NAME="L1416">DESCRIPTION</A>
+<DL class="description">
+<DD><A class="doc" href="prefix.html#M5" NAME="L1417"><B>::tcl::prefix all</B> <I>table</I> <I>string</I></A>
+<DD><A class="doc" href="prefix.html#M6" NAME="L1418"><B>::tcl::prefix longest</B> <I>table</I> <I>string</I></A>
+<DD><A class="doc" href="prefix.html#M7" NAME="L1419"><B>::tcl::prefix match</B> ?<I>options</I>? <I>table</I> <I>string</I></A>
+<DL class="description">
+<DD><A class="doc" href="prefix.html#M8" NAME="L1420"><B>-exact</B></A>
+<DD><A class="doc" href="prefix.html#M9" NAME="L1421"><B>-message </B><I>string</I></A>
+<DD><A class="doc" href="prefix.html#M10" NAME="L1422"><B>-error </B><I>options</I></A>
+</DL>
+</DL>
+<DD><A class="doc" href="prefix.html#M11" NAME="L1423">EXAMPLES</A>
+<DD><A class="doc" href="prefix.html#M12" NAME="L1424">SEE ALSO</A>
+<DD><A class="doc" href="prefix.html#M13" NAME="L1425">KEYWORDS</A>
+</DL>
+<H3><A NAME="M2">NAME</A></H3>
+tcl::prefix &mdash; facilities for prefix matching
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>::tcl::prefix all</B> <I>table</I> <I>string</I><BR>
+<B>::tcl::prefix longest</B> <I>table</I> <I>string</I><BR>
+<B>::tcl::prefix match</B> <I>?option ...?</I> <I>table</I> <I>string</I><BR>
+<H3><A NAME="M4">DESCRIPTION</A></H3>
+This document describes commands looking up a prefix in a list of strings.
+The following commands are supported:
+<P>
+<DL class="description">
+<DT><A NAME="M5"><B>::tcl::prefix all</B> <I>table</I> <I>string</I></A><DD>
+Returns a list of all elements in <I>table</I> that begin with the prefix
+<I>string</I>.
+<P><DT><A NAME="M6"><B>::tcl::prefix longest</B> <I>table</I> <I>string</I></A><DD>
+Returns the longest common prefix of all elements in <I>table</I> that
+begin with the prefix <I>string</I>.
+<P><DT><A NAME="M7"><B>::tcl::prefix match</B> ?<I>options</I>? <I>table</I> <I>string</I></A><DD>
+If <I>string</I> equals one element in <I>table</I> or is a prefix to exactly
+one element, the matched element is returned. If not, the result depends
+on the <B>-error</B> option. (It is recommended that the <I>table</I> be sorted
+before use with this subcommand, so that the list of matches presented in the
+error message also becomes sorted, though this is not strictly necessary for
+the operation of this subcommand itself.)
+<P>
+<DL class="description">
+<DT><A NAME="M8"><B>-exact</B></A><DD>
+Accept only exact matches.
+<P><DT><A NAME="M9"><B>-message </B><I>string</I></A><DD>
+Use <I>string</I> in the error message at a mismatch. Default is
+&#8220;option&#8221;.
+<P><DT><A NAME="M10"><B>-error </B><I>options</I></A><DD>
+The <I>options</I> are used when no match is found. If <I>options</I> is empty,
+no error is generated and an empty string is returned. Otherwise the
+<I>options</I> are used as <B><A class="doc" href="../TclCmd/return.html">return</A></B> options when generating the error
+message. The default corresponds to setting
+&#8220;-level 0&#8221;.
+Example: If
+&#8220;<B>-error</B> {-errorcode MyError -level 1}&#8221;
+is used, an error would be generated as:
+<P>
+<PRE>return -errorcode MyError -level 1 -code error &#92;
+       &quot;ambiguous option ...&quot;</PRE>
+<P></DL>
+<P></DL>
+<H3><A NAME="M11">EXAMPLES</A></H3>
+Basic use:
+<P>
+<PRE>namespace import ::tcl::prefix
+<B>prefix match</B> {apa bepa cepa} apa
+     <I><font size="+1">&#8594;</font> apa</I>
+<B>prefix match</B> {apa bepa cepa} a
+     <I><font size="+1">&#8594;</font> apa</I>
+<B>prefix match</B> -exact {apa bepa cepa} a
+     <I><font size="+1">&#8594;</font> bad option &quot;a&quot;: must be apa, bepa, or cepa</I>
+<B>prefix match</B> -message &quot;switch&quot; {apa ada bepa cepa} a
+     <I><font size="+1">&#8594;</font> ambiguous switch &quot;a&quot;: must be apa, ada, bepa, or cepa</I>
+<B>prefix longest</B> {fblocked fconfigure fcopy file fileevent flush} fc
+     <I><font size="+1">&#8594;</font> fco</I>
+<B>prefix all</B> {fblocked fconfigure fcopy file fileevent flush} fc
+     <I><font size="+1">&#8594;</font> fconfigure fcopy</I></PRE>
+<P>
+Simplifying option matching:
+<P>
+<PRE>array set opts {-apa 1 -bepa &quot;&quot; -cepa 0}
+foreach {arg val} $args {
+    set opts([<B>prefix match</B> {-apa -bepa -cepa} $arg]) $val
+}</PRE>
+<P>
+Creating a <B><A class="doc" href="../TclCmd/switch.html">switch</A></B> that supports prefixes:
+<P>
+<PRE>switch [<B>prefix match</B> {apa bepa cepa} $arg] {
+    apa  { }
+    bepa { }
+    cepa { }
+}</PRE>
+<H3><A NAME="M12">SEE ALSO</A></H3>
+<B><A class="doc" href="../TclCmd/lsearch.html">lsearch</A></B>, <B><A class="doc" href="../TclCmd/namespace.html">namespace</A></B>, <B><A class="doc" href="../TclCmd/string.html">string</A></B>, <B><A class="doc" href="../TclLib/GetIndex.html">Tcl_GetIndexFromObj</A></B>
+<H3><A NAME="M13">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/P.html#prefix">prefix</A>, <A class="doc" href="../Keywords/T.html#table lookup">table lookup</A>
+<div class="copy">Copyright &copy; 2008 Peter Spjuth &lt;pspjuth(at)users.sourceforge.net&gt;
+</div>
+</BODY></HTML>

@@ -1,0 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>[incr Tcl] Package C API, version 4.0.5</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> [incr Tcl] Package C API, version 4.0.5</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<table>
+<tr><td> <a class="doc" href="List.html" title="Manipulate an Itcl list object.">Itcl_AppendList</a> </td><td> <a class="doc" href="List.html" title="Manipulate an Itcl list object.">Itcl_DeleteListElem</a> </td><td> <a class="doc" href="Stack.html" title="Manipulate an Itcl stack object.">Itcl_GetStackSize</a> </td><td> <a class="doc" href="Class.html" title="Manipulate classes.">Itcl_IsClassNamespace</a> </td><td> <a class="doc" href="RegisterC.html" title="Associate a symbolic name with a C procedure.">Itcl_RegisterC</a> </td></tr>
+<tr><td> <a class="doc" href="List.html" title="Manipulate an Itcl list object.">Itcl_AppendListElem</a> </td><td> <a class="doc" href="Object.html" title="Manipulate an class instance.">Itcl_DeleteObject</a> </td><td> <a class="doc" href="Stack.html" title="Manipulate an Itcl stack object.">Itcl_GetStackValue</a> </td><td> <a class="doc" href="Object.html" title="Manipulate an class instance.">Itcl_IsObject</a> </td><td> <a class="doc" href="RegisterC.html" title="Associate a symbolic name with a C procedure.">Itcl_RegisterObjC</a> </td></tr>
+<tr><td> <a class="doc" href="Class.html" title="Manipulate classes.">Itcl_CreateClass</a> </td><td> <a class="doc" href="Stack.html" title="Manipulate an Itcl stack object.">Itcl_DeleteStack</a> </td><td> <a class="doc" href="List.html" title="Manipulate an Itcl list object.">Itcl_InitList</a> </td><td> <a class="doc" href="Object.html" title="Manipulate an class instance.">Itcl_IsObjectIsa</a> </td><td> <a class="doc" href="Preserve.html" title="Manipulate an Itcl list object.">Itcl_ReleaseData</a> </td></tr>
+<tr><td> <a class="doc" href="List.html" title="Manipulate an Itcl list object.">Itcl_CreateListElem</a> </td><td> <a class="doc" href="Preserve.html" title="Manipulate an Itcl list object.">Itcl_EventuallyFree</a> </td><td> <a class="doc" href="Stack.html" title="Manipulate an Itcl stack object.">Itcl_InitStack</a> </td><td> <a class="doc" href="Stack.html" title="Manipulate an Itcl stack object.">Itcl_PeekStack</a> </td><td> <a class="doc" href="List.html" title="Manipulate an Itcl list object.">Itcl_SetListValue</a> </td></tr>
+<tr><td> <a class="doc" href="Object.html" title="Manipulate an class instance.">Itcl_CreateObject</a> </td><td> <a class="doc" href="RegisterC.html" title="Associate a symbolic name with a C procedure.">Itcl_FindC</a> </td><td> <a class="doc" href="List.html" title="Manipulate an Itcl list object.">Itcl_InsertList</a> </td><td> <a class="doc" href="Stack.html" title="Manipulate an Itcl stack object.">Itcl_PopStack</a> </td></tr>
+<tr><td> <a class="doc" href="Class.html" title="Manipulate classes.">Itcl_DeleteClass</a> </td><td> <a class="doc" href="Class.html" title="Manipulate classes.">Itcl_FindClass</a> </td><td> <a class="doc" href="List.html" title="Manipulate an Itcl list object.">Itcl_InsertListElem</a> </td><td> <a class="doc" href="Preserve.html" title="Manipulate an Itcl list object.">Itcl_PreserveData</a> </td></tr>
+<tr><td> <a class="doc" href="List.html" title="Manipulate an Itcl list object.">Itcl_DeleteList</a> </td><td> <a class="doc" href="Object.html" title="Manipulate an class instance.">Itcl_FindObject</a> </td><td> <a class="doc" href="Class.html" title="Manipulate classes.">Itcl_IsClass</a> </td><td> <a class="doc" href="Stack.html" title="Manipulate an Itcl stack object.">Itcl_PushStack</a> </td></tr>
+</table>
+<div class="copy">Copyright &copy; 1993-1998 Lucent Technologies, Inc
+</div>
+</BODY></HTML>

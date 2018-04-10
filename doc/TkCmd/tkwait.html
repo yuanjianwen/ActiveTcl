@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>tkwait manual page - Built-In Commands</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tk Commands, version 8.6.6</a> <small>&gt;</small> tkwait</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<H3><A NAME="M2">NAME</A></H3>
+tkwait &mdash; Wait for variable to change or window to be destroyed
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>tkwait variable </B><I>name</I><BR>
+<B>tkwait visibility </B><I>name</I><BR>
+<B>tkwait window </B><I>name</I><BR>
+<H3><A NAME="M4">DESCRIPTION</A></H3>
+The <B>tkwait</B> command waits for one of several things to happen,
+then it returns without taking any other actions.
+The return value is always an empty string.
+If the first argument is <B>variable</B> (or any abbreviation of
+it) then the second argument is the name of a global variable and the
+command waits for that variable to be modified.
+If the first argument is <B>visibility</B> (or any abbreviation
+of it) then the second argument is the name of a window and the
+<B>tkwait</B> command waits for a change in its
+visibility state (as indicated by the arrival of a VisibilityNotify
+event).  This form is typically used to wait for a newly-created
+window to appear on the screen before taking some action.
+If the first argument is <B>window</B> (or any abbreviation
+of it) then the second argument is the name of a window and the
+<B>tkwait</B> command waits for that window to be destroyed.
+This form is typically used to wait for a user to finish interacting
+with a dialog box before using the result of that interaction.
+<P>
+While the <B>tkwait</B> command is waiting it processes events in
+the normal fashion, so the application will continue to respond
+to user interactions.
+If an event handler invokes <B>tkwait</B> again, the nested call
+to <B>tkwait</B> must complete before the outer call can complete.
+<H3><A NAME="M5">SEE ALSO</A></H3>
+<B><A class="doc" href="../TkCmd/bind.html">bind</A></B>, <B><A class="doc" href="../TclCmd/vwait.html">vwait</A></B>
+<H3><A NAME="M6">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/V.html#variable">variable</A>, <A class="doc" href="../Keywords/V.html#visibility">visibility</A>, <A class="doc" href="../Keywords/W.html#wait">wait</A>, <A class="doc" href="../Keywords/W.html#window">window</A>
+<div class="copy">Copyright &copy; 1992 The Regents of the University of California.
+Copyright &copy; 1994-1996 Sun Microsystems, Inc.
+</div>
+</BODY></HTML>

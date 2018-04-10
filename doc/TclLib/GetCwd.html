@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>Tcl_GetCwd manual page - Tcl Library Procedures</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tcl C API, version 8.6.6</a> <small>&gt;</small> GetCwd</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<DL>
+<DD><A class="doc" href="GetCwd.html#M2" NAME="L357">NAME</A>
+<DL><DD>Tcl_GetCwd, Tcl_Chdir &mdash; manipulate the current working directory</DD></DL>
+<DD><A class="doc" href="GetCwd.html#M3" NAME="L358">SYNOPSIS</A>
+<DL>
+<DD><B>#include &lt;tcl.h&gt;</B>
+<DD>char *
+<DD><B>Tcl_GetCwd</B>(<I>interp</I>, <I>bufferPtr</I>)
+<DD>int
+<DD><B>Tcl_Chdir</B>(<I>path</I>)
+</DL>
+<DD><A class="doc" href="GetCwd.html#M4" NAME="L359">ARGUMENTS</A>
+<DL class="arguments">
+</DL>
+<DD><A class="doc" href="GetCwd.html#M5" NAME="L360">DESCRIPTION</A>
+<DD><A class="doc" href="GetCwd.html#M6" NAME="L361">KEYWORDS</A>
+</DL>
+<H3><A NAME="M2">NAME</A></H3>
+Tcl_GetCwd, Tcl_Chdir &mdash; manipulate the current working directory
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>#include &lt;tcl.h&gt;</B><BR>
+char *<BR>
+<B>Tcl_GetCwd</B>(<I>interp</I>, <I>bufferPtr</I>)<BR>
+int<BR>
+<B>Tcl_Chdir</B>(<I>path</I>)<BR>
+<H3><A NAME="M4">ARGUMENTS</A></H3>
+<DL class="arguments">
+<DT><A class="doc" href="../TclLib/Interp.html">Tcl_Interp</A> <B>*interp</B> (in)<DD>
+Interpreter in which to report an error, if any.
+<P><DT><A class="doc" href="../TclLib/DString.html">Tcl_DString</A> <B>*bufferPtr</B> (in/out)<DD>
+This dynamic string is used to store the current working directory.
+At the time of the call it should be uninitialized or free.  The
+caller must eventually call <B><A class="doc" href="../TclLib/DString.html">Tcl_DStringFree</A></B> to free up
+anything stored here.
+<P><DT>char <B>*path</B> (in)<DD>
+File path in UTF-8 format.
+<P></DL>
+<H3><A NAME="M5">DESCRIPTION</A></H3>
+These procedures may be used to manipulate the current working
+directory for the application.  They provide C-level access to
+the same functionality as the Tcl <B><A class="doc" href="../TclCmd/pwd.html">pwd</A></B> command.
+<P>
+<B>Tcl_GetCwd</B> returns a pointer to a string specifying the current
+directory, or NULL if the current directory could not be determined.
+If NULL is returned, an error message is left in the <I>interp</I>'s result.
+Storage for the result string is allocated in bufferPtr; the caller
+must call <B><A class="doc" href="../TclLib/DString.html">Tcl_DStringFree()</A></B> when the result is no longer needed.
+The format of the path is UTF-8.
+<P>
+<B>Tcl_Chdir</B> changes the applications current working directory to
+the value specified in <I>path</I>.  The format of the passed in string
+must be UTF-8.  The function returns -1 on error or 0 on success.
+
+<H3><A NAME="M6">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/P.html#pwd">pwd</A>
+<div class="copy">Copyright &copy; 1998-1999 Scriptics Corporation
+</div>
+</BODY></HTML>

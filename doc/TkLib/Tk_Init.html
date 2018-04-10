@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>Tk_Init manual page - Tk Library Procedures</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tk C API, version 8.6.6</a> <small>&gt;</small> Tk_Init</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<DL>
+<DD><A class="doc" href="Tk_Init.html#M2" NAME="L605">NAME</A>
+<DL><DD>Tk_Init, Tk_SafeInit &mdash; add Tk to an interpreter and make a new Tk application.</DD></DL>
+<DD><A class="doc" href="Tk_Init.html#M3" NAME="L606">SYNOPSIS</A>
+<DL>
+<DD><B>#include &lt;tk.h&gt;</B>
+<DD>int
+<DD><B>Tk_Init</B>(<I>interp</I>)
+<DD>int
+<DD><B>Tk_SafeInit</B>(<I>interp</I>)
+</DL>
+<DD><A class="doc" href="Tk_Init.html#M4" NAME="L607">ARGUMENTS</A>
+<DL class="arguments">
+</DL>
+<DD><A class="doc" href="Tk_Init.html#M5" NAME="L608">DESCRIPTION</A>
+<DL class="description">
+<DD><A class="doc" href="Tk_Init.html#M6" NAME="L609"><B>bell</B></A>
+<DD><A class="doc" href="Tk_Init.html#M7" NAME="L610"><B>clipboard</B></A>
+<DD><A class="doc" href="Tk_Init.html#M8" NAME="L611"><B>grab</B></A>
+<DD><A class="doc" href="Tk_Init.html#M9" NAME="L612"><B>menu</B></A>
+<DD><A class="doc" href="Tk_Init.html#M10" NAME="L613"><B>selection</B></A>
+<DD><A class="doc" href="Tk_Init.html#M11" NAME="L614"><B>send</B></A>
+<DD><A class="doc" href="Tk_Init.html#M12" NAME="L615"><B>tk</B></A>
+<DD><A class="doc" href="Tk_Init.html#M13" NAME="L616"><B>tkwait</B></A>
+<DD><A class="doc" href="Tk_Init.html#M14" NAME="L617"><B>toplevel</B></A>
+<DD><A class="doc" href="Tk_Init.html#M15" NAME="L618"><B>wm</B></A>
+</DL>
+<DD><A class="doc" href="Tk_Init.html#M16" NAME="L619">KEYWORDS</A>
+</DL>
+<H3><A NAME="M2">NAME</A></H3>
+Tk_Init, Tk_SafeInit &mdash; add Tk to an interpreter and make a new Tk application.
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>#include &lt;tk.h&gt;</B><BR>
+int<BR>
+<B>Tk_Init</B>(<I>interp</I>)<BR>
+int<BR>
+<B>Tk_SafeInit</B>(<I>interp</I>)<BR>
+<H3><A NAME="M4">ARGUMENTS</A></H3>
+<DL class="arguments">
+<DT><A class="doc" href="../TclLib/Interp.html">Tcl_Interp</A> <B>*interp</B> (in)<DD>
+Interpreter in which to load Tk.  Tk should not already be loaded
+in this interpreter.
+<P></DL>
+<H3><A NAME="M5">DESCRIPTION</A></H3>
+<B>Tk_Init</B> is the package initialization procedure for Tk.
+It is normally invoked by the <B><A class="doc" href="../TclLib/AppInit.html">Tcl_AppInit</A></B> procedure
+for an application or by the <B><A class="doc" href="../TclCmd/load.html">load</A></B> command.
+<B>Tk_Init</B> adds all of Tk's commands to <I>interp</I>
+and creates a new Tk application, including its main window.
+If the initialization is successful <B>Tk_Init</B> returns
+<B><A class="doc" href="../TclCmd/catch.html">TCL_OK</A></B>;  if there is an error it returns <B><A class="doc" href="../TclCmd/catch.html">TCL_ERROR</A></B>.
+<B>Tk_Init</B> also leaves a result or error message
+in interpreter <I>interp</I>'s result.
+<P>
+If there is a variable <B><A class="doc" href="../TclCmd/tclvars.html">argv</A></B> in <I>interp</I>, <B>Tk_Init</B>
+treats the contents of this variable as a list of options for the
+new Tk application.
+The options may have any of the forms documented for the
+<B><A class="doc" href="../UserCmd/wish.html">wish</A></B> application (in fact, <B><A class="doc" href="../UserCmd/wish.html">wish</A></B> uses Tk_Init to process
+its command-line arguments).
+<P>
+<B>Tk_SafeInit</B> is identical to <B>Tk_Init</B> except that it removes
+all Tk commands that are considered unsafe.  Those commands and the
+reasons for their exclusion are:
+<P>
+<DL class="description">
+<DT><A NAME="M6"><B>bell</B></A><DD>
+Continuous ringing of the bell is a nuisance.
+<P><DT><A NAME="M7"><B>clipboard</B></A><DD>
+A malicious script could replace the contents of the clipboard with
+the string
+&#8220;<B>rm -r *</B>&#8221;
+and lead to surprises when the contents of the clipboard are pasted.
+<P><DT><A NAME="M8"><B>grab</B></A><DD>
+Grab can be used to block the user from using any other applications.
+<P><DT><A NAME="M9"><B>menu</B></A><DD>
+Menus can be used to cover the entire screen and to steal input from
+the user.
+<P><DT><A NAME="M10"><B>selection</B></A><DD>
+See clipboard.
+<P><DT><A NAME="M11"><B>send</B></A><DD>
+Send can be used to cause unsafe interpreters to execute commands.
+<P><DT><A NAME="M12"><B>tk</B></A><DD>
+The tk command recreates the send command, which is unsafe.
+<P><DT><A NAME="M13"><B>tkwait</B></A><DD>
+Tkwait can block the containing process forever
+<P><DT><A NAME="M14"><B>toplevel</B></A><DD>
+Toplevels can be used to cover the entire screen and to steal input
+from the user.
+<P><DT><A NAME="M15"><B>wm</B></A><DD>
+If toplevels are ever allowed, wm can be used to remove decorations,
+move windows around, etc.
+<P></DL>
+<H3><A NAME="M16">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/S.html#safe">safe</A>, <A class="doc" href="../Keywords/A.html#application">application</A>, <A class="doc" href="../Keywords/I.html#initialization">initialization</A>, <A class="doc" href="../Keywords/L.html#load">load</A>, <A class="doc" href="../Keywords/M.html#main window">main window</A>
+<div class="copy">Copyright &copy; 1995-1996 Sun Microsystems, Inc.
+</div>
+</BODY></HTML>

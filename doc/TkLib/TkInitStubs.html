@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>Tk_InitStubs manual page - Tk Library Procedures</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tk C API, version 8.6.6</a> <small>&gt;</small> TkInitStubs</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<DL>
+<DD><A class="doc" href="TkInitStubs.html#M2" NAME="L626">NAME</A>
+<DL><DD>Tk_InitStubs &mdash; initialize the Tk stubs mechanism</DD></DL>
+<DD><A class="doc" href="TkInitStubs.html#M3" NAME="L627">SYNOPSIS</A>
+<DL>
+<DD><B>#include &lt;tk.h&gt;</B>
+<DD>const char *
+<DD><B>Tk_InitStubs</B>(<I>interp, version, exact</I>)
+</DL>
+<DD><A class="doc" href="TkInitStubs.html#M4" NAME="L628">ARGUMENTS</A>
+<DL class="arguments">
+</DL>
+<DD><A class="doc" href="TkInitStubs.html#M5" NAME="L629">INTRODUCTION</A>
+<OL class="introduction">
+</OL>
+<DD><A class="doc" href="TkInitStubs.html#M6" NAME="L630">DESCRIPTION</A>
+<DD><A class="doc" href="TkInitStubs.html#M7" NAME="L631">SEE ALSO</A>
+<DD><A class="doc" href="TkInitStubs.html#M8" NAME="L632">KEYWORDS</A>
+</DL>
+<H3><A NAME="M2">NAME</A></H3>
+Tk_InitStubs &mdash; initialize the Tk stubs mechanism
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>#include &lt;tk.h&gt;</B><BR>
+const char *<BR>
+<B>Tk_InitStubs</B>(<I>interp, version, exact</I>)<BR>
+<H3><A NAME="M4">ARGUMENTS</A></H3>
+<DL class="arguments">
+<DT><A class="doc" href="../TclLib/Interp.html">Tcl_Interp</A> <B>*interp</B> (in)<DD>
+Tcl interpreter handle.
+<P><DT>char <B>*version</B> (in)<DD>
+A version string consisting of one or more decimal numbers
+separated by dots.
+<P><DT>int <B>exact</B> (in)<DD>
+Non-zero means that only the particular Tk version specified by
+<I>version</I> is acceptable.
+Zero means that versions newer than <I>version</I> are also
+acceptable as long as they have the same major version number
+as <I>version</I>.
+<P></DL>
+<H3><A NAME="M5">INTRODUCTION</A></H3>
+The Tcl stubs mechanism defines a way to dynamically bind
+extensions to a particular Tcl implementation at run time.
+the stubs mechanism requires no changes to applications
+incorporating Tcl/Tk interpreters.  Only developers creating
+C-based Tcl/Tk extensions need to take steps to use the
+stubs mechanism with their extensions.
+See the <B><A class="doc" href="../TclLib/InitStubs.html">Tcl_InitStubs</A></B> page for more information.
+<P>
+Enabling the stubs mechanism for a Tcl/Tk extension requires the following
+steps:
+<P>
+<OL class="introduction">
+<LI value="1">
+Call <B><A class="doc" href="../TclLib/InitStubs.html">Tcl_InitStubs</A></B> in the extension before calling any other
+Tcl functions.
+<P><LI value="2">
+Call <B>Tk_InitStubs</B> if the extension before calling any other
+Tk functions.
+<P><LI value="2">
+Define the <B>USE_TCL_STUBS</B> and the <B>USE_TK_STUBS</B>
+symbols. Typically, you would include the <B>-DUSE_TCL_STUBS</B> and
+the <B>-DUSE_TK_STUBS</B> flags when compiling the extension.
+<P><LI value="3">
+Link the extension with the Tcl and Tk stubs libraries instead of the
+standard Tcl and Tk libraries.  On Unix platforms, the library names
+are <I>libtclstub8.4.a</I> and <I>libtkstub8.4.a</I>; on Windows
+platforms, the library names are <I>tclstub84.lib</I> and
+<I>tkstub84.lib</I>. Adjust the library names with appropriate version
+number but note that the extension may only be used with versions of
+Tcl/Tk that have that version number or higher.
+<P></OL>
+<H3><A NAME="M6">DESCRIPTION</A></H3>
+<B>Tk_InitStubs</B> attempts to initialize the Tk stub table pointers
+and ensure that the correct version of Tk is loaded.  In addition
+to an interpreter handle, it accepts as arguments a version number
+and a Boolean flag indicating whether the extension requires
+an exact version match or not.  If <I>exact</I> is 0, then the
+extension is indicating that newer versions of Tk are acceptable
+as long as they have the same major version number as <I>version</I>;
+non-zero means that only the specified <I>version</I> is acceptable.
+<B><A class="doc" href="../TclLib/InitStubs.html">Tcl_InitStubs</A></B> returns a string containing the actual version
+of Tk satisfying the request, or NULL if the Tk version is not
+acceptable, does not support the stubs mechanism, or any other
+error condition occurred.
+<H3><A NAME="M7">SEE ALSO</A></H3>
+<B><A class="doc" href="../TclLib/InitStubs.html">Tcl_InitStubs</A></B>
+<H3><A NAME="M8">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/S.html#stubs">stubs</A>
+<div class="copy">Copyright &copy; 1999 Scriptics Corporation
+</div>
+</BODY></HTML>

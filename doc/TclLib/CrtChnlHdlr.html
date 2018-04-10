@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>Tcl_CreateChannelHandler manual page - Tcl Library Procedures</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tcl C API, version 8.6.6</a> <small>&gt;</small> CrtChnlHdlr</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<DL>
+<DD><A class="doc" href="CrtChnlHdlr.html#M2" NAME="L133">NAME</A>
+<DL><DD>Tcl_CreateChannelHandler, Tcl_DeleteChannelHandler &mdash; call a procedure when a channel becomes readable or writable</DD></DL>
+<DD><A class="doc" href="CrtChnlHdlr.html#M3" NAME="L134">SYNOPSIS</A>
+<DL>
+<DD><B>#include &lt;tcl.h&gt;</B>
+<DD>void
+<DD><B>Tcl_CreateChannelHandler</B>(<I>channel, mask, proc, clientData</I>)
+<DD>void
+<DD><B>Tcl_DeleteChannelHandler</B>(<I>channel, proc, clientData</I>)
+</DL>
+<DD><A class="doc" href="CrtChnlHdlr.html#M4" NAME="L135">ARGUMENTS</A>
+<DL class="arguments">
+</DL>
+<DD><A class="doc" href="CrtChnlHdlr.html#M5" NAME="L136">DESCRIPTION</A>
+<DD><A class="doc" href="CrtChnlHdlr.html#M6" NAME="L137">SEE ALSO</A>
+<DD><A class="doc" href="CrtChnlHdlr.html#M7" NAME="L138">KEYWORDS</A>
+</DL>
+<H3><A NAME="M2">NAME</A></H3>
+Tcl_CreateChannelHandler, Tcl_DeleteChannelHandler &mdash; call a procedure when a channel becomes readable or writable
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>#include &lt;tcl.h&gt;</B><BR>
+void<BR>
+<B>Tcl_CreateChannelHandler</B>(<I>channel, mask, proc, clientData</I>)<BR>
+void<BR>
+<B>Tcl_DeleteChannelHandler</B>(<I>channel, proc, clientData</I>)<BR>
+<H3><A NAME="M4">ARGUMENTS</A></H3>
+<DL class="arguments">
+<DT><A class="doc" href="../TclLib/OpenFileChnl.html">Tcl_Channel</A> <B>channel</B> (in)<DD>
+Tcl channel such as returned by <B><A class="doc" href="../TclLib/CrtChannel.html">Tcl_CreateChannel</A></B>.
+<P><DT>int <B>mask</B> (in)<DD>
+Conditions under which <I>proc</I> should be called: OR-ed combination of
+<B>TCL_READABLE</B>, <B>TCL_WRITABLE</B> and <B>TCL_EXCEPTION</B>. Specify
+a zero value to temporarily disable an existing handler.
+<P><DT>Tcl_FileProc <B>*proc</B> (in)<DD>
+Procedure to invoke whenever the channel indicated by <I>channel</I> meets
+the conditions specified by <I>mask</I>.
+<P><DT>ClientData <B>clientData</B> (in)<DD>
+Arbitrary one-word value to pass to <I>proc</I>.
+<P></DL>
+<H3><A NAME="M5">DESCRIPTION</A></H3>
+<B>Tcl_CreateChannelHandler</B> arranges for <I>proc</I> to be called in the
+future whenever input or output becomes possible on the channel identified
+by <I>channel</I>, or whenever an exceptional condition exists for
+<I>channel</I>. The conditions of interest under which <I>proc</I> will be
+invoked are specified by the <I>mask</I> argument.
+See the manual entry for <B><A class="doc" href="../TclCmd/fileevent.html">fileevent</A></B> for a precise description of
+what it means for a channel to be readable or writable.
+<I>Proc</I> must conform to the following prototype:
+<P>
+<PRE>typedef void <B>Tcl_ChannelProc</B>(
+        ClientData <I>clientData</I>,
+        int <I>mask</I>);</PRE>
+<P>
+The <I>clientData</I> argument is the same as the value passed to
+<B>Tcl_CreateChannelHandler</B> when the handler was created. Typically,
+<I>clientData</I> points to a data structure containing application-specific
+information about the channel. <I>Mask</I> is an integer mask indicating
+which of the requested conditions actually exists for the channel; it will
+contain a subset of the bits from the <I>mask</I> argument to
+<B>Tcl_CreateChannelHandler</B> when the handler was created.
+<P>
+Each channel handler is identified by a unique combination of <I>channel</I>,
+<I>proc</I> and <I>clientData</I>.
+There may be many handlers for a given channel as long as they do not
+have the same <I>channel</I>, <I>proc</I>, and <I>clientData</I>.
+If <B>Tcl_CreateChannelHandler</B> is invoked when there is already a handler
+for <I>channel</I>, <I>proc</I>, and <I>clientData</I>, then no new
+handler is created;  instead, the <I>mask</I> is changed for the
+existing handler.
+<P>
+<B>Tcl_DeleteChannelHandler</B> deletes a channel handler identified by
+<I>channel</I>, <I>proc</I> and <I>clientData</I>; if no such handler exists,
+the call has no effect.
+<P>
+Channel handlers are invoked via the Tcl event mechanism, so they
+are only useful in applications that are event-driven.
+Note also that the conditions specified in the <I>mask</I> argument
+to <I>proc</I> may no longer exist when <I>proc</I> is invoked:  for
+example, if there are two handlers for <B>TCL_READABLE</B> on the same
+channel, the first handler could consume all of the available input
+so that the channel is no longer readable when the second handler
+is invoked.
+For this reason it may be useful to use nonblocking I/O on channels
+for which there are event handlers.
+<H3><A NAME="M6">SEE ALSO</A></H3>
+<B>Notifier</B>, <B><A class="doc" href="../TclLib/CrtChannel.html">Tcl_CreateChannel</A></B>, <B><A class="doc" href="../TclLib/OpenFileChnl.html">Tcl_OpenFileChannel</A></B>, <B>vwait(n).</B>
+<H3><A NAME="M7">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/B.html#blocking">blocking</A>, <A class="doc" href="../Keywords/C.html#callback">callback</A>, <A class="doc" href="../Keywords/C.html#channel">channel</A>, <A class="doc" href="../Keywords/E.html#events">events</A>, <A class="doc" href="../Keywords/H.html#handler">handler</A>, <A class="doc" href="../Keywords/N.html#nonblocking.">nonblocking.</A>
+<div class="copy">Copyright &copy; 1996 Sun Microsystems, Inc.
+</div>
+</BODY></HTML>

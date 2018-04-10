@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>ttk::label manual page - Tk Themed Widget</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tk Commands, version 8.6.6</a> <small>&gt;</small> ttk_label</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<DL>
+<DD><A class="doc" href="ttk_label.html#M2" NAME="L1885">NAME</A>
+<DL><DD>ttk::label &mdash; Display a text string and/or image</DD></DL>
+<DD><A class="doc" href="ttk_label.html#M3" NAME="L1886">SYNOPSIS</A>
+<DL>
+</DL>
+<DD><A class="doc" href="ttk_label.html#M4" NAME="L1887">DESCRIPTION</A>
+<DD><A class="doc" href="ttk_label.html#M5" NAME="L1888">STANDARD OPTIONS</A>
+<DL>
+<DD><A class="doc" href="ttk_widget.html#M-class">-class, undefined, undefined</A>
+<DD><A class="doc" href="ttk_widget.html#M-compound">-compound, compound, Compound</A>
+<DD><A class="doc" href="ttk_widget.html#M-cursor">-cursor, cursor, Cursor</A>
+<DD><A class="doc" href="ttk_widget.html#M-image">-image, image, Image</A>
+<DD><A class="doc" href="ttk_widget.html#M-style">-style, style, Style</A>
+<DD><A class="doc" href="ttk_widget.html#M-takefocus">-takefocus, takeFocus, TakeFocus</A>
+<DD><A class="doc" href="ttk_widget.html#M-text">-text, text, Text</A>
+<DD><A class="doc" href="ttk_widget.html#M-textvariable">-textvariable, textVariable, Variable</A>
+<DD><A class="doc" href="ttk_widget.html#M-underline">-underline, underline, Underline</A>
+<DD><A class="doc" href="ttk_widget.html#M-width">-width, width, Width</A>
+</DL>
+<DD><A class="doc" href="ttk_label.html#M6" NAME="L1889">WIDGET-SPECIFIC OPTIONS</A>
+<DL>
+<DD><A class="doc" href="ttk_label.html#M7" NAME="L1890">-anchor, anchor, Anchor</A>
+<DD><A class="doc" href="ttk_label.html#M8" NAME="L1891">-background, frameColor, FrameColor</A>
+<DD><A class="doc" href="ttk_label.html#M9" NAME="L1892">-font, font, Font</A>
+<DD><A class="doc" href="ttk_label.html#M10" NAME="L1893">-foreground, textColor, TextColor</A>
+<DD><A class="doc" href="ttk_label.html#M11" NAME="L1894">-justify, justify, Justify</A>
+<DD><A class="doc" href="ttk_label.html#M12" NAME="L1895">-padding, padding, Padding</A>
+<DD><A class="doc" href="ttk_label.html#M13" NAME="L1896">-relief, relief, Relief</A>
+<DD><A class="doc" href="ttk_label.html#M14" NAME="L1897">-text, text, Text</A>
+<DD><A class="doc" href="ttk_label.html#M15" NAME="L1898">-wraplength, wrapLength, WrapLength</A>
+</DL>
+<DD><A class="doc" href="ttk_label.html#M16" NAME="L1899">WIDGET COMMAND</A>
+<DD><A class="doc" href="ttk_label.html#M17" NAME="L1900">SEE ALSO</A>
+</DL>
+<H3><A NAME="M2">NAME</A></H3>
+ttk::label &mdash; Display a text string and/or image
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>ttk::label</B> <I>pathName </I>?<I>options</I>?<BR>
+<H3><A NAME="M4">DESCRIPTION</A></H3>
+A <B>ttk::label</B> widget displays a textual label and/or image.
+The label may be linked to a Tcl variable
+to automatically change the displayed text.
+<H3><A NAME="M5">STANDARD OPTIONS</A></H3>
+<DL>
+<DT><B><A class="doc" href="ttk_widget.html#M-class">-class, undefined, undefined</A></B>
+<DT><B><A class="doc" href="ttk_widget.html#M-compound">-compound, compound, Compound</A></B>
+<DT><B><A class="doc" href="ttk_widget.html#M-cursor">-cursor, cursor, Cursor</A></B>
+<DT><B><A class="doc" href="ttk_widget.html#M-image">-image, image, Image</A></B>
+<DT><B><A class="doc" href="ttk_widget.html#M-style">-style, style, Style</A></B>
+<DT><B><A class="doc" href="ttk_widget.html#M-takefocus">-takefocus, takeFocus, TakeFocus</A></B>
+<DT><B><A class="doc" href="ttk_widget.html#M-text">-text, text, Text</A></B>
+<DT><B><A class="doc" href="ttk_widget.html#M-textvariable">-textvariable, textVariable, Variable</A></B>
+<DT><B><A class="doc" href="ttk_widget.html#M-underline">-underline, underline, Underline</A></B>
+<DT><B><A class="doc" href="ttk_widget.html#M-width">-width, width, Width</A></B>
+</DL>
+<H3><A NAME="M6">WIDGET-SPECIFIC OPTIONS</A></H3>
+<DL>
+<DT>Command-Line Name: <B><A NAME="M7">-anchor</A></B>
+<DT>Database Name: <B>anchor</B>
+<DT>Database Class: <B>Anchor</B>
+<DD>Specifies how the information in the widget is positioned
+relative to the inner margins.  Legal values are
+<B>n</B>, <B>ne</B>, <B>e</B>, <B>se</B>,
+<B>s</B>, <B>sw</B>, <B>w</B>, <B>nw</B>, and <B>center</B>.
+See also <B>-justify</B>.
+<P><DT>Command-Line Name: <B><A NAME="M8">-background</A></B>
+<DT>Database Name: <B>frameColor</B>
+<DT>Database Class: <B>FrameColor</B>
+<DD>The widget's background color.
+If unspecified, the theme default is used.
+<P><DT>Command-Line Name: <B><A NAME="M9">-font</A></B>
+<DT>Database Name: <B>font</B>
+<DT>Database Class: <B>Font</B>
+<DD>Font to use for label text.
+<P><DT>Command-Line Name: <B><A NAME="M10">-foreground</A></B>
+<DT>Database Name: <B>textColor</B>
+<DT>Database Class: <B>TextColor</B>
+<DD>The widget's foreground color.
+If unspecified, the theme default is used.
+<P><DT>Command-Line Name: <B><A NAME="M11">-justify</A></B>
+<DT>Database Name: <B>justify</B>
+<DT>Database Class: <B>Justify</B>
+<DD>If there are multiple lines of text, specifies how
+the lines are laid out relative to one another.
+One of <B>left</B>, <B>center</B>, or <B>right</B>.
+See also <B>-anchor</B>.
+<P><DT>Command-Line Name: <B><A NAME="M12">-padding</A></B>
+<DT>Database Name: <B>padding</B>
+<DT>Database Class: <B>Padding</B>
+<DD>Specifies the amount of extra space to allocate for the widget.
+The padding is a list of up to four length specifications
+<I>left top right bottom</I>.
+If fewer than four elements are specified,
+<I>bottom</I> defaults to <I>top</I>,
+<I>right</I> defaults to <I>left</I>, and
+<I>top</I> defaults to <I>left</I>.
+<P><DT>Command-Line Name: <B><A NAME="M13">-relief</A></B>
+<DT>Database Name: <B>relief</B>
+<DT>Database Class: <B>Relief</B>
+<DD>Specifies the 3-D effect desired for the widget border.
+Valid values are
+<B>flat</B>, <B>groove</B>, <B>raised</B>, <B>ridge</B>, <B>solid</B>,
+and <B>sunken</B>.
+<P><DT>Command-Line Name: <B><A NAME="M14">-text</A></B>
+<DT>Database Name: <B>text</B>
+<DT>Database Class: <B>Text</B>
+<DD>Specifies a text string to be displayed inside the widget
+(unless overridden by <B>-textvariable</B>).
+<P><DT>Command-Line Name: <B><A NAME="M15">-wraplength</A></B>
+<DT>Database Name: <B>wrapLength</B>
+<DT>Database Class: <B>WrapLength</B>
+<DD>Specifies the maximum line length (in pixels).
+If this option is less than or equal to zero,
+then automatic wrapping is not performed; otherwise
+the text is split into lines such that no line is longer
+than the specified value.
+</DL>
+<H3><A NAME="M16">WIDGET COMMAND</A></H3>
+Supports the standard widget commands
+<B>configure</B>, <B>cget</B>, <B>identify</B>, <B>instate</B>, and <B>state</B>;
+see <I>ttk::widget(n)</I>.
+<H3><A NAME="M17">SEE ALSO</A></H3>
+<B><A class="doc" href="../TkCmd/ttk_widget.html">ttk::widget</A></B>, <B><A class="doc" href="../TkCmd/label.html">label</A></B>
+<div class="copy">Copyright &copy; 2004 Joe English
+</div>
+</BODY></HTML>

@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>Load manual page - Tcl Library Procedures</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tcl C API, version 8.6.6</a> <small>&gt;</small> Load</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<DL>
+<DD><A class="doc" href="Load.html#M2" NAME="L470">NAME</A>
+<DL><DD>Tcl_LoadFile, Tcl_FindSymbol &mdash; platform-independent dynamic library loading</DD></DL>
+<DD><A class="doc" href="Load.html#M3" NAME="L471">SYNOPSIS</A>
+<DL>
+<DD><B>#include &lt;tcl.h&gt;</B>
+<DD>int
+<DD><B>Tcl_LoadFile</B>(<I>interp, pathPtr, symbols, flags, procPtrs, loadHandlePtr</I>)
+<DD>void *
+<DD><B>Tcl_FindSymbol</B>(<I>interp, loadHandle, symbol</I>)
+</DL>
+<DD><A class="doc" href="Load.html#M4" NAME="L472">ARGUMENTS</A>
+<DL class="arguments">
+</DL>
+<DD><A class="doc" href="Load.html#M5" NAME="L473">DESCRIPTION</A>
+<DD><A class="doc" href="Load.html#M6" NAME="L474">SEE ALSO</A>
+<DD><A class="doc" href="Load.html#M7" NAME="L475">KEYWORDS</A>
+</DL>
+<H3><A NAME="M2">NAME</A></H3>
+Tcl_LoadFile, Tcl_FindSymbol &mdash; platform-independent dynamic library loading
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>#include &lt;tcl.h&gt;</B><BR>
+int<BR>
+<B>Tcl_LoadFile</B>(<I>interp, pathPtr, symbols, flags, procPtrs, loadHandlePtr</I>)<BR>
+void *<BR>
+<B>Tcl_FindSymbol</B>(<I>interp, loadHandle, symbol</I>)<BR>
+<H3><A NAME="M4">ARGUMENTS</A></H3>
+<DL class="arguments">
+<DT><A class="doc" href="../TclLib/Interp.html">Tcl_Interp</A> <B>*interp</B> (in)<DD>
+Interpreter to use for reporting error messages.
+<P><DT><A class="doc" href="../TclLib/Object.html">Tcl_Obj</A> <B>*pathPtr</B> (in)<DD>
+The name of the file to load. If it is a single name, the library search path
+of the current environment will be used to resolve it.
+<P><DT>const char *const <B>symbols[]</B> (in)<DD>
+Array of names of symbols to be resolved during the load of the library, or
+NULL if no symbols are to be resolved. If an array is given, the last entry in
+the array must be NULL.
+<P><DT>int <B>flags</B> (in)<DD>
+The value should normally be 0, but <I>TCL_LOAD_GLOBAL</I> or <I>TCL_LOAD_LAZY</I>
+or a combination of those two is allowed as well.
+<P><DT>void <B>*procPtrs</B> (out)<DD>
+Points to an array that will hold the addresses of the functions described in
+the <I>symbols</I> argument. Should be NULL if no symbols are to be resolved.
+<P><DT>Tcl_LoadHandle <B>*loadHandlePtr</B> (out)<DD>
+Points to a variable that will hold the handle to the abstract token
+describing the library that has been loaded.
+<P><DT>Tcl_LoadHandle <B>loadHandle</B> (in)<DD>
+Abstract token describing the library to look up a symbol in.
+<P><DT>const char <B>*symbol</B> (in)<DD>
+The name of the symbol to look up.
+<P></DL>
+<H3><A NAME="M5">DESCRIPTION</A></H3>
+<B>Tcl_LoadFile</B> loads a file from the filesystem (including potentially any
+virtual filesystem that has been installed) and provides a handle to it that
+may be used in further operations. The <I>symbols</I> array, if non-NULL,
+supplies a set of names of symbols (typically functions) that must be resolved
+from the library and which will be stored in the array indicated by
+<I>procPtrs</I>. If any of the symbols is not resolved, the loading of the file
+will fail with an error message left in the interpreter (if that is non-NULL).
+The result of <B>Tcl_LoadFile</B> is a standard Tcl error code. The library may
+be unloaded with <B><A class="doc" href="../TclLib/FileSystem.html">Tcl_FSUnloadFile</A></B>.
+<P>
+<B>Tcl_FindSymbol</B> locates a symbol in a loaded library and returns it. If
+the symbol cannot be found, it returns NULL and sets an error message in the
+given <I>interp</I> (if that is non-NULL). Note that it is unsafe to use this
+operation on a handle that has been passed to <B><A class="doc" href="../TclLib/FileSystem.html">Tcl_FSUnloadFile</A></B>.
+<H3><A NAME="M6">SEE ALSO</A></H3>
+<B><A class="doc" href="../TclLib/FileSystem.html">Tcl_FSLoadFile</A></B>, <B><A class="doc" href="../TclLib/FileSystem.html">Tcl_FSUnloadFile</A></B>, <B><A class="doc" href="../TclCmd/load.html">load</A></B>, <B><A class="doc" href="../TclCmd/unload.html">unload</A></B>
+<H3><A NAME="M7">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/B.html#binary code">binary code</A>, <A class="doc" href="../Keywords/L.html#loading">loading</A>, <A class="doc" href="../Keywords/S.html#shared library">shared library</A>
+<div class="copy">Copyright &copy; 2009-2010 Kevin B. Kenny
+Copyright &copy; 2010 Donal K. Fellows
+</div>
+</BODY></HTML>

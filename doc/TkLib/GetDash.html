@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>Tk_GetDash manual page - Tk Library Procedures</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tk C API, version 8.6.6</a> <small>&gt;</small> GetDash</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<DL>
+<DD><A class="doc" href="GetDash.html#M2" NAME="L296">NAME</A>
+<DL><DD>Tk_GetDash &mdash; convert from string to valid dash structure.</DD></DL>
+<DD><A class="doc" href="GetDash.html#M3" NAME="L297">SYNOPSIS</A>
+<DL>
+<DD><B>#include &lt;tk.h&gt;</B>
+<DD>
+<DD>int
+<DD><B>Tk_GetDash</B>(<I>interp, string, dashPtr</I>)
+</DL>
+<DD><A class="doc" href="GetDash.html#M4" NAME="L298">ARGUMENTS</A>
+<DL class="arguments">
+</DL>
+<DD><A class="doc" href="GetDash.html#M5" NAME="L299">DESCRIPTION</A>
+<DD><A class="doc" href="GetDash.html#M6" NAME="L300">SEE ALSO</A>
+<DD><A class="doc" href="GetDash.html#M7" NAME="L301">KEYWORDS</A>
+</DL>
+<H3><A NAME="M2">NAME</A></H3>
+Tk_GetDash &mdash; convert from string to valid dash structure.
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>#include &lt;tk.h&gt;</B><BR>
+<BR>
+int<BR>
+<B>Tk_GetDash</B>(<I>interp, string, dashPtr</I>)<BR>
+<H3><A NAME="M4">ARGUMENTS</A></H3>
+<DL class="arguments">
+<DT><A class="doc" href="../TclLib/Interp.html">Tcl_Interp</A> <B>*interp</B> (in)<DD>
+Interpreter to use for error reporting.
+<P><DT>const char <B>*string</B> (in)<DD>
+Textual value to be converted.
+<P><DT>Tk_Dash <B>*dashPtr</B> (out)<DD>
+Points to place to store the dash pattern
+value converted from <I>string</I>. Must not be NULL.
+<P></DL>
+<H3><A NAME="M5">DESCRIPTION</A></H3>
+These procedure parses the string and fills in the result in the
+Tk_Dash structure. The string can be a list of integers or a
+character string containing only
+&#8220;<B>.,-_</B>&#8221;
+and spaces. If all
+goes well, <B><A class="doc" href="../TclCmd/catch.html">TCL_OK</A></B> is returned and a dash descriptor is stored
+in the variable pointed to by <I>dashPtr</I>.
+If <I>string</I> does not have the
+proper syntax then <B><A class="doc" href="../TclCmd/catch.html">TCL_ERROR</A></B> is returned, an error message is left
+in the interpreter's result, and nothing is stored at *<I>dashPtr</I>.
+<P>
+The first possible syntax is a list of integers. Each element
+represents the number of pixels of a line segment. Only the odd
+segments are drawn using the
+&#8220;outline&#8221;
+color. The other segments are drawn transparent.
+<P>
+The second possible syntax is a character list containing only
+5 possible characters
+&#8220;<B>.,-_ </B>&#8221;.
+The space can be used
+to enlarge the space between other line elements, and can not
+occur in the first position of the string. Some examples:
+<P>
+<PRE>-dash .     = -dash {2 4}
+    -dash -     = -dash {6 4}
+    -dash -.    = -dash {6 4 2 4}
+    -dash -..   = -dash {6 4 2 4 2 4}
+    -dash {. }  = -dash {2 8}
+    -dash ,     = -dash {4 4}</PRE>
+<P>
+The main difference between this syntax and the numeric is that it
+is shape-conserving. This means that all values in the dash
+list will be multiplied by the line width before display. This
+ensures that
+&#8220;.&#8221;
+will always be displayed as a dot and
+&#8220;-&#8221;
+always as a dash regardless of the line width.
+<P>
+On systems where only a limited set of dash patterns, the dash
+pattern will be displayed as the most close dash pattern that
+is available. For example, on Windows only the first 4 of the
+above examples are available; the last 2 examples will be
+displayed identically to the first one.
+<H3><A NAME="M6">SEE ALSO</A></H3>
+<B><A class="doc" href="../TkCmd/canvas.html">canvas</A></B>, <B><A class="doc" href="../TkLib/CrtItemType.html">Tk_CreateItemType</A></B>
+<H3><A NAME="M7">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/D.html#dash">dash</A>, <A class="doc" href="../Keywords/C.html#conversion">conversion</A>
+<div class="copy">Copyright &copy; 1989-1993 The Regents of the University of California.
+Copyright &copy; 1994-1996 Sun Microsystems, Inc.
+</div>
+</BODY></HTML>

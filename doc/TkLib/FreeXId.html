@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>Tk_FreeXId manual page - Tk Library Procedures</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tk C API, version 8.6.6</a> <small>&gt;</small> FreeXId</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<H3><A NAME="M2">NAME</A></H3>
+Tk_FreeXId &mdash; make X resource identifier available for reuse
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>#include &lt;tk.h&gt;</B><BR>
+<B>Tk_FreeXId(</B><I>display, id</I><B>)</B><BR>
+<H3><A NAME="M4">ARGUMENTS</A></H3>
+<DL class="arguments">
+<DT>Display <B>*display</B> (in)<DD>
+Display for which <I>id</I> was allocated.
+<P><DT>XID <B>id</B> (in)<DD>
+Identifier of X resource (window, font, pixmap, cursor, graphics
+context, or colormap) that is no longer in use.
+<P></DL>
+<H3><A NAME="M5">DESCRIPTION</A></H3>
+The default allocator for resource identifiers provided by Xlib is very
+simple-minded and does not allow resource identifiers to be re-used.
+If a long-running application reaches the end of the resource id
+space, it will generate an X protocol error and crash.
+Tk replaces the default id allocator with its own allocator, which
+allows identifiers to be reused.
+In order for this to work, <B>Tk_FreeXId</B> must be called to
+tell the allocator about resources that have been freed.
+Tk automatically calls <B>Tk_FreeXId</B> whenever it frees a
+resource, so if you use procedures like <B><A class="doc" href="../TkLib/GetFont.html">Tk_GetFont</A></B>,
+<B><A class="doc" href="../TkLib/GetGC.html">Tk_GetGC</A></B>, and <B><A class="doc" href="../TkLib/GetPixmap.html">Tk_GetPixmap</A></B> then you need not call
+<B>Tk_FreeXId</B>.
+However, if you allocate resources directly from Xlib, for example
+by calling <B>XCreatePixmap</B>, then you should call <B>Tk_FreeXId</B>
+when you call the corresponding Xlib free procedure, such as
+<B>XFreePixmap</B>.
+If you do not call <B>Tk_FreeXId</B> then the resource identifier will
+be lost, which could cause problems if the application runs long enough
+to lose all of the available identifiers.
+<H3><A NAME="M6">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/R.html#resource identifier">resource identifier</A>
+<div class="copy">Copyright &copy; 1990 The Regents of the University of California.
+Copyright &copy; 1994-1996 Sun Microsystems, Inc.
+</div>
+</BODY></HTML>

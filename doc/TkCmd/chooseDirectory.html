@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>tk_chooseDirectory manual page - Tk Built-In Commands</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tk Commands, version 8.6.6</a> <small>&gt;</small> chooseDirectory</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<DL>
+<DD><A class="doc" href="chooseDirectory.html#M2" NAME="L429">NAME</A>
+<DL><DD>tk_chooseDirectory &mdash; pops up a dialog box for the user to select a directory.</DD></DL>
+<DD><A class="doc" href="chooseDirectory.html#M3" NAME="L430">SYNOPSIS</A>
+<DL>
+</DL>
+<DD><A class="doc" href="chooseDirectory.html#M4" NAME="L431">DESCRIPTION</A>
+<DL class="description">
+<DD><A class="doc" href="chooseDirectory.html#M5" NAME="L432"><B>-initialdir</B> <I>dirname</I></A>
+<DD><A class="doc" href="chooseDirectory.html#M6" NAME="L433"><B>-mustexist</B> <I>boolean</I></A>
+<DD><A class="doc" href="chooseDirectory.html#M7" NAME="L434"><B>-parent</B> <I>window</I></A>
+<DD><A class="doc" href="chooseDirectory.html#M8" NAME="L435"><B>-title</B> <I>titleString</I></A>
+</DL>
+<DD><A class="doc" href="chooseDirectory.html#M9" NAME="L436">EXAMPLE</A>
+<DD><A class="doc" href="chooseDirectory.html#M10" NAME="L437">SEE ALSO</A>
+<DD><A class="doc" href="chooseDirectory.html#M11" NAME="L438">KEYWORDS</A>
+</DL>
+<H3><A NAME="M2">NAME</A></H3>
+tk_chooseDirectory &mdash; pops up a dialog box for the user to select a directory.
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>tk_chooseDirectory </B>?<I>option value ...</I>?<BR>
+<H3><A NAME="M4">DESCRIPTION</A></H3>
+The procedure <B>tk_chooseDirectory</B> pops up a dialog box for the
+user to select a directory. The following <I>option-value</I> pairs are
+possible as command line arguments:
+<P>
+<DL class="description">
+<DT><A NAME="M5"><B>-initialdir</B> <I>dirname</I></A><DD>
+Specifies that the directories in <I>directory</I> should be displayed
+when the dialog pops up. If this parameter is not specified,
+the initial directory defaults to the current working directory
+on non-Windows systems and on Windows systems prior to Vista.
+On Vista and later systems, the initial directory defaults to the last
+user-selected directory for the application. If the
+parameter specifies a relative path, the return value will convert the
+relative path to an absolute path.
+<P><DT><A NAME="M6"><B>-mustexist</B> <I>boolean</I></A><DD>
+Specifies whether the user may specify non-existent directories.  If
+this parameter is true, then the user may only select directories that
+already exist.  The default value is <I>false</I>.
+<P><DT><A NAME="M7"><B>-parent</B> <I>window</I></A><DD>
+Makes <I>window</I> the logical parent of the dialog. The dialog
+is displayed on top of its parent window. On Mac OS X, this
+turns the file dialog into a sheet attached to the parent window.
+<P><DT><A NAME="M8"><B>-title</B> <I>titleString</I></A><DD>
+Specifies a string to display as the title of the dialog box. If this
+option is not specified, then a default title will be displayed.
+<P></DL>
+<H3><A NAME="M9">EXAMPLE</A></H3>
+<PRE>set dir [<B>tk_chooseDirectory</B> &#92;
+        -initialdir ~ -title &quot;Choose a directory&quot;]
+if {$dir eq &quot;&quot;} {
+   label .l -text &quot;No directory selected&quot;
+} else {
+   label .l -text &quot;Selected $dir&quot;
+}</PRE>
+<H3><A NAME="M10">SEE ALSO</A></H3>
+<B>tk_getOpenFile</B>, <B>tk_getSaveFile</B>
+<H3><A NAME="M11">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/D.html#directory">directory</A>, <A class="doc" href="../Keywords/S.html#selection">selection</A>, <A class="doc" href="../Keywords/D.html#dialog">dialog</A>, <A class="doc" href="../Keywords/P.html#platform-specific">platform-specific</A>
+<div class="copy">Copyright &copy; 1998-2000 by Scriptics Corporation.
+</div>
+</BODY></HTML>

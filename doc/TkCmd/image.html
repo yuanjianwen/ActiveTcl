@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>image manual page - Tk Built-In Commands</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tk Commands, version 8.6.6</a> <small>&gt;</small> image</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<DL>
+<DD><A class="doc" href="image.html#M2" NAME="L813">NAME</A>
+<DL><DD>image &mdash; Create and manipulate images</DD></DL>
+<DD><A class="doc" href="image.html#M3" NAME="L814">SYNOPSIS</A>
+<DL>
+</DL>
+<DD><A class="doc" href="image.html#M4" NAME="L815">DESCRIPTION</A>
+<DL class="description">
+<DD><A class="doc" href="image.html#M5" NAME="L816"><B>image create </B><I>type </I>?<I>name</I>? ?<I>option value ...</I>?</A>
+<DD><A class="doc" href="image.html#M6" NAME="L817"><B>image delete </B>?<I>name name</I> ...?</A>
+<DD><A class="doc" href="image.html#M7" NAME="L818"><B>image height </B><I>name</I></A>
+<DD><A class="doc" href="image.html#M8" NAME="L819"><B>image inuse </B><I>name</I></A>
+<DD><A class="doc" href="image.html#M9" NAME="L820"><B>image names</B></A>
+<DD><A class="doc" href="image.html#M10" NAME="L821"><B>image type </B><I>name</I></A>
+<DD><A class="doc" href="image.html#M11" NAME="L822"><B>image types</B></A>
+<DD><A class="doc" href="image.html#M12" NAME="L823"><B>image width </B><I>name</I></A>
+</DL>
+<DD><A class="doc" href="image.html#M13" NAME="L824">BUILT-IN IMAGE TYPES</A>
+<DL class="built-in image types">
+<DD><A class="doc" href="image.html#M14" NAME="L825"><B>bitmap</B></A>
+<DD><A class="doc" href="image.html#M15" NAME="L826"><B>photo</B></A>
+</DL>
+<DD><A class="doc" href="image.html#M16" NAME="L827">SEE ALSO</A>
+<DD><A class="doc" href="image.html#M17" NAME="L828">KEYWORDS</A>
+</DL>
+<H3><A NAME="M2">NAME</A></H3>
+image &mdash; Create and manipulate images
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>image</B> <I>option </I>?<I>arg arg ...</I>?<BR>
+<H3><A NAME="M4">DESCRIPTION</A></H3>
+The <B>image</B> command is used to create, delete, and query images.
+It can take several different forms, depending on the
+<I>option</I> argument.  The legal forms are:
+<P>
+<DL class="description">
+<DT><A NAME="M5"><B>image create </B><I>type </I>?<I>name</I>? ?<I>option value ...</I>?</A><DD>
+Creates a new image and a command with the same name and returns its name.
+<I>type</I> specifies the type of the image, which must be one of
+the types currently defined (e.g., <B><A class="doc" href="../TkCmd/bitmap.html">bitmap</A></B>).
+<I>name</I> specifies the name for the image;  if it is omitted then
+Tk picks a name of the form <B>image</B><I>x</I>, where <I>x</I> is
+an integer.
+There may be any number of <I>option</I>-<I>value</I> pairs,
+which provide configuration options for the new image.
+The legal set of options is defined separately for each image
+type;  see below for details on the options for built-in image types.
+If an image already exists by the given name then it is replaced
+with the new image and any instances of that image will redisplay
+with the new contents.
+It is important to note that the image command will silently overwrite any
+procedure that may currently be defined by the given name, so choose the
+name wisely.  It is recommended to use a separate namespace for image names
+(e.g., <B>::img::logo</B>, <B>::img::large</B>).
+<P><DT><A NAME="M6"><B>image delete </B>?<I>name name</I> ...?</A><DD>
+Deletes each of the named images and returns an empty string.
+If there are instances of the images displayed in widgets,
+the images will not actually be deleted until all of the instances
+are released.
+However, the association between the instances and the image
+manager will be dropped.
+Existing instances will retain their sizes but redisplay as
+empty areas.
+If a deleted image is recreated with another call to <B>image create</B>,
+the existing instances will use the new image.
+<P><DT><A NAME="M7"><B>image height </B><I>name</I></A><DD>
+Returns a decimal string giving the height of image <I>name</I>
+in pixels.
+<P><DT><A NAME="M8"><B>image inuse </B><I>name</I></A><DD>
+Returns a boolean value indicating whether or not the image given by
+<I>name</I> is in use by any widgets.
+<P><DT><A NAME="M9"><B>image names</B></A><DD>
+Returns a list containing the names of all existing images.
+<P><DT><A NAME="M10"><B>image type </B><I>name</I></A><DD>
+Returns the type of image <I>name</I> (the value of the <I>type</I>
+argument to <B>image create</B> when the image was created).
+<P><DT><A NAME="M11"><B>image types</B></A><DD>
+Returns a list whose elements are all of the valid image types
+(i.e., all of the values that may be supplied for the <I>type</I>
+argument to <B>image create</B>).
+<P><DT><A NAME="M12"><B>image width </B><I>name</I></A><DD>
+Returns a decimal string giving the width of image <I>name</I>
+in pixels.
+<P></DL>
+<P>
+Additional operations (e.g. writing the image to a file) may be
+available as subcommands of the image instance command. See the manual
+page for the particular image type for details.
+<H3><A NAME="M13">BUILT-IN IMAGE TYPES</A></H3>
+The following image types are defined by Tk so they will be available
+in any Tk application.
+Individual applications or extensions may define additional types.
+<P>
+<DL class="built-in image types">
+<DT><A NAME="M14"><B>bitmap</B></A><DD>
+Each pixel in the image displays a foreground color, a background
+color, or nothing.
+See the <B><A class="doc" href="../TkCmd/bitmap.html">bitmap</A></B> manual entry for more information.
+<P><DT><A NAME="M15"><B>photo</B></A><DD>
+Displays a variety of full-color images, using dithering to
+approximate colors on displays with limited color capabilities.
+See the <B><A class="doc" href="../TkCmd/photo.html">photo</A></B> manual entry for more information.
+<P></DL>
+<H3><A NAME="M16">SEE ALSO</A></H3>
+<B><A class="doc" href="../TkCmd/bitmap.html">bitmap</A></B>, <B><A class="doc" href="../TkCmd/options.html">options</A></B>, <B><A class="doc" href="../TkCmd/photo.html">photo</A></B>
+<H3><A NAME="M17">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/H.html#height">height</A>, <A class="doc" href="../Keywords/I.html#image">image</A>, <A class="doc" href="../Keywords/T.html#types of images">types of images</A>, <A class="doc" href="../Keywords/W.html#width">width</A>
+<div class="copy">Copyright &copy; 1994 The Regents of the University of California.
+Copyright &copy; 1994-1996 Sun Microsystems, Inc.
+</div>
+</BODY></HTML>

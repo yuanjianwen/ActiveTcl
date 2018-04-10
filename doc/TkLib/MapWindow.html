@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>Tk_MapWindow manual page - Library Procedures</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tk C API, version 8.6.6</a> <small>&gt;</small> MapWindow</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<H3><A NAME="M2">NAME</A></H3>
+Tk_MapWindow, Tk_UnmapWindow &mdash; map or unmap a window
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>#include &lt;tk.h&gt;</B><BR>
+<A class="doc" href="../TkLib/WindowId.html">Tk_Window</A><BR>
+<B>Tk_MapWindow</B>(<I>tkwin</I>)<BR>
+<B>Tk_UnmapWindow</B>(<I>tkwin</I>)<BR>
+<H3><A NAME="M4">ARGUMENTS</A></H3>
+<DL class="arguments">
+<DT><A class="doc" href="../TkLib/WindowId.html">Tk_Window</A> <B>tkwin</B> (in)<DD>
+Token for window.
+<P></DL>
+<H3><A NAME="M5">DESCRIPTION</A></H3>
+These procedures may be used to map and unmap windows
+managed by Tk.  <B>Tk_MapWindow</B> maps the window given
+by <I>tkwin</I>, and also creates an X window corresponding
+to <I>tkwin</I> if it does not already exist.  See the
+<B><A class="doc" href="../TkLib/CrtWindow.html">Tk_CreateWindow</A></B> manual entry for information on
+deferred window creation.
+<B>Tk_UnmapWindow</B> unmaps <I>tkwin</I>'s window
+from the screen.
+<P>
+If <I>tkwin</I> is a child window (i.e. <B><A class="doc" href="../TkLib/CrtWindow.html">Tk_CreateWindow</A></B> was
+used to create a child window), then event handlers interested in map
+and unmap events are invoked immediately.  If <I>tkwin</I> is not an
+internal window, then the event handlers will be invoked later, after
+X has seen the request and returned an event for it.
+<P>
+These procedures should be used in place of the X procedures
+<B>XMapWindow</B> and <B>XUnmapWindow</B>, since they update
+Tk's local data structure for <I>tkwin</I>.  Applications
+using Tk should not invoke <B>XMapWindow</B> and <B>XUnmapWindow</B>
+directly.
+<H3><A NAME="M6">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/M.html#map">map</A>, <A class="doc" href="../Keywords/U.html#unmap">unmap</A>, <A class="doc" href="../Keywords/W.html#window">window</A>
+<div class="copy">Copyright &copy; 1990 The Regents of the University of California.
+Copyright &copy; 1994-1997 Sun Microsystems, Inc.
+</div>
+</BODY></HTML>

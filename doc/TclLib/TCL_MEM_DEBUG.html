@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>TCL_MEM_DEBUG manual page - Tcl Library Procedures</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tcl C API, version 8.6.6</a> <small>&gt;</small> TCL_MEM_DEBUG</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<H3><A NAME="M2">NAME</A></H3>
+TCL_MEM_DEBUG &mdash; Compile-time flag to enable Tcl memory debugging
+<H3><A NAME="M3">DESCRIPTION</A></H3>
+When Tcl is compiled with <B>TCL_MEM_DEBUG</B> defined, a powerful set
+of memory debugging aids is included in the compiled binary.  This
+includes C and Tcl functions which can aid with debugging
+memory leaks, memory allocation overruns, and other memory related
+errors.
+<H3><A NAME="M4">ENABLING MEMORY DEBUGGING</A></H3>
+To enable memory debugging, Tcl should be recompiled from scratch with
+<B>TCL_MEM_DEBUG</B> defined (e.g. by passing the
+<I>--enable-symbols=mem</I> flag to the <I>configure</I> script when
+building).  This will also compile in a non-stub
+version of <B><A class="doc" href="../TclLib/DumpActiveMemory.html">Tcl_InitMemory</A></B> to add the <B><A class="doc" href="../TclCmd/memory.html">memory</A></B> command to Tcl.
+<P>
+<B>TCL_MEM_DEBUG</B> must be either left defined for all modules or undefined
+for all modules that are going to be linked together.  If they are not, link
+errors will occur, with either <B>Tcl_DbCkfree</B> and <B>Tcl_DbCkalloc</B> or
+<B><A class="doc" href="../TclLib/Alloc.html">Tcl_Alloc</A></B> and <B><A class="doc" href="../TclLib/Alloc.html">Tcl_Free</A></B> being undefined.
+<P>
+Once memory debugging support has been compiled into Tcl, the C
+functions <B><A class="doc" href="../TclLib/DumpActiveMemory.html">Tcl_ValidateAllMemory</A></B>, and <B><A class="doc" href="../TclLib/DumpActiveMemory.html">Tcl_DumpActiveMemory</A></B>,
+and the Tcl <B><A class="doc" href="../TclCmd/memory.html">memory</A></B> command can be used to validate and examine
+memory usage.
+<H3><A NAME="M5">GUARD ZONES</A></H3>
+When memory debugging is enabled, whenever a call to <B><A class="doc" href="../TclLib/Alloc.html">ckalloc</A></B> is
+made, slightly more memory than requested is allocated so the memory
+debugging code can keep track of the allocated memory, and eight-byte
+&#8220;guard zones&#8221;
+are placed in front of and behind the space that will be
+returned to the caller.  (The sizes of the guard zones are defined by the
+C #define <B>LOW_GUARD_SIZE</B> and #define <B>HIGH_GUARD_SIZE</B>
+in the file <I>generic/tclCkalloc.c</I> &#8212; it can
+be extended if you suspect large overwrite problems, at some cost in
+performance.)  A known pattern is written into the guard zones and, on
+a call to <B><A class="doc" href="../TclLib/Alloc.html">ckfree</A></B>, the guard zones of the space being freed are
+checked to see if either zone has been modified in any way.  If one
+has been, the guard bytes and their new contents are identified, and a
+&#8220;low guard failed&#8221;
+or
+&#8220;high guard failed&#8221;
+message is issued.  The
+&#8220;guard failed&#8221;
+message includes the address of the memory packet and
+the file name and line number of the code that called <B><A class="doc" href="../TclLib/Alloc.html">ckfree</A></B>.
+This allows you to detect the common sorts of one-off problems, where
+not enough space was allocated to contain the data written, for
+example.
+<H3><A NAME="M6">DEBUGGING DIFFICULT MEMORY CORRUPTION PROBLEMS</A></H3>
+Normally, Tcl compiled with memory debugging enabled will make it easy
+to isolate a corruption problem.  Turning on memory validation with
+the memory command can help isolate difficult problems.  If you
+suspect (or know) that corruption is occurring before the Tcl
+interpreter comes up far enough for you to issue commands, you can set
+<B>MEM_VALIDATE</B> define, recompile tclCkalloc.c and rebuild Tcl.
+This will enable memory validation from the first call to
+<B><A class="doc" href="../TclLib/Alloc.html">ckalloc</A></B>, again, at a large performance impact.
+<P>
+If you are desperate and validating memory on every call to
+<B><A class="doc" href="../TclLib/Alloc.html">ckalloc</A></B> and <B><A class="doc" href="../TclLib/Alloc.html">ckfree</A></B> is not enough, you can explicitly call
+<B><A class="doc" href="../TclLib/DumpActiveMemory.html">Tcl_ValidateAllMemory</A></B> directly at any point.  It takes a <I>char
+*</I> and an <I>int</I> which are normally the filename and line number
+of the caller, but they can actually be anything you want.  Remember
+to remove the calls after you find the problem.
+<H3><A NAME="M7">SEE ALSO</A></H3>
+<B><A class="doc" href="../TclLib/Alloc.html">ckalloc</A></B>, <B><A class="doc" href="../TclCmd/memory.html">memory</A></B>, <B><A class="doc" href="../TclLib/DumpActiveMemory.html">Tcl_ValidateAllMemory</A></B>, <B><A class="doc" href="../TclLib/DumpActiveMemory.html">Tcl_DumpActiveMemory</A></B>
+<H3><A NAME="M8">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/M.html#memory">memory</A>, <A class="doc" href="../Keywords/D.html#debug">debug</A>
+<div class="copy">Copyright &copy; 1992-1999 Karl Lehenbauer and Mark Diekhans.
+Copyright &copy; 2000 by Scriptics Corporation.
+</div>
+</BODY></HTML>

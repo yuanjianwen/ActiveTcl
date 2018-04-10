@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>Tk_CreateClientMessageHandler manual page - Tk Library Procedures</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tk C API, version 8.6.6</a> <small>&gt;</small> CrtCmHdlr</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<H3><A NAME="M2">NAME</A></H3>
+Tk_CreateClientMessageHandler, Tk_DeleteClientMessageHandler &mdash; associate procedure callback with ClientMessage type X events
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>#include &lt;tk.h&gt;</B><BR>
+<B>Tk_CreateClientMessageHandler</B>(<I>proc</I>)<BR>
+<B>Tk_DeleteClientMessageHandler</B>(<I>proc</I>)<BR>
+<H3><A NAME="M4">ARGUMENTS</A></H3>
+<DL class="arguments">
+<DT>Tk_ClientMessageProc <B>*proc</B> (in)<DD>
+Procedure to invoke whenever a ClientMessage X event occurs on any display.
+<P></DL>
+<H3><A NAME="M5">DESCRIPTION</A></H3>
+<B>Tk_CreateClientMessageHandler</B> arranges for <I>proc</I> to be invoked
+in the future whenever a ClientMessage X event occurs that is not handled by
+<B>WM_PROTOCOL</B>.  <B>Tk_CreateClientMessageHandler</B> is intended for use
+by applications which need to watch X ClientMessage events, such as drag and
+drop applications.
+<P>
+The callback to <I>proc</I> will be made by <B><A class="doc" href="../TkLib/HandleEvent.html">Tk_HandleEvent</A></B>;
+this mechanism only works in programs that dispatch events
+through <B><A class="doc" href="../TkLib/HandleEvent.html">Tk_HandleEvent</A></B> (or through other Tk procedures that
+call <B><A class="doc" href="../TkLib/HandleEvent.html">Tk_HandleEvent</A></B>, such as <B>Tk_DoOneEvent</B> or
+<B><A class="doc" href="../TkLib/MainLoop.html">Tk_MainLoop</A></B>).
+<P>
+<I>Proc</I> should have arguments and result that match the
+type <B>Tk_ClientMessageProc</B>:
+<PRE>typedef int <B>Tk_ClientMessageProc</B>(
+        <A class="doc" href="../TkLib/WindowId.html">Tk_Window</A> <I>tkwin</I>,
+        XEvent *<I>eventPtr</I>);</PRE>
+The <I>tkwin</I> parameter to <I>proc</I> is the Tk window which is
+associated with this event.  <I>EventPtr</I> is a pointer to the X event.
+<P>
+Whenever an X ClientMessage event is processed by <B><A class="doc" href="../TkLib/HandleEvent.html">Tk_HandleEvent</A></B>,
+the <I>proc</I> is called if it was not handled as a <B>WM_PROTOCOL</B>.
+The return value from <I>proc</I> is normally 0.
+A non-zero return value indicates that the event is not to be handled
+further; that is, <I>proc</I> has done all processing that is to be
+allowed for the event.
+<P>
+If there are multiple ClientMessage event handlers, each one is called
+for each event, in the order in which they were established.
+<P>
+<B>Tk_DeleteClientMessageHandler</B> may be called to delete a
+previously-created ClientMessage event handler: it deletes each handler it
+finds that matches the <I>proc</I> argument.  If no such handler exists,
+then <B>Tk_DeleteClientMessageHandler</B> returns without doing anything.
+Although Tk supports it, it's probably a bad idea to have more than one
+callback with the same <I>proc</I> argument.
+<H3><A NAME="M6">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/B.html#bind">bind</A>, <A class="doc" href="../Keywords/C.html#callback">callback</A>, <A class="doc" href="../Keywords/E.html#event">event</A>, <A class="doc" href="../Keywords/H.html#handler">handler</A>
+<div class="copy">Copyright &copy; 2000 Ajuba Solutions.
+</div>
+</BODY></HTML>

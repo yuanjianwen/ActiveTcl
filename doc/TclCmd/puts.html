@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>puts manual page - Tcl Built-In Commands</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tcl Commands, version 8.6.6</a> <small>&gt;</small> puts</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<H3><A NAME="M2">NAME</A></H3>
+puts &mdash; Write to a channel
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>puts </B>?<B>-nonewline</B>? ?<I>channelId</I>? <I>string</I><BR>
+<H3><A NAME="M4">DESCRIPTION</A></H3>
+Writes the characters given by <I>string</I> to the channel given
+by <I>channelId</I>.
+<P>
+<I>ChannelId</I> must be an identifier for an open channel such as a
+Tcl standard channel (<B><A class="doc" href="../TclLib/GetStdChan.html">stdout</A></B> or <B><A class="doc" href="../TclLib/GetStdChan.html">stderr</A></B>), the return
+value from an invocation of <B><A class="doc" href="../TclCmd/open.html">open</A></B> or <B><A class="doc" href="../TclCmd/socket.html">socket</A></B>, or the result
+of a channel creation command provided by a Tcl extension. The channel
+must have been opened for output.
+<P>
+If no <I>channelId</I> is specified then it defaults to
+<B><A class="doc" href="../TclLib/GetStdChan.html">stdout</A></B>. <B>Puts</B> normally outputs a newline character after
+<I>string</I>, but this feature may be suppressed by specifying the
+<B>-nonewline</B> switch.
+<P>
+Newline characters in the output are translated by <B>puts</B> to
+platform-specific end-of-line sequences according to the current
+value of the <B>-translation</B> option for the channel (for example,
+on PCs newlines are normally replaced with carriage-return-linefeed
+sequences.
+See the <B><A class="doc" href="../TclCmd/fconfigure.html">fconfigure</A></B> manual entry for a discussion on ways in
+which <B><A class="doc" href="../TclCmd/fconfigure.html">fconfigure</A></B> will alter output.
+<P>
+Tcl buffers output internally, so characters written with <B>puts</B>
+may not appear immediately on the output file or device;  Tcl will
+normally delay output until the buffer is full or the channel is
+closed.
+You can force output to appear immediately with the <B><A class="doc" href="../TclCmd/flush.html">flush</A></B>
+command.
+<P>
+When the output buffer fills up, the <B>puts</B> command will normally
+block until all the buffered data has been accepted for output by the
+operating system.
+If <I>channelId</I> is in nonblocking mode then the <B>puts</B> command
+will not block even if the operating system cannot accept the data.
+Instead, Tcl continues to buffer the data and writes it in the
+background as fast as the underlying file or device can accept it.
+The application must use the Tcl event loop for nonblocking output
+to work;  otherwise Tcl never finds out that the file or device is
+ready for more output data.
+It is possible for an arbitrarily large amount of data to be
+buffered for a channel in nonblocking mode, which could consume a
+large amount of memory.
+To avoid wasting memory, nonblocking I/O should normally
+be used in an event-driven fashion with the <B><A class="doc" href="../TclCmd/fileevent.html">fileevent</A></B> command
+(do not invoke <B>puts</B> unless you have recently been notified
+via a file event that the channel is ready for more output data).
+<H3><A NAME="M5">EXAMPLES</A></H3>
+Write a short message to the console (or wherever <B><A class="doc" href="../TclLib/GetStdChan.html">stdout</A></B> is
+directed):
+<P>
+<PRE><B>puts</B> &quot;Hello, World!&quot;</PRE>
+<P>
+Print a message in several parts:
+<P>
+<PRE><B>puts</B> -nonewline &quot;Hello, &quot;
+<B>puts</B> &quot;World!&quot;</PRE>
+<P>
+Print a message to the standard error channel:
+<P>
+<PRE><B>puts</B> stderr &quot;Hello, World!&quot;</PRE>
+<P>
+Append a log message to a file:
+<P>
+<PRE>set chan [open my.log a]
+set timestamp [clock format [clock seconds]]
+<B>puts</B> $chan &quot;$timestamp - Hello, World!&quot;
+close $chan</PRE>
+<H3><A NAME="M6">SEE ALSO</A></H3>
+<B><A class="doc" href="../TclCmd/file.html">file</A></B>, <B><A class="doc" href="../TclCmd/fileevent.html">fileevent</A></B>, <B><A class="doc" href="../TclLib/StdChannels.html">Tcl_StandardChannels</A></B>
+<H3><A NAME="M7">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/C.html#channel">channel</A>, <A class="doc" href="../Keywords/N.html#newline">newline</A>, <A class="doc" href="../Keywords/O.html#output">output</A>, <A class="doc" href="../Keywords/W.html#write">write</A>
+<div class="copy">Copyright &copy; 1993 The Regents of the University of California.
+Copyright &copy; 1994-1996 Sun Microsystems, Inc.
+</div>
+</BODY></HTML>

@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>ttk::checkbutton manual page - Tk Themed Widget</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tk Commands, version 8.6.6</a> <small>&gt;</small> ttk_checkbutton</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<DL>
+<DD><A class="doc" href="ttk_checkbutton.html#M2" NAME="L1754">NAME</A>
+<DL><DD>ttk::checkbutton &mdash; On/off widget</DD></DL>
+<DD><A class="doc" href="ttk_checkbutton.html#M3" NAME="L1755">SYNOPSIS</A>
+<DL>
+</DL>
+<DD><A class="doc" href="ttk_checkbutton.html#M4" NAME="L1756">DESCRIPTION</A>
+<DD><A class="doc" href="ttk_checkbutton.html#M5" NAME="L1757">STANDARD OPTIONS</A>
+<DL>
+<DD><A class="doc" href="ttk_widget.html#M-class">-class, undefined, undefined</A>
+<DD><A class="doc" href="ttk_widget.html#M-compound">-compound, compound, Compound</A>
+<DD><A class="doc" href="ttk_widget.html#M-cursor">-cursor, cursor, Cursor</A>
+<DD><A class="doc" href="ttk_widget.html#M-image">-image, image, Image</A>
+<DD><A class="doc" href="ttk_widget.html#M-state">-state, state, State</A>
+<DD><A class="doc" href="ttk_widget.html#M-style">-style, style, Style</A>
+<DD><A class="doc" href="ttk_widget.html#M-takefocus">-takefocus, takeFocus, TakeFocus</A>
+<DD><A class="doc" href="ttk_widget.html#M-text">-text, text, Text</A>
+<DD><A class="doc" href="ttk_widget.html#M-textvariable">-textvariable, textVariable, Variable</A>
+<DD><A class="doc" href="ttk_widget.html#M-underline">-underline, underline, Underline</A>
+<DD><A class="doc" href="ttk_widget.html#M-width">-width, width, Width</A>
+</DL>
+<DD><A class="doc" href="ttk_checkbutton.html#M6" NAME="L1758">WIDGET-SPECIFIC OPTIONS</A>
+<DL>
+<DD><A class="doc" href="ttk_checkbutton.html#M7" NAME="L1759">-command, command, Command</A>
+<DD><A class="doc" href="ttk_checkbutton.html#M8" NAME="L1760">-offvalue, offValue, OffValue</A>
+<DD><A class="doc" href="ttk_checkbutton.html#M9" NAME="L1761">-onvalue, onValue, OnValue</A>
+<DD><A class="doc" href="ttk_checkbutton.html#M10" NAME="L1762">-variable, variable, Variable</A>
+</DL>
+<DD><A class="doc" href="ttk_checkbutton.html#M11" NAME="L1763">WIDGET COMMAND</A>
+<DL class="widget command">
+<DD><A class="doc" href="ttk_checkbutton.html#M12" NAME="L1764"><I>pathname</I><B> invoke</B></A>
+</DL>
+<DD><A class="doc" href="ttk_checkbutton.html#M13" NAME="L1765">WIDGET STATES</A>
+<DD><A class="doc" href="ttk_checkbutton.html#M14" NAME="L1766">STANDARD STYLES</A>
+<DD><A class="doc" href="ttk_checkbutton.html#M15" NAME="L1767">SEE ALSO</A>
+<DD><A class="doc" href="ttk_checkbutton.html#M16" NAME="L1768">KEYWORDS</A>
+</DL>
+<H3><A NAME="M2">NAME</A></H3>
+ttk::checkbutton &mdash; On/off widget
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>ttk::checkbutton</B> <I>pathName </I>?<I>options</I>?<BR>
+<H3><A NAME="M4">DESCRIPTION</A></H3>
+A <B>ttk::checkbutton</B> widget is used to show or change a setting.
+It has two states, selected and deselected.
+The state of the checkbutton may be linked to a Tcl variable.
+<H3><A NAME="M5">STANDARD OPTIONS</A></H3>
+<DL>
+<DT><B><A class="doc" href="ttk_widget.html#M-class">-class, undefined, undefined</A></B>
+<DT><B><A class="doc" href="ttk_widget.html#M-compound">-compound, compound, Compound</A></B>
+<DT><B><A class="doc" href="ttk_widget.html#M-cursor">-cursor, cursor, Cursor</A></B>
+<DT><B><A class="doc" href="ttk_widget.html#M-image">-image, image, Image</A></B>
+<DT><B><A class="doc" href="ttk_widget.html#M-state">-state, state, State</A></B>
+<DT><B><A class="doc" href="ttk_widget.html#M-style">-style, style, Style</A></B>
+<DT><B><A class="doc" href="ttk_widget.html#M-takefocus">-takefocus, takeFocus, TakeFocus</A></B>
+<DT><B><A class="doc" href="ttk_widget.html#M-text">-text, text, Text</A></B>
+<DT><B><A class="doc" href="ttk_widget.html#M-textvariable">-textvariable, textVariable, Variable</A></B>
+<DT><B><A class="doc" href="ttk_widget.html#M-underline">-underline, underline, Underline</A></B>
+<DT><B><A class="doc" href="ttk_widget.html#M-width">-width, width, Width</A></B>
+</DL>
+<H3><A NAME="M6">WIDGET-SPECIFIC OPTIONS</A></H3>
+<DL>
+<DT>Command-Line Name: <B><A NAME="M7">-command</A></B>
+<DT>Database Name: <B>command</B>
+<DT>Database Class: <B>Command</B>
+<DD>A Tcl script to execute whenever the widget is invoked.
+<P><DT>Command-Line Name: <B><A NAME="M8">-offvalue</A></B>
+<DT>Database Name: <B>offValue</B>
+<DT>Database Class: <B>OffValue</B>
+<DD>The value to store in the associated <B>-variable</B>
+when the widget is deselected.  Defaults to <B>0</B>.
+<P><DT>Command-Line Name: <B><A NAME="M9">-onvalue</A></B>
+<DT>Database Name: <B>onValue</B>
+<DT>Database Class: <B>OnValue</B>
+<DD>The value to store in the associated <B>-variable</B>
+when the widget is selected.  Defaults to <B>1</B>.
+<P><DT>Command-Line Name: <B><A NAME="M10">-variable</A></B>
+<DT>Database Name: <B>variable</B>
+<DT>Database Class: <B>Variable</B>
+<DD>The name of a global variable whose value is linked to the widget.
+Defaults to the widget pathname if not specified.
+</DL>
+<H3><A NAME="M11">WIDGET COMMAND</A></H3>
+In addition to the standard
+<B>cget</B>, <B>configure</B>, <B>identify</B>, <B>instate</B>, and <B>state</B>
+commands, checkbuttons support the following additional
+widget commands:
+<P>
+<DL class="widget command">
+<DT><A NAME="M12"><I>pathname</I><B> invoke</B></A><DD>
+Toggles between the selected and deselected states
+and evaluates the associated <B>-command</B>.
+If the widget is currently selected, sets the <B>-variable</B>
+to the <B>-offvalue</B> and deselects the widget;
+otherwise, sets the <B>-variable</B> to the <B>-onvalue</B>
+Returns the result of the <B>-command</B>.
+<P></DL>
+<H3><A NAME="M13">WIDGET STATES</A></H3>
+The widget does not respond to user input if the <B>disabled</B> state is set.
+The widget sets the <B>selected</B> state whenever
+the linked <B>-variable</B> is set to the widget's <B>-onvalue</B>,
+and clears it otherwise.
+The widget sets the <B>alternate</B> state whenever the
+linked <B>-variable</B> is unset.
+(The <B>alternate</B> state may be used to indicate a
+&#8220;tri-state&#8221;
+or
+&#8220;indeterminate&#8221;
+selection.)
+<H3><A NAME="M14">STANDARD STYLES</A></H3>
+<B>Ttk::checkbutton</B> widgets support the <B>Toolbutton</B> style in all
+standard themes, which is useful for creating widgets for toolbars.
+<H3><A NAME="M15">SEE ALSO</A></H3>
+<B><A class="doc" href="../TkCmd/ttk_widget.html">ttk::widget</A></B>, <B><A class="doc" href="../TkCmd/ttk_radiobutton.html">ttk::radiobutton</A></B>, <B><A class="doc" href="../TkCmd/checkbutton.html">checkbutton</A></B>
+<H3><A NAME="M16">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/W.html#widget">widget</A>, <A class="doc" href="../Keywords/B.html#button">button</A>, <A class="doc" href="../Keywords/T.html#toggle">toggle</A>, <A class="doc" href="../Keywords/C.html#check">check</A>, <A class="doc" href="../Keywords/O.html#option">option</A>
+<div class="copy">Copyright &copy; 2004 Joe English
+</div>
+</BODY></HTML>

@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>Tcl_PrintDouble manual page - Tcl Library Procedures</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tcl C API, version 8.6.6</a> <small>&gt;</small> PrintDbl</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<H3><A NAME="M2">NAME</A></H3>
+Tcl_PrintDouble &mdash; Convert floating value to string
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>#include &lt;tcl.h&gt;</B><BR>
+<B>Tcl_PrintDouble</B>(<I>interp, value, dst</I>)<BR>
+<H3><A NAME="M4">ARGUMENTS</A></H3>
+<DL class="arguments">
+<DT><A class="doc" href="../TclLib/Interp.html">Tcl_Interp</A> <B>*interp</B> (in)<DD>
+Before Tcl 8.0, the <B><A class="doc" href="../TclCmd/tclvars.html">tcl_precision</A></B> variable in this interpreter
+controlled the conversion.  As of Tcl 8.0, this argument is ignored and
+the conversion is controlled by the <B><A class="doc" href="../TclCmd/tclvars.html">tcl_precision</A></B> variable
+that is now shared by all interpreters.
+<P><DT>double <B>value</B> (in)<DD>
+Floating-point value to be converted.
+<P><DT>char <B>*dst</B> (out)<DD>
+Where to store the string representing <I>value</I>.  Must have at
+least <B>TCL_DOUBLE_SPACE</B> characters of storage.
+<P></DL>
+<H3><A NAME="M5">DESCRIPTION</A></H3>
+<B>Tcl_PrintDouble</B> generates a string that represents the value
+of <I>value</I> and stores it in memory at the location given by
+<I>dst</I>.  It uses <B>%g</B> format to generate the string, with one
+special twist: the string is guaranteed to contain either a
+&#8220;.&#8221;
+or an
+&#8220;e&#8221;
+so that it does not look like an integer.  Where <B>%g</B> would
+generate an integer with no decimal point, <B>Tcl_PrintDouble</B> adds
+&#8220;.0&#8221;.
+<P>
+If the <B><A class="doc" href="../TclCmd/tclvars.html">tcl_precision</A></B> value is non-zero, the result will have
+precisely that many digits of significance.  If the value is zero
+(the default), the result will have the fewest digits needed to
+represent the number in such a way that <B><A class="doc" href="../TclLib/DoubleObj.html">Tcl_NewDoubleObj</A></B>
+will generate the same number when presented with the given string.
+IEEE semantics of rounding to even apply to the conversion.
+<H3><A NAME="M6">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/C.html#conversion">conversion</A>, <A class="doc" href="../Keywords/D.html#double-precision">double-precision</A>, <A class="doc" href="../Keywords/F.html#floating-point">floating-point</A>, <A class="doc" href="../Keywords/S.html#string">string</A>
+<div class="copy">Copyright &copy; 1989-1993 The Regents of the University of California.
+Copyright &copy; 1994-1997 Sun Microsystems, Inc.
+</div>
+</BODY></HTML>

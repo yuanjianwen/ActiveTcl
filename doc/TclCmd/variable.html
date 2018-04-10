@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>variable manual page - Tcl Built-In Commands</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tcl Commands, version 8.6.6</a> <small>&gt;</small> variable</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<H3><A NAME="M2">NAME</A></H3>
+variable &mdash; create and initialize a namespace variable
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>variable </B><I>name</I><BR>
+<B>variable </B>?<I>name value...</I>?<BR>
+<H3><A NAME="M4">DESCRIPTION</A></H3>
+This command is normally used within a
+<B><A class="doc" href="../TclCmd/namespace.html">namespace eval</A></B> command to create one or more variables
+within a namespace.
+Each variable <I>name</I> is initialized with <I>value</I>.
+The <I>value</I> for the last variable is optional.
+<P>
+If a variable <I>name</I> does not exist, it is created.
+In this case, if <I>value</I> is specified,
+it is assigned to the newly created variable.
+If no <I>value</I> is specified, the new variable is left undefined.
+If the variable already exists,
+it is set to <I>value</I> if <I>value</I> is specified
+or left unchanged if no <I>value</I> is given.
+Normally, <I>name</I> is unqualified
+(does not include the names of any containing namespaces),
+and the variable is created in the current namespace.
+If <I>name</I> includes any namespace qualifiers,
+the variable is created in the specified namespace.  If the variable
+is not defined, it will be visible to the <B><A class="doc" href="../TclCmd/namespace.html">namespace which</A></B>
+command, but not to the <B><A class="doc" href="../TclCmd/info.html">info exists</A></B> command.
+<P>
+If the <B>variable</B> command is executed inside a Tcl procedure,
+it creates local variables
+linked to the corresponding namespace variables (and therefore these
+variables are listed by <B><A class="doc" href="../TclCmd/info.html">info vars</A></B>.)
+In this way the <B>variable</B> command resembles the <B><A class="doc" href="../TclCmd/global.html">global</A></B> command,
+although the <B><A class="doc" href="../TclCmd/global.html">global</A></B> command
+only links to variables in the global namespace.
+If any <I>value</I>s are given,
+they are used to modify the values of the associated namespace variables.
+If a namespace variable does not exist,
+it is created and optionally initialized.
+<P>
+A <I>name</I> argument cannot reference an element within an array.
+Instead, <I>name</I> should reference the entire array,
+and the initialization <I>value</I> should be left off.
+After the variable has been declared,
+elements within the array can be set using ordinary
+<B><A class="doc" href="../TclCmd/set.html">set</A></B> or <B><A class="doc" href="../TclCmd/array.html">array</A></B> commands.
+<H3><A NAME="M5">EXAMPLES</A></H3>
+Create a variable in a namespace:
+<P>
+<PRE>namespace eval foo {
+    <B>variable</B> bar 12345
+}</PRE>
+<P>
+Create an array in a namespace:
+<P>
+<PRE>namespace eval someNS {
+    <B>variable</B> someAry
+    array set someAry {
+        someName  someValue
+        otherName otherValue
+    }
+}</PRE>
+<P>
+Access variables in namespaces from a procedure:
+<P>
+<PRE>namespace eval foo {
+    proc spong {} {
+        # Variable in this namespace
+        <B>variable</B> bar
+        puts &quot;bar is $bar&quot;
+
+        # Variable in another namespace
+        <B>variable</B> ::someNS::someAry
+        parray someAry
+    }
+}</PRE>
+<H3><A NAME="M6">SEE ALSO</A></H3>
+<B><A class="doc" href="../TclCmd/global.html">global</A></B>, <B><A class="doc" href="../TclCmd/namespace.html">namespace</A></B>, <B><A class="doc" href="../TclCmd/upvar.html">upvar</A></B>
+<H3><A NAME="M7">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/G.html#global">global</A>, <A class="doc" href="../Keywords/N.html#namespace">namespace</A>, <A class="doc" href="../Keywords/P.html#procedure">procedure</A>, <A class="doc" href="../Keywords/V.html#variable">variable</A>
+<div class="copy">Copyright &copy; 1993-1997 Bell Labs Innovations for Lucent Technologies
+Copyright &copy; 1997 Sun Microsystems, Inc.
+</div>
+</BODY></HTML>

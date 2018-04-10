@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>Tcl_Concat manual page - Tcl Library Procedures</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tcl C API, version 8.6.6</a> <small>&gt;</small> Concat</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<H3><A NAME="M2">NAME</A></H3>
+Tcl_Concat &mdash; concatenate a collection of strings
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>#include &lt;tcl.h&gt;</B><BR>
+const char *<BR>
+<B>Tcl_Concat</B>(<I>argc, argv</I>)<BR>
+<H3><A NAME="M4">ARGUMENTS</A></H3>
+<DL class="arguments">
+<DT>int <B><A class="doc" href="../TclCmd/tclvars.html">argc</A></B> (in)<DD>
+Number of strings.
+<P><DT>const char *const <B>argv[]</B> (in)<DD>
+Array of strings to concatenate.  Must have <I>argc</I> entries.
+<P></DL>
+<H3><A NAME="M5">DESCRIPTION</A></H3>
+<B>Tcl_Concat</B> is a utility procedure used by several of the
+Tcl commands.  Given a collection of strings, it concatenates
+them together into a single string, with the original strings
+separated by spaces.  This procedure behaves differently than
+<B><A class="doc" href="../TclLib/SplitList.html">Tcl_Merge</A></B>, in that the arguments are simply concatenated:
+no effort is made to ensure proper list structure.
+However, in most common usage the arguments will all be proper
+lists themselves;  if this is true, then the result will also have
+proper list structure.
+<P>
+<B>Tcl_Concat</B> eliminates leading and trailing white space as it
+copies strings from <B><A class="doc" href="../TclCmd/tclvars.html">argv</A></B> to the result.  If an element of
+<B><A class="doc" href="../TclCmd/tclvars.html">argv</A></B> consists of nothing but white space, then that string
+is ignored entirely.  This white-space removal was added to make
+the output of the <B><A class="doc" href="../TclCmd/concat.html">concat</A></B> command cleaner-looking.
+<P>
+The result string is dynamically allocated
+using <B><A class="doc" href="../TclLib/Alloc.html">Tcl_Alloc</A></B>;  the caller must eventually release the space
+by calling <B><A class="doc" href="../TclLib/Alloc.html">Tcl_Free</A></B>.
+<H3><A NAME="M6">SEE ALSO</A></H3>
+<B><A class="doc" href="../TclLib/StringObj.html">Tcl_ConcatObj</A></B>
+<H3><A NAME="M7">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/C.html#concatenate">concatenate</A>, <A class="doc" href="../Keywords/S.html#strings">strings</A>
+<div class="copy">Copyright &copy; 1989-1993 The Regents of the University of California.
+Copyright &copy; 1994-1996 Sun Microsystems, Inc.
+</div>
+</BODY></HTML>

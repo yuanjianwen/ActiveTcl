@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>Tk_GetJoinStyle manual page - Library Procedures</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tk C API, version 8.6.6</a> <small>&gt;</small> GetJoinStl</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<DL>
+<DD><A class="doc" href="GetJoinStl.html#M2" NAME="L328">NAME</A>
+<DL><DD>Tk_GetJoinStyle, Tk_NameOfJoinStyle &mdash; translate between strings and join styles</DD></DL>
+<DD><A class="doc" href="GetJoinStl.html#M3" NAME="L329">SYNOPSIS</A>
+<DL>
+<DD><B>#include &lt;tk.h&gt;</B>
+<DD>int
+<DD><B>Tk_GetJoinStyle(</B><I>interp, string, joinPtr</I><B>)</B>
+<DD>const char *
+<DD><B>Tk_NameOfJoinStyle(</B><I>join</I><B>)</B>
+</DL>
+<DD><A class="doc" href="GetJoinStl.html#M4" NAME="L330">ARGUMENTS</A>
+<DL class="arguments">
+</DL>
+<DD><A class="doc" href="GetJoinStl.html#M5" NAME="L331">DESCRIPTION</A>
+<DD><A class="doc" href="GetJoinStl.html#M6" NAME="L332">KEYWORDS</A>
+</DL>
+<H3><A NAME="M2">NAME</A></H3>
+Tk_GetJoinStyle, Tk_NameOfJoinStyle &mdash; translate between strings and join styles
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>#include &lt;tk.h&gt;</B><BR>
+int<BR>
+<B>Tk_GetJoinStyle(</B><I>interp, string, joinPtr</I><B>)</B><BR>
+const char *<BR>
+<B>Tk_NameOfJoinStyle(</B><I>join</I><B>)</B><BR>
+<H3><A NAME="M4">ARGUMENTS</A></H3>
+<DL class="arguments">
+<DT><A class="doc" href="../TclLib/Interp.html">Tcl_Interp</A> <B>*interp</B> (in)<DD>
+Interpreter to use for error reporting.
+<P><DT>const char <B>*string</B> (in)<DD>
+String containing name of join style - one of
+&#8220;<B>bevel</B>&#8221;,
+&#8220;<B>miter</B>&#8221;,
+or
+&#8220;<B>round</B>&#8221;
+- or a unique abbreviation of one.
+<P><DT>int <B>*joinPtr</B> (out)<DD>
+Pointer to location in which to store X join style corresponding to
+<I>string</I>.
+<P><DT>int <B><A class="doc" href="../TclCmd/join.html">join</A></B> (in)<DD>
+Join style: one of <B>JoinBevel</B>, <B>JoinMiter</B>, <B>JoinRound</B>.
+<P></DL>
+<H3><A NAME="M5">DESCRIPTION</A></H3>
+<B>Tk_GetJoinStyle</B> places in <I>*joinPtr</I> the X join style
+corresponding to <I>string</I>, which will be one of
+<B>JoinBevel</B>, <B>JoinMiter</B>, or <B>JoinRound</B>.
+Join styles are typically used in X graphics contexts to indicate
+how adjacent line segments should be joined together.
+See the X documentation for information on what each style
+implies.
+<P>
+Under normal circumstances the return value is <B><A class="doc" href="../TclCmd/catch.html">TCL_OK</A></B> and
+<I>interp</I> is unused.
+If <I>string</I> does not contain a valid join style
+or an abbreviation of one of these names, then an error message is
+stored in interpreter <I>interp</I>'s result, <B><A class="doc" href="../TclCmd/catch.html">TCL_ERROR</A></B> is returned, and
+<I>*joinPtr</I> is unmodified.
+<P>
+<B>Tk_NameOfJoinStyle</B> is the logical inverse of <B>Tk_GetJoinStyle</B>.
+Given a join style such as <B>JoinBevel</B> it returns a
+statically-allocated string corresponding to <I>join</I>.
+If <I>join</I> is not a legal join style, then
+&#8220;unknown join style&#8221;
+is returned.
+<H3><A NAME="M6">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/B.html#bevel">bevel</A>, <A class="doc" href="../Keywords/J.html#join style">join style</A>, <A class="doc" href="../Keywords/M.html#miter">miter</A>, <A class="doc" href="../Keywords/R.html#round">round</A>
+<div class="copy">Copyright &copy; 1990 The Regents of the University of California.
+Copyright &copy; 1994-1996 Sun Microsystems, Inc.
+</div>
+</BODY></HTML>

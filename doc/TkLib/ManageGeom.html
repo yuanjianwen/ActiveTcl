@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<head>
+<meta name="Author" content="ActiveState"><TITLE>Tk_ManageGeometry manual page - Tk Library Procedures</TITLE>
+<link rel="stylesheet" href="../docs.css" type="text/css" media="all"><link rel="stylesheet" type="text/css" href="../aspn.css">
+</HEAD>
+<body>
+<div class="banner"> 
+<table width="100%" border="0" cellspacing="0" cellpadding="3"> 
+<tr> 
+<td align="left"><a target="_blank" href="http://www.activestate.com/activetcl"> 
+<img src="../images/ActiveTcl.png" border="0" align="left" alt="ActiveTcl"></a> </td> 
+<td align="center" class="heading">ActiveTcl User Guide</td> 
+<td align="right"><a target="_blank" href="http://www.activestate.com"> 
+<img src="../images/AS_logo.gif" border="0" align="right" alt="ActiveState Software Inc."></a> </td> 
+</tr> 
+</table>
+</div>
+<H2><a class="doc" href="../contents.html">Tcl8.6.6/Tk8.6.6 Documentation</a> <small>&gt;</small> <a class="doc" href="contents.html">Tk C API, version 8.6.6</a> <small>&gt;</small> ManageGeom</H2>
+<H3><A class="doc" href="../UserCmd/contents.html">Tcl/Tk Applications</A> | <A class="doc" href="../TclCmd/contents.html">Tcl Commands</A> | <A class="doc" href="../TkCmd/contents.html">Tk Commands</A> | <A class="doc" href="../ItclCmd/contents.html">[incr Tcl] Package Commands</A> | <A class="doc" href="../SqliteCmd/contents.html">SQLite3 Package Commands</A> | <A class="doc" href="../TdbcCmd/contents.html">TDBC Package Commands</A> | <A class="doc" href="../TdbcmysqlCmd/contents.html">tdbc::mysql Package Commands</A> | <A class="doc" href="../TdbcodbcCmd/contents.html">tdbc::odbc Package Commands</A> | <A class="doc" href="../TdbcpostgresCmd/contents.html">tdbc::postgres Package Commands</A> | <A class="doc" href="../TdbcsqliteCmd/contents.html">tdbc::sqlite3 Package Commands</A> | <A class="doc" href="../ThreadCmd/contents.html">Thread Package Commands</A> | <A class="doc" href="../TclLib/contents.html">Tcl C API</A> | <A class="doc" href="../TkLib/contents.html">Tk C API</A> | <A class="doc" href="../ItclLib/contents.html">[incr Tcl] Package C API</A> | <A class="doc" href="../TdbcLib/contents.html">TDBC Package C API</A></H3>
+<H3><A NAME="M2">NAME</A></H3>
+Tk_ManageGeometry &mdash; arrange to handle geometry requests for a window
+<H3><A NAME="M3">SYNOPSIS</A></H3>
+<B>#include &lt;tk.h&gt;</B><BR>
+<B>Tk_ManageGeometry</B>(<I>tkwin, mgrPtr, clientData</I>)<BR>
+<H3><A NAME="M4">ARGUMENTS</A></H3>
+<DL class="arguments">
+<DT><A class="doc" href="../TkLib/WindowId.html">Tk_Window</A> <B>tkwin</B> (in)<DD>
+Token for window to be managed.
+<P><DT>const Tk_GeomMgr <B>*mgrPtr</B> (in)<DD>
+Pointer to data structure containing information about the
+geometry manager, or NULL to indicate that <I>tkwin</I>'s geometry
+should not be managed anymore.
+The data structure pointed to by <I>mgrPtr</I> must be static:
+Tk keeps a reference to it as long as the window is managed.
+<P><DT>ClientData <B>clientData</B> (in)<DD>
+Arbitrary one-word value to pass to geometry manager callbacks.
+<P></DL>
+<H3><A NAME="M5">DESCRIPTION</A></H3>
+<B>Tk_ManageGeometry</B> arranges for a particular geometry manager,
+described by the <I>mgrPtr</I> argument, to control the geometry
+of a particular slave window, given by <I>tkwin</I>.
+If <I>tkwin</I> was previously managed by some other geometry manager,
+the previous manager loses control in favor of the new one.
+If <I>mgrPtr</I> is NULL, geometry management is cancelled for
+<I>tkwin</I>.
+<P>
+The structure pointed to by <I>mgrPtr</I> contains information about
+the geometry manager:
+<PRE>typedef struct {
+    const char *<I>name</I>;
+    Tk_GeomRequestProc *<I>requestProc</I>;
+    Tk_GeomLostSlaveProc *<I>lostSlaveProc</I>;
+} <B>Tk_GeomMgr</B>;</PRE>
+The <I>name</I> field is the textual name for the geometry manager,
+such as <B><A class="doc" href="../TkCmd/pack.html">pack</A></B> or <B><A class="doc" href="../TkCmd/place.html">place</A></B>;  this value will be returned
+by the command <B><A class="doc" href="../TkCmd/winfo.html">winfo manager</A></B>.
+<P>
+<I>requestProc</I> is a procedure in the geometry manager that
+will be invoked whenever <B><A class="doc" href="../TkLib/GeomReq.html">Tk_GeometryRequest</A></B> is called by the
+slave to change its desired geometry.
+<I>requestProc</I> should have arguments and results that match the
+type <B>Tk_GeomRequestProc</B>:
+<PRE>typedef void <B>Tk_GeomRequestProc</B>(
+        ClientData <I>clientData</I>,
+        <A class="doc" href="../TkLib/WindowId.html">Tk_Window</A> <I>tkwin</I>);</PRE>
+The parameters to <I>requestProc</I> will be identical to the
+corresponding parameters passed to <B>Tk_ManageGeometry</B>.
+<I>clientData</I> usually points to a data
+structure containing application-specific information about
+how to manage <I>tkwin</I>'s geometry.
+<P>
+The <I>lostSlaveProc</I> field of <I>mgrPtr</I> points to another
+procedure in the geometry manager.
+Tk will invoke <I>lostSlaveProc</I> if some other manager
+calls <B>Tk_ManageGeometry</B> to claim
+<I>tkwin</I> away from the current geometry manager.
+<I>lostSlaveProc</I> is not invoked if <B>Tk_ManageGeometry</B> is
+called with a NULL value for <I>mgrPtr</I> (presumably the current
+geometry manager has made this call, so it already knows that the
+window is no longer managed), nor is it called if <I>mgrPtr</I>
+is the same as the window's current geometry manager.
+<I>lostSlaveProc</I> should have
+arguments and results that match the following prototype:
+<PRE>typedef void <B>Tk_GeomLostSlaveProc</B>(
+        ClientData <I>clientData</I>,
+        <A class="doc" href="../TkLib/WindowId.html">Tk_Window</A> <I>tkwin</I>);</PRE>
+The parameters to <I>lostSlaveProc</I> will be identical to the
+corresponding parameters passed to <B>Tk_ManageGeometry</B>.
+<H3><A NAME="M6">KEYWORDS</A></H3>
+<A class="doc" href="../Keywords/C.html#callback">callback</A>, <A class="doc" href="../Keywords/G.html#geometry">geometry</A>, <A class="doc" href="../Keywords/M.html#managed">managed</A>, <A class="doc" href="../Keywords/R.html#request">request</A>, <A class="doc" href="../Keywords/U.html#unmanaged">unmanaged</A>
+<div class="copy">Copyright &copy; 1990-1994 The Regents of the University of California.
+Copyright &copy; 1994-1996 Sun Microsystems, Inc.
+</div>
+</BODY></HTML>
